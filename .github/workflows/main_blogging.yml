@@ -86,6 +86,13 @@ jobs:
           echo "ENDPOINT=${{ steps.get-secrets.outputs.translatorendpoint }}" >> $GITHUB_ENV
           echo "LOCATION=${{ steps.get-secrets.outputs.translatorlocation }}" >> $GITHUB_ENV
 
+      - name: Create .env file
+        run: |
+          echo "FLASK_ENV=production" > .env
+          echo "KEY=${{ steps.get-secrets.outputs.subkey }}" >> .env
+          echo "ENDPOINT=${{ steps.get-secrets.outputs.translatorendpoint }}" >> .env
+          echo "LOCATION=${{ steps.get-secrets.outputs.translatorlocation }}" >> .env
+
       - name: Debug Secrets
         run: |
           echo "ENDPOINT=${{ steps.get-secrets.outputs.translatorendpoint }}"
