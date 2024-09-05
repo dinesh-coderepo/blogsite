@@ -4,17 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ blog.title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style_blog.css') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .blog-content {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+        .back-link {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .blog-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .image-gallery img {
+            max-width: 45%;
+            margin: 10px;
+        }
+        .debug-info {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>{{ blog.title }}</h1>
+    </header>
+    
     <div class="container">
-        <h1 class="animate__animated animate__fadeIn">{{ blog.title }}</h1>
         <div class="blog-content">
-            <p>{{ blog.content }}</p>
+            <p><small>{{ blog.date }}</small></p>
+            {{ blog.content|safe }}
         </div>
-        <a href="/" class="back-link">Back to home</a>
+        <a href="{{ url_for('home') }}" class="back-link">Back to home</a>
     </div>
 </body>
 </html>

@@ -3,27 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Futuristic Blog</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style_blog.css') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>My Blog</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .blog-post {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .blog-post h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .blog-post p {
+            margin-bottom: 10px;
+        }
+        .read-more {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+        .read-more:hover {
+            background-color: #2980b9;
+        }
+        .translator-section {
+            text-align: center;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+        }
+        .translator-link {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+        .translator-link:hover {
+            background-color: #2980b9;
+        }
+        .separator {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            margin: 40px 0;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Dinesh's Blog</h1>
+    </header>
+    
     <div class="container">
-        <h1 class="animate__animated animate__fadeIn">Welcome to My Blog</h1>
-        <div class="blogs">
-            {% for blog in blogs %}
-            <div class="blog-header animate__animated animate__fadeIn animate__delay-1s">
-                <h2><a href="/blog/{{ blog['id'] }}">{{ blog['title'] }}</a></h2>
-                <p>{{ blog['subheading'] }}</p>
-            </div>
-            {% endfor %}
+        {% for blog in blogs %}
+        <div class="blog-post">
+            <h2>{{ blog.title }}</h2>
+            <p>{{ blog.subheading }}</p>
+            <a href="{{ url_for('blog', folder=blog.id) }}" class="read-more">Read More</a>
         </div>
-    </div>
-    <div class="container">
-        <h1 class="animate__animated animate__fadeIn">AI Translator</h1>
-        <a href="/translator">Go to Translator</a>
+        {% endfor %}
     </div>
 
+    <hr class="separator">
+
+    <div class="translator-section">
+        <h2>Language Translator</h2>
+        <p>Try our AI-powered translator tool!</p>
+        <a href="{{ url_for('index') }}" class="translator-link">Go to Translator</a>
+    </div>
 </body>
 </html>
