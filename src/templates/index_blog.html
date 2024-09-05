@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Futuristic Blog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_blog.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="animate__animated animate__fadeIn">Welcome to My Blog</h1>
+        <div class="blogs">
+            {% for blog in blogs %}
+            <div class="blog-header animate__animated animate__fadeIn animate__delay-1s">
+                <h2><a href="/blog/{{ blog['id'] }}">{{ blog['title'] }}</a></h2>
+                <p>{{ blog['subheading'] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="animate__animated animate__fadeIn">AI Translator</h1>
+        <a href="/translator">Go to Translator</a>
+    </div>
+
+</body>
+</html>

@@ -86,6 +86,10 @@ jobs:
           echo "ENDPOINT=${{ steps.get-secrets.outputs.translatorendpoint }}" >> $GITHUB_ENV
           echo "LOCATION=${{ steps.get-secrets.outputs.translatorlocation }}" >> $GITHUB_ENV
 
+      - name: Debug Secrets
+        run: |
+          echo "ENDPOINT=${{ steps.get-secrets.outputs.translatorendpoint }}"
+          echo "LOCATION=${{ steps.get-secrets.outputs.translatorlocation }}"
 
       - name: Login to Azure
         uses: azure/login@v2

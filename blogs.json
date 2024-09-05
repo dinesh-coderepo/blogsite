@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "title": "The Future of AI",
+        "subheading": "How AI is shaping the next generation",
+        "content": "In this blog post, we'll explore the advancements in AI and how they are influencing industries."
+    },
+    {
+        "id": 2,
+        "title": "The Rise of Quantum Computing",
+        "subheading": "Understanding quantum mechanics in computing",
+        "content": "Quantum computing is one of the most promising technological advancements..."
+    }
+]

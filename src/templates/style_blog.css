@@ -1,0 +1,85 @@
+/* Base styles */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc;
+    animation: glowing 1.5s infinite;
+}
+
+/* Blog headers */
+.blog-header {
+    background: linear-gradient(145deg, #1e1e1e, #292929);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.blog-header:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.6);
+}
+
+.blog-header h2 a {
+    color: #00ccff;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.blog-header h2 a:hover {
+    color: #ff6600;
+}
+
+/* Blog content */
+.blog-content {
+    line-height: 1.6;
+    margin: 20px 0;
+}
+
+/* Back link */
+.back-link {
+    display: block;
+    text-align: center;
+    margin: 20px 0;
+    color: #00ccff;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    color: #ff6600;
+}
+
+/* Animations */
+@keyframes glowing {
+    0% { text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc, 0 0 20px #00ffcc; }
+    50% { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc, 0 0 40px #00ffcc; }
+    100% { text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc, 0 0 20px #00ffcc; }
+}
+
+/* Parallax effect */
+.parallax {
+    background-image: url('your-background-image.jpg');
+    height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

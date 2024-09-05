@@ -7,12 +7,12 @@ load_dotenv()
 app = Flask(__name__)
 
 
-@app.route('/',methods=['GET'])
+@app.route('/translator',methods=['GET'])
 def index():
-    return render_template('index.html')
+    return render_template('index_translator.html')
 
 
-@app.route('/', methods=['POST'])
+@app.route('/translator', methods=['POST'])
 def index_post():
     # Read the values from the form
     original_text = request.form['text']
@@ -30,10 +30,6 @@ def index_post():
         endpoint = os.getenv('ENDPOINT')
         location = os.getenv('LOCATION')
 
-    # Load the values from .env
-    key = os.environ['KEY']
-    endpoint = os.environ['ENDPOINT']
-    location = os.environ['LOCATION']
 
     # Indicate that we want to translate and the API version (3.0) and the target language
     path = '/translate?api-version=3.0'
@@ -63,11 +59,29 @@ def index_post():
     # Call render template, passing the translated text,
     # original text, and target language to the template
     return render_template(
-        'results.html',
+        'results_translator.html',
         translated_text=translated_text,
         original_text=original_text,
         target_language=target_language
     )
+
+def load_blogs():
+    with open('blogs.json', 'r') as file:
+        return json.load(file)
+    
+@app.route('/')
+def home():
+    blogs = load_blogs()
+    return render_template('index_blog.html', blogs=blogs)
+
+@app.route('/blog/<int:id>')
+def blog(id):
+    blogs = load_blogs()
+    blog = next((b for b in blogs if b['id'] == id), None)
+    if blog:
+        return render_template('blog.html', blog=blog)
+    return "Blog not found", 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
