@@ -61,13 +61,6 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B05A5D265C284249932881F7E8D5141D }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0001C408F5E04459B530A0259B79FD0B }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0845F312B65649FB884B115CED156AE4 }}
 
             # Second service principal login for fetching secrets from Key Vault
       - name: Login to Azure for Key Vault
@@ -92,6 +85,15 @@ jobs:
           echo "KEY=${{ steps.get-secrets.outputs.subkey }}" >> $GITHUB_ENV
           echo "ENDPOINT=${{ steps.get-secrets.outputs.translatorendpoint }}" >> $GITHUB_ENV
           echo "LOCATION=${{ steps.get-secrets.outputs.translatorlocation }}" >> $GITHUB_ENV
+
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B05A5D265C284249932881F7E8D5141D }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0001C408F5E04459B530A0259B79FD0B }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0845F312B65649FB884B115CED156AE4 }}
+
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
