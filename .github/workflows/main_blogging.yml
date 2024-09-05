@@ -69,6 +69,29 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0001C408F5E04459B530A0259B79FD0B }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0845F312B65649FB884B115CED156AE4 }}
 
+            # Second service principal login for fetching secrets from Key Vault
+      - name: Login to Azure for Key Vault
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.KEYVAULT_CLIENTID }}
+          tenant-id: ${{ secrets.KEYVAULT_TENANTID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+           # Fetch secrets from Azure Key Vault using the second service principal
+      - name: Fetch secrets from Azure Key Vault
+        id: get-secrets
+        uses: azure/keyvault-secrets/actions/fetch-secrets@v1
+        with:
+          keyvault: 'blogkeys'
+          secrets: 'subkey,translatorendpoint,translatorlocation'
+
+      # Set the secrets as environment variables
+      - name: Set environment variables
+        run: |
+          echo "KEY=${{ steps.get-secrets.outputs.subkey }}" >> $GITHUB_ENV
+          echo "ENDPOINT=${{ steps.get-secrets.outputs.translatorendpoint }}" >> $GITHUB_ENV
+          echo "LOCATION=${{ steps.get-secrets.outputs.translatorlocation }}" >> $GITHUB_ENV
+
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
