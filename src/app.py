@@ -16,17 +16,13 @@ def index_post():
     original_text = request.form['text']
     target_language = request.form['language']
 
-    if os.getenv('FLASK_ENV') == 'development':
-        # Load environment variables from .env file if running locally
-        load_dotenv()  # Only loads if .env file exists
-        key = os.getenv('KEY')
-        endpoint = os.getenv('ENDPOINT')
-        location = os.getenv('LOCATION')
-    else:
-        # Assume running in production and fetching from environment (Key Vault during deployment)
-        key = os.getenv('KEY')  # These should be set by GitHub Actions during deployment
-        endpoint = os.getenv('ENDPOINT')
-        location = os.getenv('LOCATION')
+
+    # Load environment variables from .env file if running locally
+    load_dotenv()  # Only loads if .env file exists
+    key = os.getenv('KEY')
+    endpoint = os.getenv('ENDPOINT')
+    location = os.getenv('LOCATION')
+
 
 
     # Indicate that we want to translate and the API version (3.0) and the target language
