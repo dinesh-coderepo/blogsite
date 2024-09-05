@@ -76,6 +76,7 @@ jobs:
           client-id: ${{ secrets.KEYVAULT_CLIENTID }}
           tenant-id: ${{ secrets.KEYVAULT_TENANTID }}
           client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0845F312B65649FB884B115CED156AE4 }}
 
            # Fetch secrets from Azure Key Vault using the second service principal
       - name: Fetch secrets from Azure Key Vault
