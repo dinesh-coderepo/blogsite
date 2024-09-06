@@ -6,10 +6,14 @@ date: 2024-08-06
 
 # Devloping a AI Astrology web app
 
-By leveraging LLMs and integrating all the knowledge base on Astrology to suggest users daily horoscopes.
+## Tools :
+**Hosting** : Azure app service
 
-## Key Components
+**Language and Technology** : 
 
-1. **Cursor**: An AI-assisted development environment to generate frontend and backend code.
+React seems to be widely adopted web framework , but knowledge on react is very limited - Training spend 3 hours to know the basics.
 
-..Pending development
+**AI LLM** : Using RAG and Open AI language model, or see if there are any good frameworks
+
+**Design** : Currently the website design is not a priority, functionality is prioritized
+
