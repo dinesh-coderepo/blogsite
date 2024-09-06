@@ -10,18 +10,78 @@ In this blog post, I'll share my experience using Cursor (an AI-powered developm
 
 ## Key Components
 
-1. **Cursor**: An AI-assisted development environment
-2. **Azure**: Microsoft's cloud platform for deployment
+1. **Cursor**: An AI-assisted development environment to generate frontend and backend code.
+2. **Azure**: Microsoft's cloud platform for deployment and hosting web app.
 3. **GitHub Actions**: For continuous integration and deployment
 
-## Essential Commands and Configurations
+## Setup and Development
+
+### Locally to run the app using conda environment
+To run the app locally, we need to setup conda environment and install all required packages.
+
+1. Create a new conda environment
+
+    `conda create -n blogger python=3.12`
+
+2. Activate the conda environment
+
+    `conda activate blogger`
+
+3. Install the required packages
+
+    `pip install -r requirements.txt`
+
+```
+    blinker==1.6.2
+    certifi==2024.8.30
+    charset-normalizer==3.3.2
+    click==8.1.7
+    Flask==3.0.3
+    idna==3.8
+    itsdangerous==2.2.0
+    Jinja2==3.1.4
+    Markdown==3.7
+    MarkupSafe==2.1.3
+    pip==24.2
+    python-dotenv==1.0.1
+    requests==2.32.3
+    setuptools==72.1.0
+    urllib3==2.2.2
+    Werkzeug==3.0.3
+    wheel==0.43.0
+ ```
+
+### Git repo for the project
+
+As we will be using GitHub Actions for CI/CD, we need to setup a git repo for the project.
+
+**Git repo** : [https://github.com/dinesh-coderepo/blogsite](https://github.com/dinesh-coderepo/blogsite)
+
+
 
 ### Package Management
-To capture all required packages for deployment:
+
+To capture all required packages for deployment, when ever any new package is required, locally install in conda env, but while deploying we use requirements.txt to install all the dependencies in venv. Keep running the below command whenever any new package is installed in conda env.
 
     # To get all the packages, which then can be installed later using pip
     # This is needed while deploying using GitHub Actions and while setting up virtual env
     pip list --format=freeze > requirements.txt
+
+### Create a webapp in Azure :
+
+1. Go to Azure portal and create a new resource.
+2. Search for "Web App" and select it.
+3. Fill in the required fields and create the webapp, select python 3.12 as the runtime stack.
+
+![Web App Creation](webapp.png)
+
+### Setup GitHub Actions for CI/CD
+
+1. Go to deployment center in the webapp and select GitHub actions.
+2. Select your code repo and complete the setup.
+3. Each time we push the code to GitHub, GitHub Actions will automatically run and deploy the code to Azure.
+
+![GitHub Actions](gitactions.png)
 
 ### Azure Web App Configuration
 In the Azure portal:
@@ -39,19 +99,25 @@ This tells Azure to run gunicorn and look for the app object in the src.app modu
 
 ## Development Process
 
-1. **Learning Resources**:
-   - [Microsoft Learn: Building AI web apps with Python and Flask](https://learn.microsoft.com/en-us/training/modules/python-flask-build-ai-web-app/0-introduction?source=learn)
-   - [MDN Web Docs: HTML basics](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics)
+1. **Learning Resources and Code Generation**:
+    - [Microsoft Learn: Building AI web apps with Python and Flask](https://learn.microsoft.com/en-us/training/modules/python-flask-build-ai-web-app/0-introduction?source=learn)
+    - [MDN Web Docs: HTML basics](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics)
+    - Most of the code is generated using Cursor, with some modifications and additions by me.
+    - Having high level understanding on what to develop is good, for blogging I am using markdown as my primary format to write blogs, to run this using flask.
+    - Most of the html and CSS is generated keeping this in mind.
+    - Also added a translation feature which you will find in the above tutorial. 
 
 2. **Version Control**:
-   - Project repository: [https://github.com/dinesh-coderepo/blogsite](https://github.com/dinesh-coderepo/blogsite)
+    - Project repository: [https://github.com/dinesh-coderepo/blogsite](https://github.com/dinesh-coderepo/blogsite)
 
 3. **Azure Service Principal**:
-   - Name: [bloggerdeployment](https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Overview/quickStartType~/null/sourceType/Microsoft_AAD_IAM/appId/e91edd51-068a-4702-89de-5b674ab452dc/objectId/3fa0d802-a84e-450f-a12f-16a6967e5fed/isMSAApp~/false/defaultBlade/Overview/appSignInAudience/AzureADMyOrg/servicePrincipalCreated~/true)
-   - Note: To access the Azure Key Vault, the service principal needs to be added to federated credentials in the app registration.
+      - The additional service principal is created to access the Azure Key Vault, this is done by creating an app registration and adding the service principal to the app registration.
+      - Name: [bloggerdeployment](https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Overview/quickStartType~/null/sourceType/Microsoft_AAD_IAM/appId/e91edd51-068a-4702-89de-5b674ab452dc/objectId/3fa0d802-a84e-450f-a12f-16a6967e5fed/isMSAApp~/false/defaultBlade/Overview/appSignInAudience/AzureADMyOrg/servicePrincipalCreated~/true)
+      - Note: To access the Azure Key Vault, the service principal needs to be added to federated credentials in the app registration.
 
 4. **Deployment**:
-   - Successfully deployed using GitHub Actions: [Deployment Log](https://github.com/dinesh-coderepo/blogsite/actions/runs/10720927625/job/29728277249)
+      - The deployment is done using GitHub Actions, the workflow is defined in the [.yml](https://github.com/dinesh-coderepo/blogsite/blob/main/.github/workflows/main_blogging.yml) file.
+      - Successfully deployed using GitHub Actions: [Deployment Log](https://github.com/dinesh-coderepo/blogsite/actions/runs/10720927625/job/29728277249)
 
 ## Key Learnings and Tips
 
@@ -59,9 +125,9 @@ This tells Azure to run gunicorn and look for the app object in the src.app modu
 
 2. **Continuous Integration**: The project uses GitHub Actions for CI/CD, ensuring smooth and automated deployments.
 
-3. **Resource Management**: Proper configuration of Azure resources, including the web app and custom domain, is crucial for successful deployment.
+3. **Resource Management**: Proper configuration of Azure resources, including the web app , custom domain , Azure key vault and service principal. Resources created normally are not accessible to the GitHub Actions workflow, this is done by adding the service principal to the app registration and adding it to the federated credentials.
 
-4. **AI-Assisted Development**: Cursor's AI capabilities significantly speed up the coding process, allowing for rapid prototyping and development.
+4. **AI-Assisted Development**: Cursor's AI capabilities significantly speed up the coding process, allowing for rapid prototyping and development. The Cursor code editor is not only the available code integrated code gene
 
 ## Next Steps: Enhancing the Blog
 
