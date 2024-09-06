@@ -133,15 +133,10 @@ This tells Azure to run gunicorn and look for the app object in the src.app modu
 
 For the next iteration, I plan to implement a blog-style website with a modern touch:
 
-- No user authentication required
-- Read-only content, updated through deployments
-- Home page featuring blog post titles and subheadings
-- Clickable blog posts that open individual pages
+- Enhance the UI/UX to make it more modern and responsive.
+- Add other tools like calculator to the blog site.
+- Keep the blog updated with new content.
 
 ## Conclusion
 
-By combining Cursor's AI-powered development capabilities with Azure's robust deployment options and GitHub Actions for CI/CD, I've created a streamlined process for website development and deployment. This approach significantly reduces development time and simplifies the deployment process, allowing for rapid iterations and updates.
-
-The synergy between AI-assisted coding and cloud deployment platforms represents a powerful shift in web development practices. As we continue to explore these technologies, we can expect even more efficient and innovative ways to build and deploy web applications.
-
-For those interested in diving deeper into this approach, I recommend starting with the Microsoft Learn modules and gradually integrating AI tools like Cursor into your development workflow. The combination of AI assistance in coding and streamlined cloud deployment can dramatically improve your productivity and the quality of your web projects.
+Using IDE based AI code integration is better than chat-based tools for faster paced development, used cursor IDE (*trial pro version*) to genertae all the boiler plate code for backend flask and frontend html/css and test the code locally. Integrating to services like Azure App service , modifications in Github workflow script, integrating to keyvault and authentication did have few challenges while following the approach suggested by LLMs. There is long way to go to utilize only LLMs to deploy end to end software products. But this is a good starting point to integrate these code genertation tools to get the initial working layout and keep updating it in interations with specific goals in mind.
