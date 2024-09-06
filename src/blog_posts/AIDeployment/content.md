@@ -61,7 +61,7 @@ As we will be using GitHub Actions for CI/CD, we need to setup a git repo for th
 
 ### Package Management
 
-To capture all required packages for deployment, when ever any new package is required, locally install in conda env, but while deploying we use requirements.txt to install all the dependencies in venv. Keep running the below command whenever any new package is installed in conda env.
+To capture all required packages for deployment, whenever any new package is required first we locally install them in conda env, while deploying we use requirements.txt to install all the dependencies in virtual env. So keep running the below command whenever any new package is installed in conda env to maintain same package versions in App service env.
 
     # To get all the packages, which then can be installed later using pip
     # This is needed while deploying using GitHub Actions and while setting up virtual env
@@ -111,7 +111,9 @@ This tells Azure to run gunicorn and look for the app object in the src.app modu
     - Project repository: [https://github.com/dinesh-coderepo/blogsite](https://github.com/dinesh-coderepo/blogsite)
 
 3. **Azure Service Principal**:
-      - The additional service principal is created to access the Azure Key Vault, this is done by creating an app registration and adding the service principal to the app registration.
+      - The additional service principal is created to access the Azure Key Vault, this is done by creating an app registration and adding the service principal to have read access to the key vault.
+      - Keep in mind we will be using two service principles, one for deployment using GitHub Actions and other for access azure services.
+      - In order to have these keys for the Translation API, we are generating .env file and adding the keys to it.(their might be a better way to do it, but this worked for me)
       - Name: [bloggerdeployment](https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Overview/quickStartType~/null/sourceType/Microsoft_AAD_IAM/appId/e91edd51-068a-4702-89de-5b674ab452dc/objectId/3fa0d802-a84e-450f-a12f-16a6967e5fed/isMSAApp~/false/defaultBlade/Overview/appSignInAudience/AzureADMyOrg/servicePrincipalCreated~/true)
       - Note: To access the Azure Key Vault, the service principal needs to be added to federated credentials in the app registration.
 
