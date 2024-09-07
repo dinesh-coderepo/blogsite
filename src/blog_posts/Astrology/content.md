@@ -1,23 +1,36 @@
 ---
-title: Developing a AI Astrology web app
-subheading: By leveraging LLMs and integrating all the knowledge base on Astrology using RAGS to suggest users daily horoscopes depending on their Name, Date of Birth , Time of Birth and Place of Birth.
-date: 2024-08-06
+title: Developing a Basic Astrology web app
+subheading: Deploying a webapp to get zodiac sign, developed with replit AI and cursor
+date: 2024-08-07
 ---
 
-# Devloping a AI Astrology web app
+# Devloping a Astrology web app using replit AI to develop and deploy to webapp using cursor and github actions
 
-## Tools :
-**Hosting** : Azure app service
 
-**Language and Technology** : 
+## Using Replit AI to Generate Basic UI
 
-React seems to be widely adopted web framework , but knowledge on react is very limited - Training spend 3 hours to know the basics.
+To kickstart our astrology web app, we'll leverage Replit AI to generate the basic user interface. Idea is to use replit AI agent to generate a working model and then deploy using cursor and github actions.
 
-**AI LLM** : Using RAG and Open AI language model, or see if there are any good frameworks
 
-**Design** : Currently the website design is not a priority, functionality is prioritized
+### 1. Using replit AI pro subscription you get access to their AI Agent
 
-**User Authentication** : Also look in to how to have a user athentication system
+*AI Agent is useful in this case because it executed the code and corrects the code on its own. It is not perfect but for small scale project it works great.*
 
-**Payment Gateway** : Add products and integrate payment gateway
+![Replit AI Agent](./replit1.png)
+
+### 2. The AI agent is very efficient in setting up dependencies and installation setup
+
+*it also runs and sees the error and goes back to correct it. It is stil not perfect in all sense but for small scale project it works great.*
+
+![Replit AI Agent](./replit2.png)
+
+### 3. Code which it generated is availble in replit repo :
+
+**Replit Repo** : [AstroGuide](https://replit.com/@maluchurudinesh/AstroGuide?v=1)
+
+
+### 4. Imported the code to local cursor environment and setting up the app to run locally.
+
+*In replit you can give instruction to add an Readme.md file which shows what dependencies you would need to setup locally*
+
 
