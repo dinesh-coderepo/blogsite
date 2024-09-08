@@ -32,9 +32,17 @@ As mentioned already the input method is markdown by creating a folder for each 
 
 ![image](./homepage_3.png)
 
--4 .**Made changes to the UI:**
+- 4 .**Made changes to the UI using cursor:**
 
 ![image](./new_homepage_1.png)
+
+All the changes are made using cursor prompts, the below is the summary of all the changes I asked the cursor to do to enhance the UI, additionally integrated the light and dark modes to the blog site. 
+
+- Note:
+        - Cursor made many mistakes while implementing the toggle feature.
+        - Consistency was missed between pages on which side the slider would be on each page. This solution required many iterations with cursor prompts to get right.
+        - Always assume you will never reach 100% of what you want with the prompts, so having domain knowledge of these technologies is still important if you do not want to compromise on implementation.
+        - For my blog, the achieved format looks good for the second version. I will keep iterating the blog to newer versions and add functionalities as well going forward.
 
 Summarizing the changes made to the UI:
 
