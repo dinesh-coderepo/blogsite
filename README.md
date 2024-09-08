@@ -2,15 +2,13 @@
 
 #### Blog type site to publish articles
 
-
-your_project/
+```
+/src/
 │
 ├── app.py
 ├── templates/
 │   ├── index_blog.html
 │   ├── blog.html
-│   └── ...
-├── static/
 │   └── ...
 └── blog_posts/
     ├── post1/
@@ -20,3 +18,4 @@ your_project/
     │   ├── content.md
     │   └── image.png
     └── ...
+```

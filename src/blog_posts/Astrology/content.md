@@ -1,13 +1,10 @@
 ---
-title: Developing a Astrology web app users will love
-subheading: Making of astrology app to revolutionize the way we use atro with AI and LLMs
+title: Developing a Astrology webapp users will love.
+subheading: Making of astroyuga app to revolutionize the way we use astrology with AI and LLMs
 date: 2024-08-07
 ---
 
-# Devloping a Astrology web app using replit AI and deploying to webapp.
-
-
-## Using Replit AI to Generate Basic UI
+# Developing a Astrology web app using replit AI and deploying to webapp.
 
 To kickstart our astrology web app, we'll leverage Replit AI to generate the basic placeholder for the initial version of the app to host. The idea is to develop a full-fledged subscription model app with the following features:
 
@@ -64,10 +61,10 @@ To kickstart our astrology web app, we'll leverage Replit AI to generate the bas
     - Binding of aws domain to webapp, I am doing this for the first time , will document the approach.
 
 6. **CI and CD using github actions:**
-    - Will include one implemented
+    - Will include once implemented
 
 7. **Domain binding to webapp:**
-    - First time doing this , will document the approach.
+    - first time implementing this , will document the approach.
 
 
 
