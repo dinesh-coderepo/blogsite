@@ -3,103 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
+    <title>Dinesh's Futuristic Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #e0e0e0;
+            --accent-color: #00ffff;
+            --secondary-accent: #ff00ff;
+        }
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: var(--text-color);
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
         }
-        header {
-            background-color: #3498db;
-            color: white;
-            text-align: center;
-            padding: 40px 0;
-        }
-        h1 {
-            font-size: 3em;
-            margin: 0;
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.03) 0%, transparent 20%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
+            z-index: -1;
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
-        .blog-post {
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+        header {
+            background-color: rgba(52, 152, 219, 0.1);
+            backdrop-filter: blur(10px);
+            color: var(--accent-color);
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .blog-posts {
+            display: grid;
+            gap: 40px;
+        }
+        .blog-post {    
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         .blog-post h2 {
-            color: #2c3e50;
+            color: var(--accent-color);
             margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         .blog-post p {
             margin-bottom: 10px;
         }
         .read-more {
             display: inline-block;
-            background-color: #3498db;
-            color: white;
+            background-color: var(--secondary-accent);
+            color: var(--text-color);
             padding: 10px 15px;
             text-decoration: none;
-            border-radius: 3px;
+            border-radius: 5px;
             margin-top: 10px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
         }
         .read-more:hover {
-            background-color: #2980b9;
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
         }
         .translator-section {
+            margin-top: 60px;
             text-align: center;
             padding: 20px;
-            background-color: #ecf0f1;
-            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .translator-link {
             display: inline-block;
-            background-color: #3498db;
-            color: white;
+            background-color: var(--secondary-accent);
+            color: var(--text-color);
             padding: 10px 15px;
             text-decoration: none;
-            border-radius: 3px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
         }
         .translator-link:hover {
-            background-color: #2980b9;
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
         }
-        .separator {
-            border: 0;
-            height: 1px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-            margin: 40px 0;
+        body.light-mode {
+            --bg-color: #f0f0f0;
+            --text-color: #333333;
+            --accent-color: #0066cc;
+            --secondary-accent: #cc00cc;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e6e6fa 100%);
+        }
+        body.light-mode::before {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 102, 204, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(204, 0, 204, 0.03) 0%, transparent 20%),
+                linear-gradient(to right, rgba(0, 0, 0, 0.01) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 1px, transparent 1px);
+        }
+        .mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--secondary-accent);
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--accent-color);
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .slider:after {
+            content: '☀️';
+            position: absolute;
+            left: 8px;
+            top: 6px;
+            font-size: 16px;
+        }
+        input:checked + .slider:after {
+            content: '🌙';
+            left: auto;
+            right: 8px;
         }
     </style>
 </head>
 <body>
+    <div class="mode-toggle">
+        <label class="switch">
+            <input type="checkbox" id="mode-switch">
+            <span class="slider"></span>
+        </label>
+    </div>
+
     <header>
         <h1>Dinesh's Blog</h1>
     </header>
     
     <div class="container">
-        {% for blog in blogs %}
-        <div class="blog-post">
-            <h2>{{ blog.title }}</h2>
-            <p>{{ blog.subheading }}</p>
-            <a href="{{ url_for('blog', folder=blog.id) }}" class="read-more">Read More</a>
+        <div class="blog-posts">
+            {% for blog in blogs %}
+            <div class="blog-post">
+                <h2>{{ blog.title }}</h2>
+                <p>{{ blog.subheading }}</p>
+                <a href="{{ url_for('blog', folder=blog.id) }}" class="read-more">Read More</a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+
+        <div class="translator-section">
+            <h2>Language Translator</h2>
+            <p>Try our AI-powered translator tool!</p>
+            <a href="{{ url_for('index') }}" class="translator-link">Go to Translator</a>
+        </div>
     </div>
 
-    <hr class="separator">
+    <script>
+        const modeSwitch = document.getElementById('mode-switch');
+        const body = document.body;
 
-    <div class="translator-section">
-        <h2>Language Translator</h2>
-        <p>Try our AI-powered translator tool!</p>
-        <a href="{{ url_for('index') }}" class="translator-link">Go to Translator</a>
-    </div>
+        function setLightMode(isLight) {
+            body.classList.toggle('light-mode', isLight);
+            modeSwitch.checked = !isLight;
+            localStorage.setItem('mode', isLight ? 'light' : 'dark');
+        }
+
+        modeSwitch.addEventListener('change', () => {
+            setLightMode(!modeSwitch.checked);
+        });
+
+        // Check for saved mode preference
+        const savedMode = localStorage.getItem('mode');
+        setLightMode(savedMode === 'light');
+    </script>
 </body>
 </html>
