@@ -4,6 +4,6 @@ subheading: Using RAGS to retrieve information from documents and provide answer
 date: 2024-08-18
 ---
 
-# Going deeper into RAGS, vector db, embeddings and its workings.
+# Going deeper into RAGS, vector db, embeddings and its workings and working framework.
 
 ### Blog coming soon
