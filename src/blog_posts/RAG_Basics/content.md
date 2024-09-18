@@ -4,6 +4,6 @@ subheading: Using RAGS to retrieve information from documents and provide answer
 date: 2024-08-18
 ---
 
-# App name which will be shown in the actial blog
+# Going deeper into RAGS, vector db, embeddings and its workings.
 
 ### Blog coming soon
