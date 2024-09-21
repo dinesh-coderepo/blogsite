@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Digital Bits and Builds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #e0e0e0;
+            --accent-color: #00ffff;
+            --secondary-accent: #ff00ff;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.03) 0%, transparent 20%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
+            z-index: -1;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: rgba(52, 152, 219, 0.1);
+            backdrop-filter: blur(10px);
+            color: var(--accent-color);
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+        }
+        h2, h3 {
+            color: var(--accent-color);
+        }
+        .about-content {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .job {
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 15px;
+        }
+        .job h3 {
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+        .job-details {
+            font-size: 0.9em;
+            color: var(--secondary-accent);
+        }
+        .button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: var(--secondary-accent);
+            transform: translateY(-2px);
+        }
+        .mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--secondary-accent);
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--accent-color);
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .slider:after {
+            content: '☀️';
+            position: absolute;
+            left: 8px;
+            top: 6px;
+            font-size: 16px;
+        }
+        input:checked + .slider:after {
+            content: '🌙';
+            left: auto;
+            right: 8px;
+        }
+        body.light-mode {
+            --bg-color: #f0f0f0;
+            --text-color: #333333;
+            --accent-color: #0066cc;
+            --secondary-accent: #cc00cc;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e6e6fa 100%);
+        }
+        nav {
+            margin-top: 20px;
+        }
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="mode-toggle">
+        <label class="switch">
+            <input type="checkbox" id="mode-switch">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <header>
+        <h1>ABOUT ME</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="about-content">
+            <h2>Maluchuru Sai Dinesh Reddy</h2>
+            <p>Email: <a href="mailto:maluchurudinesh@gmail.com">maluchurudinesh@gmail.com</a></p>
+            
+            <div class="section">
+                <h3>Work Experience</h3>
+                
+                <div class="job">
+                    <h3>Amazon, India - Data Engineer 2</h3>
+                    <div class="job-details">Feb 2024 - Present</div>
+                    <p><strong>Languages:</strong> Python, Bash, Hive SQL, JS</p>
+                    <ul>
+                        <li>Fintech and Tax: Enhancing and building data pipelines to generate monthly, weekly compliance reports and implement new business expansions in all regions.</li>
+                        <li>Internal Tooling: Developing ETL product with different functionalities such as modeling/report generation/orchestration for Tax audit teams as a self-serving tool.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <h3>Microsoft, India - Data & ML Engineer 2</h3>
+                    <div class="job-details">July 2022 - Feb 2024</div>
+                    <p><strong>Languages:</strong> SQL, Python, Bash</p>
+                    <ul>
+                        <li>Windows + Devices: Ingesting and building business-critical metrics for Windows such as MAD/DAD Calculations, OKRs. Understanding business to identify and calculate different cohorts consumed by 28 teams internally to manage their targets.</li>
+                        <li>Azure Services: Leveraging Azure services. Migrating existing legacy services to Azure using Synapse Analytics, Azure Data Factory.</li>
+                        <li>Store Personalization: Productionized ML models and implemented new frameworks to train deep-learning models and reduced training costs by 80% using Resilience LPG framework.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <h3>Amazon, India - Data Engineer</h3>
+                    <div class="job-details">July 2019 - July 2022</div>
+                    <p><strong>Languages:</strong> SQL, Python, Bash</p>
+                    <ul>
+                        <li>Architecture Design: Using Amazon ECS, Fargate, EC2 and S3 designed a scalable solution for ingesting large datasets.</li>
+                        <li>Data Ingestion: Built Critical Datasets using Redshift for Amazon Logistics (AMZL) and also supported Incremental improvements for existing datasets. Across Amazon, more than 80 Teams use the datasets built for their reporting needs.</li>
+                        <li>Data Pipeline: To timely deliver the critical datasets to customer clusters, built and optimized processes which resulted in 25% SLA improvement and better data quality.</li>
+                        <li>Business Support: Worked with Business Users to identify DEA (Delivery Estimate Accuracy) misses in Amazon Indian Logistics process and built datasets to identify the DEA daily for packages.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <h3>JPMorgan Chase, India - Associate</h3>
+                    <div class="job-details">Jun 2017 - July 2019</div>
+                    <p><strong>Areas:</strong> Big Data, Hadoop, BI Reporting | <strong>Languages:</strong> SQL, Python, Bash</p>
+                    <ul>
+                        <li>Business: Delivered Cost-Based Allocation Model for Chase Merchant Services which reduced time for business users to make decisions proactively on managing excess costs.</li>
+                        <li>Reporting: Built Tableau Dashboards for the Mortgage Banking sector which helped project executives to monitor pipelines. Worked with Alteryx for data blending, wrangling, and creating final extracts. There were 300 Unique daily active users for these dashboards.</li>
+                        <li>Process Improvement: Worked on optimizing the process execution using Spark SQL by tweaking memory parameters which resulted in 50% Improvement in SLA.</li>
+                        <li>Operational Excellence: Adopted Autosys for scheduling, Bit Bucket for version controlling to our project. Automated deployment of code using Jenkins into production environments for decreasing operational overhead. Understanding of Big data architecture which includes YARN, Hive, Impala, Spark to resolve high critical issues.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <h3>General Electric - Summer Intern</h3>
+                    <div class="job-details">May 2015 - July 2015</div>
+                    <p><strong>Areas:</strong> Machine Learning, NLP | <strong>Languages:</strong> Python, R</p>
+                    <ul>
+                        <li>Vehicle Fault Detection Techniques: Developing algorithms that can detect faults in Vehicle engines using the data of other parameters. Also developed text mining techniques to filter the bad data and find ground truth.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Education</h3>
+                <div class="job">
+                    <h3>Indian Institute of Technology, Madras</h3>
+                    <div class="job-details">Chennai, India | July 2012 - May 2017</div>
+                    <p>Dual Degree (B.Tech + M.Tech) in Electrical Engineering - Minor in Development Sciences</p>
+                    <p>All India Rank 728 in the IIT Joint Entrance Exam (IIT-JEE), among 560,000 students who appeared in 2012</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Skills</h3>
+                <p><strong>Languages:</strong> SQL, Python, Bash, R, JavaScript, Hive SQL</p>
+                <p><strong>Software/Tools/Frameworks:</strong> Tableau, Power BI, Spark SQL, Hive, Impala, Shell Scripting, Hadoop, Amazon ECS, Fargate, EC2, S3, Redshift, Azure Synapse Analytics, Azure Data Factory, Autosys, Bit Bucket, Jenkins, YARN</p>
+            </div>
+        </div>
+        <a href="{{ url_for('home') }}" class="button">Return to Home</a>
+    </div>
+
+    <script>
+        const modeSwitch = document.getElementById('mode-switch');
+        const body = document.body;
+
+        function setLightMode(isLight) {
+            body.classList.toggle('light-mode', isLight);
+            modeSwitch.checked = !isLight;
+            localStorage.setItem('mode', isLight ? 'light' : 'dark');
+        }
+
+        modeSwitch.addEventListener('change', () => {
+            setLightMode(!modeSwitch.checked);
+        });
+
+        // Check for saved mode preference
+        const savedMode = localStorage.getItem('mode');
+        setLightMode(savedMode === 'light');
+    </script>
+</body>
+</html>

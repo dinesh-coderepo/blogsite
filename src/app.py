@@ -95,7 +95,10 @@ def load_blog_posts():
             if os.path.exists(content_path):
                 with open(content_path, 'r', encoding='utf-8') as file:
                     content = file.read()
-                    md = markdown.Markdown(extensions=['meta', ImagePathExtension(folder)])
+                    md = markdown.Markdown(extensions=['meta', 
+                                                       'codehilite', 
+                                                       'fenced_code', 
+                                                       ImagePathExtension(folder)])
                     html_content = md.convert(content)
                     meta = md.Meta
                     
@@ -135,6 +138,10 @@ def blog_image(folder, filename):
     else:
         print(f"Image not found: {image_path}")  # Debugging line
         return "Image not found", 404
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

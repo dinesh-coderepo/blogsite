@@ -1,10 +1,10 @@
 ---
-title: Leveraging Cursor and Azure for Rapid Website Deployment
+title: Leveraging CURSOR and Azure Services for Rapid Web Deployment
 subheading: Accelerating Development and Deployment Cycles with AI Tools
 date: 2024-08-05
 ---
 
-# Rapid Development and Deployment Using AI Tools
+# Rapid development and deployment using AI tools
 
 In this blog post, I'll share my experience using Cursor (an AI-powered development tool) and Microsoft Azure to streamline the process of developing and deploying a website. This combination has significantly accelerated my development and deployment cycle.
 

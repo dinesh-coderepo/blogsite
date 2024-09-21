@@ -1,10 +1,10 @@
 ---
-title: Improving the UI of this blogging app with the same functionalities
+title: Improving the UI of this blogging app - V2
 subheading: Changing the UI layout and improving the experience by modernizing the UI with custom styling
 date: 2024-08-09
 ---
 
-# Improving and enhancing the UI of this blogging app with the same functionalities.
+# Improving and Enhancing the UI of this blogging app with the same functionalities.
 
 ## Current UI functionalities and experience
 
