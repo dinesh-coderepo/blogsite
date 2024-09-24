@@ -49,14 +49,63 @@ After authorization, configure the repository settings as follows:
 
 ![GitHub Configuration](git-hub-config.png)
 
-Key points to note:
-- Select your repository from the dropdown.
-- Choose the branch you want to use for development.
-- ADF will automatically create a "publish" branch for ARM templates.
-- Set the root folder to "src" to ensure all code resources are properly converted to JSON and stored in the correct location.
+### Key points to note:
+    - Select your repository from the dropdown.
+    - Choose the branch you want to use for development.
+    - ADF will automatically create a "publish" branch for ARM templates.
+    - Set the root folder to "src" to ensure all code resources are properly converted to JSON and stored in the correct location.
 
-## Next Steps
 
-In the next part of this series, we'll dive deeper into creating and orchestrating ML pipelines within Azure Data Factory.
+I will be using the MNIST dataset for this ML model : https://www.kaggle.com/code/prashant111/mnist-deep-neural-network-with-keras
+In this version we will build everything from UI of ADF itself , but we will document all steps one by one.
 
-### Coming Soon!
+
+### Creating a blob storage in the resource group which we will use for storing data and storing trained model
+
+![Storage account creation](storage-create.png)
+
+Using LRS type redundancy as Locally Redundant Storage is good for our usecase but for production systems it is better to have RA-GRS type redundancy as this is a GEO-redundant storage and copies 3 times locally and 3 times in the other region.
+
+
+![Containers and Folders](containers-folders.png)
+
+Created a container **adftrain** and folders for storing training data, inference data and trained model.
+
+
+### Adding access to the storage account via linked service
+
+Add the Managed Identity of the ADF workspace and provide **Contributor access** to the storage account as below.
+
+![access-storage](access-storage.png)
+
+Once added then add this account to the linked service in the ADF workspace. Validate with the Test Connection at the bottom to check if the connection is successful.
+
+![adf_linked_service](adf_linked_service.png)
+
+
+### Key points to note:
+    - With the above steps we created a ADF workspace, Storage account and Linked Service to access storage account from ADF service.
+    - Going forward we can keep publishing ARM template for any changes so that the repo : [https://github.com/dinesh-coderepo/adf-ml-project](https://github.com/dinesh-coderepo/adf-ml-project) , `branch : adf_publish` is updated with the latest changes.
+    - Publishing to adf_publish involves some checks from ADF and then the ARM template is published.
+    - Incase of any issues we can revert to the previous commit in the repo.
+    - Ideally in production we should not publish the code changes directly to the repo without testing in the dev environment.
+    - We can have a CI/CD pipeline to monitor any changes to adf_publish branch and it detects any changes it will deploy these to target environment such as staging and production
+    - The deployment uses the ARM template to create update or delete resources in target ADF environment.
+    - We will cover this entire setup in an another blog post.
+
+
+
+
+### Uploading data to blob storage
+
+As part of next steps first we will get the mnist data from keras datasets and then upload it to blob storage. We are trying to mimic a real time scenario where we first get the data from some external source and then upload it to blob storage, in this case we are are getting the data from keras.datasets module then uploading it to blob storage.
+
+```python
+# I am first dumping these images into blob storage
+from keras.datasets import mnist
+
+
+
+# Remaining steps are coming soon...
+```
+### Remaining steps are coming soon...
