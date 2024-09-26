@@ -30,6 +30,29 @@ class ImagePathExtension(Extension):
 # Add these imports at the top of your file
 from markdown.treeprocessors import Treeprocessor
 from markdown.extensions import Extension
+from markdown.preprocessors import Preprocessor
+import re
+
+class MermaidPreprocessor(Preprocessor):
+    def run(self, lines):
+        new_lines = []
+        in_mermaid = False
+        for line in lines:
+            if line.strip() == '```mermaid':
+                in_mermaid = True
+                new_lines.append('<div class="mermaid">')
+            elif line.strip() == '```' and in_mermaid:
+                in_mermaid = False
+                new_lines.append('</div>')
+            elif in_mermaid:
+                new_lines.append(line)
+            else:
+                new_lines.append(line)
+        return new_lines
+
+class MermaidExtension(Extension):
+    def extendMarkdown(self, md):
+        md.preprocessors.register(MermaidPreprocessor(md), 'mermaid', 175)
 
 @app.route('/translator',methods=['GET'])
 def index():
@@ -98,7 +121,8 @@ def load_blog_posts():
                     md = markdown.Markdown(extensions=['meta', 
                                                        'codehilite', 
                                                        'fenced_code', 
-                                                       ImagePathExtension(folder)])
+                                                       ImagePathExtension(folder),
+                                                       MermaidExtension()])
                     html_content = md.convert(content)
                     meta = md.Meta
                     

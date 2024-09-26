@@ -94,18 +94,28 @@ Once added then add this account to the linked service in the ADF workspace. Val
     - We will cover this entire setup in an another blog post.
 
 
+### Data Flow Graph
+
+To better visualize the flow of data in our ML pipeline, let's look at the following graph:
+
+```mermaid
+graph LR
+    A[External Source] --> |Fetch Data| B[Local Processing]
+    B --> |Upload| C[Blob Storage]
+    C --> |Training| D[ML Model Training]
+    D --> |Save the Trained model| C
+    C --> |Inference on top of the trained model| E[Prediction Service]
+```
+
+#### In this graph:
+- A : External Source (in our case, keras.datasets)
+- B : Local Processing (preprocessing if needed)
+- C : Blob Storage (where we store our data and trained model)
+- D : ML Model (training process)
+- E : Prediction Service (for inference)
+
 
 
 ### Uploading data to blob storage
 
 As part of next steps first we will get the mnist data from keras datasets and then upload it to blob storage. We are trying to mimic a real time scenario where we first get the data from some external source and then upload it to blob storage, in this case we are are getting the data from keras.datasets module then uploading it to blob storage.
-
-```python
-# I am first dumping these images into blob storage
-from keras.datasets import mnist
-
-
-
-# Remaining steps are coming soon...
-```
-### Remaining steps are coming soon...

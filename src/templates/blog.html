@@ -171,6 +171,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#00ffff',
+                secondaryColor: '#ff00ff',
+                tertiaryColor: '#ffffff',
+                primaryTextColor: '#e0e0e0',
+                lineColor: '#e0e0e0',
+                fontSize: '16px'
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="mode-toggle">
@@ -205,6 +220,30 @@
             body.classList.toggle('light-mode', isLight);
             modeSwitch.checked = !isLight;
             localStorage.setItem('mode', isLight ? 'light' : 'dark');
+            updateMermaidTheme(isLight);
+        }
+
+        function updateMermaidTheme(isLight) {
+            const theme = isLight ? 'default' : 'dark';
+            const primaryColor = isLight ? '#0066cc' : '#00ffff';
+            const secondaryColor = isLight ? '#cc00cc' : '#ff00ff';
+            const tertiaryColor = isLight ? '#333333' : '#ffffff';
+            const primaryTextColor = isLight ? '#333333' : '#e0e0e0';
+            const lineColor = isLight ? '#333333' : '#e0e0e0';
+
+            mermaid.initialize({
+                theme: theme,
+                themeVariables: {
+                    primaryColor: primaryColor,
+                    secondaryColor: secondaryColor,
+                    tertiaryColor: tertiaryColor,
+                    primaryTextColor: primaryTextColor,
+                    lineColor: lineColor
+                }
+            });
+
+            // Re-render all Mermaid diagrams
+            mermaid.init(undefined, document.querySelectorAll('.mermaid'));
         }
 
         modeSwitch.addEventListener('change', () => {
