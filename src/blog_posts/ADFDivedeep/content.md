@@ -119,3 +119,84 @@ graph LR
 ### Uploading data to blob storage
 
 As part of next steps first we will get the mnist data from keras datasets and then upload it to blob storage. We are trying to mimic a real time scenario where we first get the data from some external source and then upload it to blob storage, in this case we are are getting the data from keras.datasets module then uploading it to blob storage.
+
+
+### Creating a Batch Account to run the scripts we would need
+
+
+![batch-account](batch-account.png)
+
+- Attaching the storage account to the batch service, with user managed identity authentication.
+
+- Created a User managed identity, added the contributor role to the storage account and added the identity to the batch account. After this we can link the storage account to the batch account.
+
+![storage-batch-link](storage-batch-link.png)
+
+- Creating a Batch Pool and added the commands to install the python packaged neccesary for the job
+
+![batch-pool-1](batch-pool-1.png)
+
+- After creating the pool we create a job with a task to run the script to download the data from keras.datasets and upload it to blob storage.
+
+![batch-job](job-task.png)
+
+**with this setup we can replicate the same for training and inference by just changing the script in the task.**
+
+- Follow below steps to configure to run the batch job in ADF pipeline 
+- Note : Not Implemented in ADF and executed all the steps as the pool to run increases the cost for POC.
+- In future I will be using this entire framework to implement a real world application.
+
+### Below flow can illustrate the flow for dumping data using batch and ADF
+
+```mermaid
+graph LR
+    A[ADF Trigger] --> |Trigger the Pipeline| B[ADF Pipeline]
+    B --> |Initiate the task| C[Azure Batch Activity]
+    C --> |Runs the Job created in Azure Batch Account| D[Job Task]
+    D --> |Initiates the Batch Pool| E[Batch Pool]
+    E --> |Dump the data to Blob | F[Storage Blob]
+```
+
+
+### Running Azure Batch Jobs in ADF Pipeline
+
+To integrate our Azure Batch job into the ADF pipeline, we'll follow these steps:
+
+1. Create a Linked Service for Azure Batch
+2. Create a Pipeline with Azure Batch Activity
+3. Publish and Run the Pipeline
+
+#### Create a Linked Service for Azure Batch
+
+First, we need to create a Linked Service to connect ADF to our Azure Batch account:
+
+1. In ADF Studio, go to the "Manage" tab
+2. Select "Linked services" and click "New"
+3. Search for and select "Azure Batch"
+4. Configure the Linked Service with your Batch account details
+
+
+#### Create a Pipeline with Azure Batch Activity
+
+Now, let's create a pipeline that uses the Azure Batch Activity:
+
+1. In ADF Studio, go to the "Author" tab
+2. Create a new pipeline
+3. Drag and drop the "Azure Batch" activity from the Activities pane
+4. Configure the Azure Batch activity with your script details and Linked Services
+
+
+#### Publish and Run the Pipeline
+
+After setting up the pipeline:
+
+1. Click "Publish All" to save your changes
+2. Click "Add trigger" > "Trigger now" to run the pipeline manually
+
+
+
+### Key points to note:
+- Ensure your Python script is uploaded to the specified Blob storage container.
+- The Azure Batch activity in ADF allows you to run your data processing and ML tasks at scale.
+- You can add additional activities before or after the Batch activity for more complex workflows.
+- This setup provides a scalable way to integrate your data processing and ML tasks into your ADF pipelines, allowing for better orchestration and management of your entire ML workflow.
