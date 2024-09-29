@@ -7,15 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --text-color: #e0e0e0;
-            --accent-color: #00ffff;
-            --secondary-accent: #ff00ff;
+            --primary: #3A506B;
+            --secondary: #5BC0BE;
+            --background: #F0F5F9;
+            --text: #1C2541;
+            --accent: #6FFFE9;
         }
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-            color: var(--text-color);
+            background: linear-gradient(135deg, var(--background) 0%, var(--primary) 100%);
+            color: var(--text);
             line-height: 1.6;
             margin: 0;
             padding: 0;
@@ -30,10 +31,10 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.03) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.03) 0%, transparent 20%),
-                linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
+                linear-gradient(to right, rgba(28, 37, 65, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(28, 37, 65, 0.02) 1px, transparent 1px);
             background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
             z-index: -1;
         }
@@ -43,12 +44,12 @@
             padding: 20px;
         }
         header {
-            background-color: rgba(52, 152, 219, 0.1);
+            background-color: rgba(58, 80, 107, 0.1);
             backdrop-filter: blur(10px);
-            color: var(--accent-color);
+            color: var(--primary);
             text-align: center;
             padding: 20px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(28, 37, 65, 0.1);
             margin-bottom: 40px;
         }
         h1 {
@@ -62,19 +63,19 @@
             gap: 40px;
         }
         .blog-post {    
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(240, 245, 249, 0.8);
             backdrop-filter: blur(5px);
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(28, 37, 65, 0.1);
             padding: 20px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .blog-post:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
         .blog-post h2 {
-            color: var(--accent-color);
+            color: var(--primary);
             margin-top: 0;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -82,55 +83,93 @@
         .blog-post p {
             margin-bottom: 10px;
         }
-        .read-more {
+        .read-more,
+        .translator-link,
+        nav a {
             display: inline-block;
-            background-color: var(--secondary-accent);
-            color: var(--text-color);
+            background-color: var(--secondary);
+            color: var(--background);
             padding: 10px 15px;
             text-decoration: none;
             border-radius: 5px;
             margin-top: 10px;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
         }
-        .read-more:hover {
-            background-color: var(--accent-color);
+        .read-more:hover,
+        .translator-link:hover,
+        nav a:hover {
+            background-color: var(--primary);
+            color: var(--background);
             transform: translateY(-2px);
         }
+        body.dark-mode .read-more,
+        body.dark-mode .translator-link,
+        body.dark-mode nav a {
+            background-color: var(--accent);
+            color: var(--background);
+        }
+        body.dark-mode .read-more:hover,
+        body.dark-mode .translator-link:hover,
+        body.dark-mode nav a:hover {
+            background-color: var(--primary);
+            color: var(--background);
+        }
+
+        nav a {
+            margin: 0 8px;
+        }
+
+        /* Ensure text color contrast in dark mode */
+        body.dark-mode .blog-post h2,
+        body.dark-mode .translator-section h2,
+        body.dark-mode .translator-section p {
+            color: var(--text);
+        }
+
         .translator-section {
             margin-top: 60px;
             text-align: center;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(240, 245, 249, 0.8);
             backdrop-filter: blur(5px);
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(28, 37, 65, 0.1);
         }
         .translator-link {
             display: inline-block;
-            background-color: var(--secondary-accent);
-            color: var(--text-color);
+            background-color: var(--secondary);
+            color: var(--background);
             padding: 10px 15px;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s ease, transform 0.1s ease;
         }
         .translator-link:hover {
-            background-color: var(--accent-color);
+            background-color: var(--primary);
             transform: translateY(-2px);
         }
-        body.light-mode {
-            --bg-color: #f0f0f0;
-            --text-color: #333333;
-            --accent-color: #0066cc;
-            --secondary-accent: #cc00cc;
-            background: linear-gradient(135deg, #f0f0f0 0%, #e6e6fa 100%);
+        body.dark-mode {
+            --primary: #5BC0BE;
+            --secondary: #3A506B;
+            --background: #0B132B;
+            --text: #F0F5F9;
+            --accent: #6FFFE9;
         }
-        body.light-mode::before {
+        body.dark-mode::before {
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 102, 204, 0.03) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(204, 0, 204, 0.03) 0%, transparent 20%),
-                linear-gradient(to right, rgba(0, 0, 0, 0.01) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 1px, transparent 1px);
+                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
+                linear-gradient(to right, rgba(240, 245, 249, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(240, 245, 249, 0.02) 1px, transparent 1px);
+        }
+        body.dark-mode .blog-post,
+        body.dark-mode .translator-section {
+            background-color: rgba(11, 19, 43, 0.8);
+            border-color: rgba(240, 245, 249, 0.1);
+        }
+        body.dark-mode header {
+            background-color: rgba(91, 192, 190, 0.1);
+            border-bottom-color: rgba(240, 245, 249, 0.1);
         }
         .mode-toggle {
             position: fixed;
@@ -156,7 +195,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: var(--secondary-accent);
+            background-color: var(--secondary);
             transition: .4s;
             border-radius: 34px;
         }
@@ -167,12 +206,12 @@
             width: 26px;
             left: 4px;
             bottom: 4px;
-            background-color: white;
+            background-color: var(--background);
             transition: .4s;
             border-radius: 50%;
         }
         input:checked + .slider {
-            background-color: var(--accent-color);
+            background-color: var(--primary);
         }
         input:checked + .slider:before {
             transform: translateX(26px);
@@ -196,15 +235,22 @@
             display: inline-block;
             padding: 8px 16px;
             margin: 0 8px;
-            background-color: var(--accent-color);
-            color: var(--bg-color);
+            background-color: var(--secondary);
+            color: var(--background);
             border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
         }
         nav a:hover {
-            background-color: var(--secondary-accent);
+            background-color: var(--primary);
             transform: translateY(-2px);
+        }
+        body.dark-mode nav a {
+            background-color: var(--accent);
+            color: var(--background);
+        }
+        body.dark-mode nav a:hover {
+            background-color: var(--primary);
         }
     </style>
 </head>
@@ -245,19 +291,25 @@
         const modeSwitch = document.getElementById('mode-switch');
         const body = document.body;
 
-        function setLightMode(isLight) {
-            body.classList.toggle('light-mode', isLight);
-            modeSwitch.checked = !isLight;
-            localStorage.setItem('mode', isLight ? 'light' : 'dark');
+        function setDarkMode(isDark) {
+            body.classList.toggle('dark-mode', isDark);
+            modeSwitch.checked = isDark;
+            localStorage.setItem('mode', isDark ? 'dark' : 'light');
         }
 
         modeSwitch.addEventListener('change', () => {
-            setLightMode(!modeSwitch.checked);
+            setDarkMode(modeSwitch.checked);
         });
 
-        // Check for saved mode preference
+        // Check for saved mode preference or use dark mode as default
         const savedMode = localStorage.getItem('mode');
-        setLightMode(savedMode === 'light');
+        if (savedMode === null) {
+            // First time visit, set dark mode as default
+            setDarkMode(true);
+        } else {
+            // Use saved preference
+            setDarkMode(savedMode === 'dark');
+        }
     </script>
 </body>
 </html>

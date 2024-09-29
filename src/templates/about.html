@@ -7,15 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --text-color: #e0e0e0;
-            --accent-color: #00ffff;
-            --secondary-accent: #ff00ff;
+            --primary: #3A506B;
+            --secondary: #5BC0BE;
+            --background: #F0F5F9;
+            --text: #1C2541;
+            --accent: #6FFFE9;
         }
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-            color: var(--text-color);
+            background: linear-gradient(135deg, var(--background) 0%, var(--primary) 100%);
+            color: var(--text);
             line-height: 1.6;
             margin: 0;
             padding: 0;
@@ -30,10 +31,10 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.03) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.03) 0%, transparent 20%),
-                linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
+                linear-gradient(to right, rgba(28, 37, 65, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(28, 37, 65, 0.02) 1px, transparent 1px);
             background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
             z-index: -1;
         }
@@ -43,12 +44,12 @@
             padding: 20px;
         }
         header {
-            background-color: rgba(52, 152, 219, 0.1);
+            background-color: rgba(58, 80, 107, 0.1);
             backdrop-filter: blur(10px);
-            color: var(--accent-color);
+            color: var(--primary);
             text-align: center;
             padding: 20px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(28, 37, 65, 0.1);
             margin-bottom: 40px;
         }
         h1 {
@@ -56,16 +57,16 @@
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: var(--accent-color);
+            color: var(--primary);
         }
         h2, h3 {
-            color: var(--accent-color);
+            color: var(--primary);
         }
         .about-content {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(240, 245, 249, 0.8);
             backdrop-filter: blur(5px);
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(28, 37, 65, 0.1);
             padding: 20px;
             margin-top: 20px;
         }
@@ -74,34 +75,47 @@
         }
         .job {
             margin-bottom: 20px;
-            border-left: 3px solid var(--accent-color);
+            border-left: 3px solid var(--secondary);
             padding-left: 15px;
         }
         .job h3 {
-            color: var(--accent-color);
+            color: var(--primary);
             margin-bottom: 5px;
         }
         .job-details {
             font-size: 0.9em;
-            color: var(--secondary-accent);
+            color: var(--secondary);
         }
-        .button {
+        .button,
+        nav a {
             display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--bg-color);
+            background-color: var(--secondary);
+            color: var(--background);
             padding: 10px 15px;
             text-decoration: none;
             border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
             border: none;
             cursor: pointer;
             font-size: 16px;
             text-align: center;
             margin-top: 20px;
         }
-        .button:hover {
-            background-color: var(--secondary-accent);
+        .button:hover,
+        nav a:hover {
+            background-color: var(--primary);
+            color: var(--background);
             transform: translateY(-2px);
+        }
+        body.dark-mode .button,
+        body.dark-mode nav a {
+            background-color: var(--accent);
+            color: var(--background);
+        }
+        body.dark-mode .button:hover,
+        body.dark-mode nav a:hover {
+            background-color: var(--primary);
+            color: var(--background);
         }
         .mode-toggle {
             position: fixed;
@@ -127,7 +141,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: var(--secondary-accent);
+            background-color: var(--secondary);
             transition: .4s;
             border-radius: 34px;
         }
@@ -138,12 +152,12 @@
             width: 26px;
             left: 4px;
             bottom: 4px;
-            background-color: white;
+            background-color: var(--background);
             transition: .4s;
             border-radius: 50%;
         }
         input:checked + .slider {
-            background-color: var(--accent-color);
+            background-color: var(--primary);
         }
         input:checked + .slider:before {
             transform: translateX(26px);
@@ -160,29 +174,69 @@
             left: auto;
             right: 8px;
         }
-        body.light-mode {
-            --bg-color: #f0f0f0;
-            --text-color: #333333;
-            --accent-color: #0066cc;
-            --secondary-accent: #cc00cc;
-            background: linear-gradient(135deg, #f0f0f0 0%, #e6e6fa 100%);
+        body.dark-mode {
+            --primary: #5BC0BE;
+            --secondary: #3A506B;
+            --background: #0B132B;
+            --text: #F0F5F9;
+            --accent: #6FFFE9;
+        }
+        body.dark-mode::before {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
+                linear-gradient(to right, rgba(240, 245, 249, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(240, 245, 249, 0.02) 1px, transparent 1px);
+        }
+        body.dark-mode .about-content {
+            background-color: rgba(11, 19, 43, 0.8);
+            border-color: rgba(240, 245, 249, 0.1);
+        }
+        body.dark-mode header {
+            background-color: rgba(91, 192, 190, 0.1);
+            border-bottom-color: rgba(240, 245, 249, 0.1);
         }
         nav {
             margin-top: 20px;
         }
         nav a {
-            display: inline-block;
-            padding: 8px 16px;
             margin: 0 8px;
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.1s ease;
         }
-        nav a:hover {
-            background-color: var(--secondary-accent);
-            transform: translateY(-2px);
+        .email-section {
+            background-color: var(--secondary);
+            color: var(--background);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .email-section a {
+            color: var(--background);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        body.dark-mode .email-section {
+            background-color: #1C2541;
+            color: var(--text);
+        }
+        body.dark-mode .email-section a {
+            color: var(--accent);
+        }
+        .name-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .name-section h2 {
+            color: var(--primary);
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .job-details {
+            font-size: 0.9em;
+            color: var(--secondary);
+        }
+        body.dark-mode .job-details {
+            color: var(--accent);
         }
     </style>
 </head>
@@ -202,9 +256,13 @@
     </header>
     
     <div class="container">
-        <div class="about-content">
+        <div class="name-section">
             <h2>Maluchuru Sai Dinesh Reddy</h2>
-            <p>Email: <a href="mailto:maluchurudinesh@gmail.com">maluchurudinesh@gmail.com</a></p>
+        </div>
+        <div class="about-content">
+            <div class="email-section">
+                <p>Email: <a href="mailto:maluchurudinesh@gmail.com">maluchurudinesh@gmail.com</a></p>
+            </div>
             
             <div class="section">
                 <h3>Work Experience</h3>
@@ -287,19 +345,19 @@
         const modeSwitch = document.getElementById('mode-switch');
         const body = document.body;
 
-        function setLightMode(isLight) {
-            body.classList.toggle('light-mode', isLight);
-            modeSwitch.checked = !isLight;
-            localStorage.setItem('mode', isLight ? 'light' : 'dark');
+        function setDarkMode(isDark) {
+            body.classList.toggle('dark-mode', isDark);
+            modeSwitch.checked = isDark;
+            localStorage.setItem('mode', isDark ? 'dark' : 'light');
         }
 
         modeSwitch.addEventListener('change', () => {
-            setLightMode(!modeSwitch.checked);
+            setDarkMode(modeSwitch.checked);
         });
 
         // Check for saved mode preference
         const savedMode = localStorage.getItem('mode');
-        setLightMode(savedMode === 'light');
+        setDarkMode(savedMode === 'dark');
     </script>
 </body>
 </html>

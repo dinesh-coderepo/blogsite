@@ -7,20 +7,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --text-color: #e0e0e0;
-            --accent-color: #00ffff;
-            --secondary-accent: #ff00ff;
+            --primary: #3A506B;
+            --secondary: #5BC0BE;
+            --background: #F0F5F9;
+            --text: #1C2541;
+            --accent: #6FFFE9;
         }
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background: linear-gradient(135deg, var(--background) 0%, var(--primary) 100%);
+            color: var(--text);
             line-height: 1.6;
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
         }
         body::before {
             content: '';
@@ -29,9 +30,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 20%);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
+                linear-gradient(to right, rgba(28, 37, 65, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(28, 37, 65, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
             z-index: -1;
         }
         header {
@@ -70,17 +74,22 @@
             border-radius: 5px;
             margin: 10px 0;
         }
-        .back-link {
+        .back-link,
+        nav a {
             display: inline-block;
-            background-color: var(--secondary-accent);
-            color: var(--text-color);
-            padding: 10px 15px;
+            padding: 8px 16px;
+            margin: 0 8px;
+            background-color: var(--secondary);
+            color: var(--background);
+            border-radius: 5px;
             text-decoration: none;
-            border-radius: 3px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
         }
-        .back-link:hover {
-            background-color: var(--accent-color);
+        .back-link:hover,
+        nav a:hover {
+            background-color: var(--primary);
+            color: var(--background);
+            transform: translateY(-2px);
         }
         .mode-toggle {
             position: fixed;
@@ -106,7 +115,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: var(--secondary-accent);
+            background-color: var(--secondary);
             transition: .4s;
             border-radius: 34px;
         }
@@ -117,12 +126,12 @@
             width: 26px;
             left: 4px;
             bottom: 4px;
-            background-color: white;
+            background-color: var(--background);
             transition: .4s;
             border-radius: 50%;
         }
         input:checked + .slider {
-            background-color: var(--accent-color);
+            background-color: var(--primary);
         }
         input:checked + .slider:before {
             transform: translateX(26px);
@@ -139,33 +148,56 @@
             left: auto;
             right: 8px;
         }
-        body.light-mode {
-            --bg-color: #f0f0f0;
-            --text-color: #333333;
-            --accent-color: #0066cc;
-            --secondary-accent: #cc00cc;
-        }
-        body.light-mode::before {
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(0, 102, 204, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(204, 0, 204, 0.05) 0%, transparent 20%);
-        }
         nav {
             margin-top: 20px;
         }
-        nav a {
+        nav a,
+        .back-link {
             display: inline-block;
             padding: 8px 16px;
             margin: 0 8px;
-            background-color: var(--accent-color);
-            color: var(--bg-color);
+            background-color: var(--secondary);
+            color: var(--background);
             border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
         }
-        nav a:hover {
-            background-color: var(--secondary-accent);
+        nav a:hover,
+        .back-link:hover {
+            background-color: var(--primary);
             transform: translateY(-2px);
+        }
+        body.dark-mode {
+            --primary: #5BC0BE;
+            --secondary: #3A506B;
+            --background: #0B132B;
+            --text: #F0F5F9;
+            --accent: #6FFFE9;
+        }
+        body.dark-mode::before {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
+                linear-gradient(to right, rgba(240, 245, 249, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(240, 245, 249, 0.02) 1px, transparent 1px);
+        }
+        body.dark-mode .blog-content {
+            background-color: rgba(11, 19, 43, 0.8);
+            border-color: rgba(240, 245, 249, 0.1);
+        }
+        body.dark-mode header {
+            background-color: rgba(91, 192, 190, 0.1);
+            border-bottom-color: rgba(240, 245, 249, 0.1);
+        }
+        body.dark-mode .back-link,
+        body.dark-mode nav a {
+            background-color: var(--accent);
+            color: var(--background);
+        }
+        body.dark-mode .back-link:hover,
+        body.dark-mode nav a:hover {
+            background-color: var(--primary);
+            color: var(--background);
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
@@ -216,20 +248,20 @@
         const modeSwitch = document.getElementById('mode-switch');
         const body = document.body;
 
-        function setLightMode(isLight) {
-            body.classList.toggle('light-mode', isLight);
-            modeSwitch.checked = !isLight;
-            localStorage.setItem('mode', isLight ? 'light' : 'dark');
-            updateMermaidTheme(isLight);
+        function setDarkMode(isDark) {
+            body.classList.toggle('dark-mode', isDark);
+            modeSwitch.checked = isDark;
+            localStorage.setItem('mode', isDark ? 'dark' : 'light');
+            updateMermaidTheme(isDark);
         }
 
-        function updateMermaidTheme(isLight) {
-            const theme = isLight ? 'default' : 'dark';
-            const primaryColor = isLight ? '#0066cc' : '#00ffff';
-            const secondaryColor = isLight ? '#cc00cc' : '#ff00ff';
-            const tertiaryColor = isLight ? '#333333' : '#ffffff';
-            const primaryTextColor = isLight ? '#333333' : '#e0e0e0';
-            const lineColor = isLight ? '#333333' : '#e0e0e0';
+        function updateMermaidTheme(isDark) {
+            const theme = isDark ? 'dark' : 'default';
+            const primaryColor = isDark ? '#00ffff' : '#0066cc';
+            const secondaryColor = isDark ? '#ff00ff' : '#cc00cc';
+            const tertiaryColor = isDark ? '#ffffff' : '#333333';
+            const primaryTextColor = isDark ? '#e0e0e0' : '#333333';
+            const lineColor = isDark ? '#e0e0e0' : '#333333';
 
             mermaid.initialize({
                 theme: theme,
@@ -247,12 +279,12 @@
         }
 
         modeSwitch.addEventListener('change', () => {
-            setLightMode(!modeSwitch.checked);
+            setDarkMode(modeSwitch.checked);
         });
 
         // Check for saved mode preference
         const savedMode = localStorage.getItem('mode');
-        setLightMode(savedMode === 'light');
+        setDarkMode(savedMode === 'dark');
     </script>
 </body>
 </html>
