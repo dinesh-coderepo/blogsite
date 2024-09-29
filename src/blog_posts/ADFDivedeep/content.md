@@ -142,9 +142,9 @@ As part of next steps first we will get the mnist data from keras datasets and t
 
 **with this setup we can replicate the same for training and inference by just changing the script in the task.**
 
-- Follow below steps to configure to run the batch job in ADF pipeline 
-- Note : Not Implemented in ADF and executed all the steps as the pool to run increases the cost for POC.
-- In future I will be using this entire framework to implement a real world application.
+- Follow below steps to configure on running the batch job from ADF pipeline, same configuration can be used for training and inference steps.
+- Note : Keeping in mind the costs and this is a POC , not triggering from ADF for this test setup.
+- In future I will be using this framework to implement a real world application in **Upcoming projects**.
 
 ### Below flow can illustrate the flow for dumping data using batch and ADF
 
