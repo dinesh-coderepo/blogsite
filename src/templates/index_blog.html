@@ -301,14 +301,15 @@
             setDarkMode(modeSwitch.checked);
         });
 
-        // Check for saved mode preference or use dark mode as default
-        const savedMode = localStorage.getItem('mode');
-        if (savedMode === null) {
-            // First time visit, set dark mode as default
+        // Check if this is the first visit
+        if (!localStorage.getItem('firstVisit')) {
+            // First visit, set to dark mode
             setDarkMode(true);
+            localStorage.setItem('firstVisit', 'true');
         } else {
-            // Use saved preference
-            setDarkMode(savedMode === 'dark');
+            // Subsequent visit, use saved preference
+            const savedMode = localStorage.getItem('mode');
+            setDarkMode(savedMode === 'light' ? false : true);
         }
     </script>
 </body>
