@@ -199,6 +199,23 @@
             background-color: var(--primary);
             color: var(--background);
         }
+        a {
+            color: #1C2541;  /* Dark blue for light mode */
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #3A506B;  /* Slightly lighter blue for hover in light mode */
+        }
+
+        body.dark-mode a {
+            color: #6FFFE9;  /* Bright cyan for dark mode */
+        }
+
+        body.dark-mode a:hover {
+            color: #5BC0BE;  /* Slightly darker cyan for hover in dark mode */
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>

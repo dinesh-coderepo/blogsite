@@ -84,7 +84,11 @@
         }
         .job-details {
             font-size: 0.9em;
-            color: var(--secondary);
+            color: #3A506B;  /* Darker blue for better visibility in light mode */
+            margin-bottom: 10px;  /* Add some space below the date range */
+        }
+        body.dark-mode .job-details {
+            color: var(--accent);  /* Use accent color in dark mode for contrast */
         }
         .button,
         nav a {
@@ -231,12 +235,19 @@
             font-size: 2em;
             margin-bottom: 10px;
         }
-        .job-details {
-            font-size: 0.9em;
-            color: var(--secondary);
+        a {
+            color: #1C2541;  /* Dark blue for light mode */
+            text-decoration: underline;
+            transition: color 0.3s ease;
         }
-        body.dark-mode .job-details {
-            color: var(--accent);
+        a:hover {
+            color: #3A506B;  /* Slightly lighter blue for hover in light mode */
+        }
+        body.dark-mode a {
+            color: #6FFFE9;  /* Bright cyan for dark mode */
+        }
+        body.dark-mode a:hover {
+            color: #5BC0BE;  /* Slightly darker cyan for hover in dark mode */
         }
     </style>
 </head>
