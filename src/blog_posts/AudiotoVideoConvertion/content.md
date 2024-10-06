@@ -23,6 +23,22 @@ As there is currently a lot of audio content being released, such as Overview by
 
 ![replit_ui](replit_ui.png)
 
+## Working version 
 
+* Enhanced the convertor to list the already available audio and images
+* The instructions in setting up created by replit AI : [README.md](https://github.com/dinesh-coderepo/techvistaraconvertor/blob/main/README.md)
+
+![tool1](tool1.png)
+![tool2](tool2.png)
+
+## Creating and linking Azure webapp to deploy the app
+
+
+Code repo : [https://github.com/dinesh-coderepo/techvistaraconvertor](https://github.com/dinesh-coderepo/techvistaraconvertor)
+
+![Creatingwebapp](Creatingwebapp.png)
+
+- Linked the web app to the repo to enable CI/CD for incremental changes
+- More details in the above code repo regarding the workflow deployment script
 
 
