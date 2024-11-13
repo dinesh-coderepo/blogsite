@@ -8,7 +8,7 @@ date: 2024-11-12
 ## Provide solutions and raise service tickets.
 
 
-## App link : [techvistara-ai-voice.azurewebsites.net](techvistara-ai-voice.azurewebsites.net)
+## App link : [techvistara-ai-voice.azurewebsites.net](https://techvistara-ai-voice.azurewebsites.net/)
 
 ## Initial Architecture - Version V1
 
