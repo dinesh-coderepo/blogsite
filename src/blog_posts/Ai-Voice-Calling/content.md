@@ -60,6 +60,17 @@ gunicorn --bind 0.0.0.0:$PORT main:app
 
 ![running-app](running-app.png)
 
+### Flow diagram until completed portion
+
+![alt text](version1.png)
+
+
+## Next steps
+
+### Generating text from the generated audio file from the user
+- Exploring Azure Speech to Text service 
+
+
 
 ### Building - Next steps
 ### coming soon
