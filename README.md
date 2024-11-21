@@ -1,6 +1,8 @@
 # blogsite
 
-#### Blog type site to publish articles
+## Blog type site to publish articles
+## AI and ML solutions
+
 
 ```
 /src/
