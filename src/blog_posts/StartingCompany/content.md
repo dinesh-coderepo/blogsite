@@ -8,6 +8,6 @@ date: 2024-11-23
 ## Covering end to end process including legal, governance , technical and registration.
 
 
-## Company name : SaiCelestia
+## Company name : AuraLithic
 
 ### Company building in progress
