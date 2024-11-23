@@ -5,7 +5,7 @@ date: 2024-11-23
 ---
 
 # Documenting the journey of my startup. 
-## Will be covering step by step process in the journey. 
+## Will include step by step process of Legal, Registration and Operations. 
 
 
 ## Company name : AuraLithic
