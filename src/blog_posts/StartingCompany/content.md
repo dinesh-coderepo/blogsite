@@ -4,8 +4,8 @@ subheading: Documenting the process of starting a AI company in india
 date: 2024-11-23
 ---
 
-# Documenting the journey a tech AI company in india. 
-## Covering end to end process including legal, governance , technical and registration.
+# Documenting the journey of my startup. 
+## Will be covering step by step process in the journey. 
 
 
 ## Company name : AuraLithic
