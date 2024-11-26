@@ -8,10 +8,16 @@ date: 2024-11-26
 
 ### All the resources of the course are present in Notion Notebook and published: [Notion-Site](https://blushing-drink-f49.notion.site/Google-LLM-Training-131f681975c7805a8dcad214249130c6)
 
+- Also placed all notebooks and learning resources in git repo, I will use the resource links from my own repo so that we will have control over the resource links and expiry : [repo - link](https://github.com/dinesh-coderepo/googlegenai)
+
 ### This blog contains the details and summary of the learnings and exercises from this intensive 5 day course and also provide highlights out of it.
 
 ## Week 1
 
-- Week1 reading content contains what are foundations language models, basics on transformers , GPT evolution
-- also contains intros to concepts like fine-tuning prompt-engineering and applications
-- week1 contains two white papers another contains exclusive content on prompt engineering.
+- Week1 reading content contains what are foundations language models, basics on transformers , GPT evolution.
+- Also contains intros to concepts like fine-tuning prompt-engineering and applications.
+- Week1 contains two white papers another contains exclusive content on prompt engineering.
+
+    ### [White paper : Foundational Large Language Models & Text Generation](https://github.com/dinesh-coderepo/googlegenai/blob/main/Week1_Newwhitepaper_Foundational%20Large%20Language%20models%20%26%20text%20generation.pdf)
+
+- 
