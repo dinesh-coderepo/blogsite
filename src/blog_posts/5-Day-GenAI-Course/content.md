@@ -20,4 +20,4 @@ date: 2024-11-26
 
     ### [White paper : Foundational Large Language Models & Text Generation](https://github.com/dinesh-coderepo/googlegenai/blob/main/Week1_Newwhitepaper_Foundational%20Large%20Language%20models%20%26%20text%20generation.pdf)
 
-- 
+- Reading the doc
