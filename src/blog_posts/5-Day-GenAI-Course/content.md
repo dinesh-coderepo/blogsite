@@ -20,4 +20,8 @@ date: 2024-11-26
 
     ### [White paper : Foundational Large Language Models & Text Generation](https://github.com/dinesh-coderepo/googlegenai/blob/main/Week1_Newwhitepaper_Foundational%20Large%20Language%20models%20%26%20text%20generation.pdf)
 
-- Reading the doc
+- Summary and understanding from this paper
+- How the initial models like RNNs had limitation in look back and training needs to be done sequentially
+- there were also GRUs (Gated recurrent Units) and LSTM (Long short-term memory) with same limitations
+- 
+![transformer](transformer.png)
