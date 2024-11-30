@@ -25,3 +25,5 @@ date: 2024-11-26
 - there were also GRUs (Gated recurrent Units) and LSTM (Long short-term memory) with same limitations
 - 
 ![transformer](transformer.png)
+- Before continuing further going through a playlist created by [3Blue1Brown](https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&si=mAUM0EU7rB_r5eR9)
+- This playlist contains visual references of core concepts on building a neural network. 
