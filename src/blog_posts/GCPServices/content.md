@@ -6,4 +6,6 @@ date: 2024-12-04
 
 # GCP Services for ML Engineering and Data Engineering
 
+![GCP_Workspace](GCP_Workspace.png)
+
 ### Using free credits provided exploring the services provided
