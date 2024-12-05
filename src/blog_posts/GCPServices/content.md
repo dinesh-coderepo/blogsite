@@ -10,9 +10,9 @@ date: 2024-12-04
 
 ## Following is the plan to explore the services and read documentations on the services
 
-# Google Cloud Learning Resources Roadmap provided by Claude AI - Planned using the Claude Haiku LLM to give me resources and plan to explore GCP in two days.
+### Google Cloud Learning Resources Roadmap provided by Claude AI - Planned using the Claude Haiku LLM to give me resources and plan to explore GCP in two days.
 
-# 2-Day Plan to explore GCP services and technologies.
+## 2-Day Plan to explore GCP services and technologies.
 
 ## Day 1: Cloud Fundamentals & Data Engineering Resources
 
@@ -106,9 +106,13 @@ date: 2024-12-04
 
 
 
-# Implementation of the plan
+# Implementation of the plan :
 
 
-## Day 1: Cloud Fundamentals & Data Engineering Resources
+## Day 1: Cloud Fundamentals & Data Engineering Resources :
+
+### Setting up :
+
+### Project setup and google SDK installation
 
 
