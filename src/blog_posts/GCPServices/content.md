@@ -104,10 +104,7 @@ date: 2024-12-04
 - **Reflection and Documentation**: 10% summarizing and noting learnings
 
 
-
-
-# Implementation of the plan :
-
+## Implementation of the plan :
 
 ## Day 1: Cloud Fundamentals & Data Engineering Resources :
 
