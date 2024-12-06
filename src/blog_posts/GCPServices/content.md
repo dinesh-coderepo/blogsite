@@ -8,6 +8,8 @@ date: 2024-12-04
 
 ![GCP_Workspace](GCP_Workspace.png)
 
+#### Documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4) for easy updatability. I will copy from notion to blog in regular intervals.  
+
 ## Following is the plan to explore the services and read documentations on the services
 
 ### Google Cloud Learning Resources Roadmap provided by Claude AI - Planned using the Claude Haiku LLM to give me resources and plan to explore GCP in two days.
@@ -104,6 +106,28 @@ date: 2024-12-04
 - **Reflection and Documentation**: 10% summarizing and noting learnings
 
 
+### After learning all these services , need to build a product. 
+
+- Asked Claude AI to provide beginner friendly projects to implement in GCP, among the [list](https://docs.google.com/document/d/1RSZwQISUoS2VAbqGoP7Y0M6oXwf49_TrW99pd0uplkY/edit?usp=sharing) selected below project.
+
+### Weather Data Analysis Dashboard
+
+### Complexity: Beginner
+
+### Key GCP Services:
+
+- Cloud Functions
+- BigQuery
+- Data Studio
+
+**Project Features:**
+
+- Fetch weather data from public APIs
+- Store historical weather information
+- Create simple visualizations
+- Basic predictive analysis
+
+
 ## Implementation of the plan :
 
 ## Day 1: Cloud Fundamentals & Data Engineering Resources :
@@ -112,4 +136,4 @@ date: 2024-12-04
 
 ### Project setup and google SDK installation
 
-
+#### Documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4) for easy updatability. I will copy from notion to blog in regular intervals.  
