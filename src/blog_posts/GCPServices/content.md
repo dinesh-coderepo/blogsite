@@ -136,4 +136,37 @@ date: 2024-12-04
 
 ### Project setup and google SDK installation
 
+
+## Cloud Console & Infrastructure Setup
+
+### **Official Setup Guide**: [Cloud Resource Manager](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
+
+Project Name : GCP Exploration
+
+Project ID : gcp-exploration-443707
+
+Manually created the project
+
+![project.png](project.png)
+
+### **Free Credits**: [Google Cloud Free Tier](https://cloud.google.com/free)
+
+Currently have free credits to utilise and use for bigger projects with longer expiry for credits, all thanks to Google GCP team, also there are thresholds for unlimited free tier like e2-micro machine and storage upto 5gb etc. The detailed usage limit for different services are listed in the link.
+
+### **SDK Installation**: [Google Cloud SDK Install](https://cloud.google.com/sdk/docs/install)
+
+- Downloaded and installed the google sdk in local machine
+
+| macOS 64-bit(ARM64, Apple M1 silicon) | [google-cloud-cli-darwin-arm.tar.gz](https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-arm.tar.gz) | 53.9 MB | d986d0c6531be038b71218f8e7e666c5b4d18ef580d6a063550406ed07e460f9 |
+| --- | --- | --- | --- |
+
+- Installed the SDK and added to the path
+
+![gcloudsdk.png](gcloudsdk.png)
+
+- Running the glcoud command locally
+
+![gcloudsdk1](gcloudsdk1.png)
+
 #### Documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4) for easy updatability. I will copy from notion to blog in regular intervals.  
+
