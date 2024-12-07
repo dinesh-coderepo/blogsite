@@ -168,5 +168,44 @@ Currently have free credits to utilise and use for bigger projects with longer e
 
 ![gcloudsdk1](gcloudsdk1.png)
 
+
+## **Cloud Fundamentals & Networking**
+
+### **Compute Engine Tutorial**: [Quickstart Linux](https://cloud.google.com/compute/docs/quickstart-linux)
+
+#### Enabling the Compute engine API
+
+https://console.cloud.google.com/apis/library/compute.googleapis.com?inv=1&invt=Abja6A&project=gcp-exploration-443707
+
+![computeapi.png](computeapi.png)
+
+#### Creating a Linux VM in GCP
+
+- Project and Compute Engine API needs to be created and enabled
+- Creating a basic E2 series - High Memory - 8 vCPU, 4 core, 64 GB Memory machine
+- Modified the OS to Ubuntu Linux - 20.04 LTS , region - Mumbai , name : gcpexploration-1
+- Firewall - Enabled all HTTP, HTTPS , Load Balancer checks
+
+![vm_instance.png](vm_instance.png)
+
+- SSH to the VM via web interface
+
+![web_ssh.png](web_ssh.png)
+
+- Connecting to the created VM from local
+
+- To authenticate the session locally, run below command in your terminal and sign in with your GCP account
+
+```bash
+gcloud auth login
+
+gcloud compute ssh --zone "asia-south1-c" "gcpexploration-1" --project "gcp-exploration-443707"
+```
+
+#### Connected to VM via local terminal
+
+![local_ssh.png](local_ssh.png)
+
+
 #### Documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4) for easy updatability. I will copy from notion to blog in regular intervals.  
 
