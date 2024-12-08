@@ -207,5 +207,23 @@ gcloud compute ssh --zone "asia-south1-c" "gcpexploration-1" --project "gcp-expl
 ![local_ssh.png](local_ssh.png)
 
 
+### **Networking Guide**: [VPC Overview](https://cloud.google.com/vpc/docs/overview)
+
+- Virtual private cloud is a managed networking service for our services to securely communicate with eachother
+- we can isolate the network or configure with custom definitions.
+- These networks are global in nature so any one VPC can be multi region
+- In VPC we have subnets, these are regional so we can isolate resources within specific region.
+- Subnets further divides VPC in to smaller segments and we can allocate specific IP addresses to a specific region.
+- Subnets support both Public IPs or Private IP addresses.
+- Routing - Normally VPCs have default routes to connect resources each other in same VPC or to the internet.
+- Routes tell VM instances and the VPC network how to send traffic from an instance to a destination, either inside the network or outside of Google Cloud.
+- We can also create custom routes for advanced network designs.
+- Firewall rules - Built-in firewall rules allow you to control the traffic to and from the resources in the VPC.
+- VPC Peering - Enables private communication between two VPC networks
+- Forwarding rules - While routes govern traffic leaving an instance, forwarding rules direct traffic to a Google Cloud resource in a VPC network based on IP address, protocol, and port.
+- Alias IP ranges - multiple services running on a single VM instance, you can give each service a different internal IP address by using alias IP ranges , VPC network then routes to specific service.
+
+
+
 #### Documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4) for easy updatability. I will copy from notion to blog in regular intervals.  
 
