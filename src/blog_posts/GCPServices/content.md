@@ -1,7 +1,7 @@
 ---
 title: Exploring different services in GCP
 subheading: Exploration and documentation of different services offered in GCP
-date: 2024-12-04
+date: 2024-12-09
 ---
 
 # GCP Services for ML Engineering and Data Engineering
@@ -12,11 +12,11 @@ date: 2024-12-04
 
 ## Following is the plan to explore the services and read documentations on the services
 
-### Google Cloud Learning Resources Roadmap provided by Claude AI - Planned using the Claude Haiku LLM to give me resources and plan to explore GCP in two days.
+### Google Cloud Learning Resources Roadmap provided by Claude AI - Planned using the Claude Haiku LLM to give me resources and plan to explore GCP in short period of time.
 
-## 2-Day Plan to explore GCP services and technologies.
+## Rapid Plan to explore and familiarize GCP services and technologies.
 
-## Day 1: Cloud Fundamentals & Data Engineering Resources
+## Cloud Fundamentals & Data Engineering Resources
 
 ### Cloud Console & Infrastructure Setup
 - **Official Setup Guide**: [Cloud Resource Manager](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
@@ -48,7 +48,7 @@ date: 2024-12-04
 - **Kaggle Datasets**: [Machine Learning Datasets](https://www.kaggle.com/datasets)
 - **Google Colab**: [Online Notebook Environment](https://colab.research.google.com/)
 
-## Day 2: Deep Learning & Advanced Implementations
+## Deep Learning & Advanced Implementations
 
 ### Deep Learning Foundations
 - **PyTorch Tutorials**: [Official Tutorials](https://pytorch.org/tutorials/)
@@ -225,5 +225,5 @@ gcloud compute ssh --zone "asia-south1-c" "gcpexploration-1" --project "gcp-expl
 
 
 
-#### Documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4) for easy updatability. I will copy from notion to blog in regular intervals.  
 
+#### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
