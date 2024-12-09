@@ -130,7 +130,7 @@ date: 2024-12-09
 
 ## Implementation of the plan :
 
-## Day 1: Cloud Fundamentals & Data Engineering Resources :
+## Cloud Fundamentals & Data Engineering Resources :
 
 ### Setting up :
 
