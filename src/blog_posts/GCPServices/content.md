@@ -224,6 +224,22 @@ gcloud compute ssh --zone "asia-south1-c" "gcpexploration-1" --project "gcp-expl
 - Alias IP ranges - multiple services running on a single VM instance, you can give each service a different internal IP address by using alias IP ranges , VPC network then routes to specific service.
 
 
+### **IAM Documentation**: [Identity Management Quickstart](https://cloud.google.com/iam/docs/quickstart)
+
+- Mainly used to manage access to resources, allows to control the permissions of users, groups , service accounts.
+- IAM for organizations useful for auditing purposes to manage access , monitor activity and grant right access to right people.
+- Identity in IAM represents a user or system that requires access to GCP resources 
+   - Accounts - Individuals
+   - Service Accounts - Used by applications or Services
+   - Groups 
+   - Federated Identities - External identities (from another identity provider) mapped to GCP
+- Roles define what actions can be performed on specific GCP resources
+   - Basic roles like Owner , Editor and Viewer
+   - Predefined roles - Roles defined to managed specific tasks or resources like roles for managing Cloud storage or Compute
+   - Custom roles - User defined with custom permissions
+- Permissions specify what actions are allowed on resources.
+- Policies are bindings that associate identities with roles, defining access permissions.
+
 
 
 #### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
