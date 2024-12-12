@@ -241,5 +241,8 @@ gcloud compute ssh --zone "asia-south1-c" "gcpexploration-1" --project "gcp-expl
 - Policies are bindings that associate identities with roles, defining access permissions.
 
 
+#### Note : Free credits provided are exhausted, now I will be continuing to explore using the [https://www.cloudskillsboost.google/](https://www.cloudskillsboost.google/)
+
+
 
 #### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
