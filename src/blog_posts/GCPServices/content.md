@@ -243,6 +243,15 @@ gcloud compute ssh --zone "asia-south1-c" "gcpexploration-1" --project "gcp-expl
 
 #### Note : Free credits provided are exhausted, now I will be continuing to explore using the [https://www.cloudskillsboost.google/](https://www.cloudskillsboost.google/)
 
+### BigQuery Quickstart
+
+- Starting the Build a Data Warehouse with BigQuery course for this section
+- Course link : [google skill](https://www.cloudskillsboost.google/course_templates/624)
+- Completing this will provide in-depth knowledge on BigQuery
+- Course also contains hands-on labs
+
+![big-query](big-query.png)
+
 
 
 #### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
