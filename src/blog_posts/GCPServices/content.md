@@ -252,6 +252,20 @@ gcloud compute ssh --zone "asia-south1-c" "gcpexploration-1" --project "gcp-expl
 
 ![big-query](big-query.png)
 
+- BigQuery is Google's fully managed, NoOps, low cost analytics database. BigQuery uses SQL and can take advantage of the pay-as-you-go model. 
+- The Lab I am doing will focus on how to create new reporting tables using SQL JOINS and UNIONs.
+- Scenario: Your marketing team provided you and your data science team all of the product reviews for your ecommerce website. You are partnering with them to create a data warehouse in BigQuery which joins together data from three sources:
+   - Website ecommerce data
+   - Product inventory stock levels and lead times
+   - Product review sentiment analysis
+- What you'll do
+   - In this lab, you learn how to perform these tasks:
+   - Explore new ecommerce data on sentiment analysis.
+   - Join datasets and create new tables.
+   - Append historical data with unions and table wildcards.
+
+
+
 
 
 #### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
