@@ -324,6 +324,9 @@ WHERE _TABLE_SUFFIX = '0802';
 - columnar data processing engine developed by Google, Dremel is the engine that powers BigQuery. It is based on MPP - Massively parallel processing architecture , tree based query engine.
 - Compute and Storage layers separation makes it easy to scale independently.
 - Bigquery is serverless - pay as you go model - depending on volume of data processes in the query.
-- 
+- Completed exercise one for this series, will continue to the second exercise.
+![ex1_big_query](ex1_big_query.png)
+
+
 
 #### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
