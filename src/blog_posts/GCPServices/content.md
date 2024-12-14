@@ -264,8 +264,66 @@ gcloud compute ssh --zone "asia-south1-c" "gcpexploration-1" --project "gcp-expl
    - Join datasets and create new tables.
    - Append historical data with unions and table wildcards.
 
+```sql
+SELECT * FROM ecommerce.products 
+where name like '%Aluminum%'
+LIMIT 1000;
+
+# pull what sold on 08/01/2017
+CREATE OR REPLACE TABLE ecommerce.sales_by_sku_20170801 AS
+SELECT
+  productSKU,
+  SUM(IFNULL(productQuantity,0)) AS total_ordered
+FROM
+  `data-to-insights.ecommerce.all_sessions_raw`
+WHERE date = '20170801'
+GROUP BY productSKU
+ORDER BY total_ordered DESC #462 skus sold
 
 
+# join against product inventory to get name
+SELECT DISTINCT
+  website.productSKU,
+  website.total_ordered,
+  inventory.name,
+  inventory.stockLevel,
+  inventory.restockingLeadTime,
+  inventory.sentimentScore,
+  inventory.sentimentMagnitude,
+  SAFE_DIVIDE(website.total_ordered, inventory.stockLevel) AS ratio
+FROM
+  ecommerce.sales_by_sku_20170801 AS website
+  LEFT JOIN `data-to-insights.ecommerce.products` AS inventory
+ON website.productSKU = inventory.SKU
+WHERE SAFE_DIVIDE(website.total_ordered,inventory.stockLevel) >= .50
+ORDER BY total_ordered DESC;
 
+
+CREATE OR REPLACE TABLE ecommerce.sales_by_sku_20170802
+(
+productSKU STRING,
+total_ordered INT64
+);
+
+
+INSERT INTO ecommerce.sales_by_sku_20170802
+(productSKU, total_ordered)
+VALUES('GGOEGHPA002910', 101);
+
+SELECT * FROM ecommerce.sales_by_sku_20170801
+UNION ALL
+SELECT * FROM ecommerce.sales_by_sku_20170802;
+
+SELECT * FROM `ecommerce.sales_by_sku_2017*`;
+
+SELECT * FROM `ecommerce.sales_by_sku_2017*`
+WHERE _TABLE_SUFFIX = '0802';
+```
+
+- Big Query SQL Syntax : [Link](https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#join-types)
+- columnar data processing engine developed by Google, Dremel is the engine that powers BigQuery. It is based on MPP - Massively parallel processing architecture , tree based query engine.
+- Compute and Storage layers separation makes it easy to scale independently.
+- Bigquery is serverless - pay as you go model - depending on volume of data processes in the query.
+- 
 
 #### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
