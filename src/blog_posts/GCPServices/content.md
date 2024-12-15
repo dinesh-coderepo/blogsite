@@ -258,7 +258,7 @@ gcloud compute ssh --zone "asia-south1-c" "gcpexploration-1" --project "gcp-expl
    - Website ecommerce data
    - Product inventory stock levels and lead times
    - Product review sentiment analysis
-- What you'll do
+   - What you'll do
    - In this lab, you learn how to perform these tasks:
    - Explore new ecommerce data on sentiment analysis.
    - Join datasets and create new tables.
@@ -325,7 +325,15 @@ WHERE _TABLE_SUFFIX = '0802';
 - Compute and Storage layers separation makes it easy to scale independently.
 - Bigquery is serverless - pay as you go model - depending on volume of data processes in the query.
 - Completed exercise one for this series, will continue to the second exercise.
+
 ![ex1_big_query](ex1_big_query.png)
+
+
+### Creating Date-Partitioned Tables in BigQuery Lab
+
+- In this tut focus is on following topics
+   - Query partitioned tables.
+   - Create your own partitioned tables.
 
 
 
