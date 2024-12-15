@@ -18,7 +18,7 @@ date: 2024-12-03
 
 - Purchased the Domains on **Hostinger** 
 - Purchased two domains with .com and .in 
-- Domain Names : [www.techvistara.com](https://www.techvistara.com) , [www.techvistara.in](https://www.techvistara.in)
+- Domain Names : [techvistara.com](https://techvistara.com) , [techvistara.in](https://techvistara.in)
 - Hosted a landing page using replit-ai and Azure web app : [Tech Vistara](https://techvistara.azurewebsites.net/)
 
 ![langing_page](langing_page.png)
