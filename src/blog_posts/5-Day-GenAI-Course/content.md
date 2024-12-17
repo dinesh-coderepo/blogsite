@@ -27,3 +27,5 @@ date: 2024-11-26
 ![transformer](transformer.png)
 - Before continuing further going through a playlist created by [3Blue1Brown](https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&si=mAUM0EU7rB_r5eR9)
 - This playlist contains visual references of core concepts on building a neural network. 
+- Continuing to explore the playlist and other already existing resources in youtube to get indepth understanding 
+- Keeping all the resources in one place - Notion and publishing for others to leverage these resources: [Notion Page](https://blushing-drink-f49.notion.site/deep-learning-ML-Neural-nets-106f681975c78053b5ddf338eae81567?pvs=4)
