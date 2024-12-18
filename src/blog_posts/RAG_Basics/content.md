@@ -1,10 +1,13 @@
 ---
 title: RAG architecture basics and workings
 subheading: Using RAGS to retrieve information from documents and provide answers using foundational LLMs
-date: 2024-08-21
+date: 2024-11-21
 ---
 
 # Going deeper into RAG: Vector Databases, Embeddings, and their workings
+
+## More details on the learning resources publishing on notion link: [Notion](https://blushing-drink-f49.notion.site/RAG-Basics-106f681975c780aa81a2ddb8728ddf96?pvs=4)
+
 
 RAG, which stands for Retrieval-Augmented Generation, is an advanced technique in natural language processing that combines information retrieval with text generation. This approach enhances the capabilities of large language models by allowing them to access and utilize external knowledge sources.
 
@@ -26,5 +29,8 @@ RAG, which stands for Retrieval-Augmented Generation, is an advanced technique i
 4. The language model generates a response based on this combined input.
 
 This blog will explore each of these components in depth, discussing their implementations, challenges, and best practices.
+
+
+
 
 ### Stay tuned for the full article!
