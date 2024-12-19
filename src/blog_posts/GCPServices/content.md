@@ -415,6 +415,13 @@ WHERE date_formatted = '2018-07-08';
 
 ```
 
+### Troubleshooting and Solving Data Join Pitfalls
+
+- In this lab following exercises are present.
+- Use BigQuery to explore and troubleshoot duplicate rows in a dataset.
+- Create joins between data tables.
+- Choose between different join types.
+
 
 
 #### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
