@@ -335,6 +335,86 @@ WHERE _TABLE_SUFFIX = '0802';
    - Query partitioned tables.
    - Create your own partitioned tables.
 
+- Utilized 5 credits to complete this exercise
+- partitioning in bigquery, stats of executed query, auto expiring partitioning using dataset NOAA_GSOD
+- Completed this module below are few queries 
+
+![big_query_module2](big_query_module2.png)
+
+```sql
+
+## Creating partitioned table to improve efficiency while querying on date
+
+ CREATE OR REPLACE TABLE ecommerce.partition_by_day
+ (
+  date_formatted date,
+  fullvisitorId INT64
+ )
+ PARTITION BY date_formatted
+ OPTIONS(
+   description="a table partitioned by date"
+ ) 
+
+
+INSERT INTO `ecommerce.partition_by_day`
+SELECT DISTINCT
+ PARSE_DATE("%Y%m%d", date) AS date_formatted,
+ fullvisitorId
+ FROM `data-to-insights.ecommerce.all_sessions_raw`;
+
+drop table `ecommerce.partition_by_day`;
+
+
+#standardSQL
+ CREATE OR REPLACE TABLE ecommerce.partition_by_day
+ PARTITION BY date_formatted
+ OPTIONS(
+   description="a table partitioned by date"
+ ) AS
+
+ SELECT DISTINCT
+ PARSE_DATE("%Y%m%d", date) AS date_formatted,
+ fullvisitorId
+ FROM `data-to-insights.ecommerce.all_sessions_raw`
+
+
+ #standardSQL
+SELECT *
+FROM `data-to-insights.ecommerce.partition_by_day`
+WHERE date_formatted = '2016-08-01';
+
+
+-- Bytes processed 25.05 KB ,Bytes billed 10 MB , Slot milliseconds 26
+
+#standardSQL
+SELECT *
+FROM `data-to-insights.ecommerce.partition_by_day`
+WHERE date_formatted = '2018-07-08';
+
+
+-- Duration 0 sec,  Bytes processed 0 B , Bytes billed 0 B
+
+
+-- Syntax to create a expiring partitioned query for a partition 
+-- standardSQL
+ CREATE OR REPLACE TABLE ecommerce.days_with_rain
+ PARTITION BY date
+ OPTIONS(
+   partition_expiration_days = 60,
+   description="weather stations with precipitation, partitioned by day"
+ ) AS
+ SELECT
+   DATE(CAST(year AS INT64), CAST(mo AS INT64), CAST(da AS INT64)) AS date,
+   (SELECT ANY_VALUE(name) FROM `bigquery-public-data.noaa_gsod.stations` AS stations
+    WHERE stations.usaf = stn) AS station_name,  -- Stations may have multiple names
+   prcp
+ FROM `bigquery-public-data.noaa_gsod.gsod*` AS weather
+ WHERE prcp < 99.9  -- Filter unknown values
+   AND prcp > 0      -- Filter stations/days with no precipitation
+   AND _TABLE_SUFFIX >= '2018';
+
+```
+
 
 
 #### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
