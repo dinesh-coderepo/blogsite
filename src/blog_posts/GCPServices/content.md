@@ -229,15 +229,15 @@ gcloud compute ssh --zone "asia-south1-c" "gcpexploration-1" --project "gcp-expl
 - Mainly used to manage access to resources, allows to control the permissions of users, groups , service accounts.
 - IAM for organizations useful for auditing purposes to manage access , monitor activity and grant right access to right people.
 - Identity in IAM represents a user or system that requires access to GCP resources 
-   - Accounts - Individuals
-   - Service Accounts - Used by applications or Services
-   - Groups 
-   - Federated Identities - External identities (from another identity provider) mapped to GCP
+  - Accounts - Individuals
+  - Service Accounts - Used by applications or Services
+  - Groups 
+  - Federated Identities - External identities (from another identity provider) mapped to GCP
 - Roles define what actions can be performed on specific GCP resources
-   - Basic roles like Owner , Editor and Viewer
-   - Predefined roles - Roles defined to managed specific tasks or resources like roles for managing Cloud storage or Compute
-   - Custom roles - User defined with custom permissions
-- Permissions specify what actions are allowed on resources.
+  - Basic roles like Owner , Editor and Viewer
+  - Predefined roles - Roles defined to managed specific tasks or resources like roles for managing Cloud storage or Compute
+  - Custom roles - User defined with custom permissions
+  - Permissions specify what actions are allowed on resources.
 - Policies are bindings that associate identities with roles, defining access permissions.
 
 
@@ -422,6 +422,68 @@ WHERE date_formatted = '2018-07-08';
 - Create joins between data tables.
 - Choose between different join types.
 
+
+#### Exercise insights
+
+- You can add any public datasets available by clicking the `+Add` button at the top and selecting the `Star a Project Name` option. Add `data-to-insights` to import the public datasets and tables into your GCP workspace.
+- ARRAY_AGG Big query supports natively array data types.
+- Query Optimizations best practices for Big query : [Best Practices](https://cloud.google.com/bigquery/docs/best-practices-performance-compute)
+- including some basic queries for syntax remembrance in big query.
+- Progress completed the lab
+![gcp_bigquery_lab3](gcp_bigquery_lab3.png)
+
+```sql
+-- Complete lab
+with a as (
+SELECT distinct productSKU , v2ProductName FROM 
+`data-to-insights.ecommerce.all_sessions_raw`),
+b as (
+  select productSKU 
+  , row_number() over(partition by productSKU) as rn_prod
+  ,v2ProductName
+  ,  row_number() over(partition by v2ProductName) as rn_prodname
+from a
+)
+select * from b where rn_prodname > 1
+order by rn_prodname desc;
+
+
+-- other way
+SELECT
+  productSKU,
+  COUNT(DISTINCT v2ProductName) AS product_count,
+  ARRAY_AGG(DISTINCT v2ProductName LIMIT 5) AS product_name
+FROM `data-to-insights.ecommerce.all_sessions_raw`
+  WHERE v2ProductName IS NOT NULL
+  GROUP BY productSKU
+  HAVING product_count > 1
+  ORDER BY product_count DESC
+
+#standardSQL
+CREATE OR REPLACE TABLE ecommerce.site_wide_promotion AS
+SELECT .05 AS discount;
+
+INSERT INTO ecommerce.site_wide_promotion (discount)
+VALUES (.04),
+       (.03);
+SELECT discount FROM ecommerce.site_wide_promotion
+
+#standardSQL
+SELECT DISTINCT
+productSKU,
+v2ProductCategory,
+discount
+FROM `data-to-insights.ecommerce.all_sessions_raw` AS website
+CROSS JOIN ecommerce.site_wide_promotion
+WHERE v2ProductCategory LIKE '%Clearance%'
+AND productSKU = 'GGOEGOLC013299'
+```
+
+
+### Working with JSON, Arrays, and Structs in BigQuery
+
+- Load and query semi-structured data including unnesting.
+- Troubleshoot queries on semi-structured data.
 
 
 #### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
