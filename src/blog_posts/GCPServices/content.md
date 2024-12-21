@@ -485,5 +485,158 @@ AND productSKU = 'GGOEGOLC013299'
 - Load and query semi-structured data including unnesting.
 - Troubleshoot queries on semi-structured data.
 
+#### Exercise insights
+
+- Traditionally we split in to star schema with de-norm to structure the data model for easy updates and join across the tables to get required results.
+- In Big query if you are able to store the data at different granularity then denorm is the way to go, using Arrays
+- data in a array needs to be of same data type (all strings or all numbers),finding the number of elements with ARRAY_LENGTH(<array>) , deduplicating elements with ARRAY_AGG(DISTINCT <field>), ordering elements with ARRAY_AGG(<field> ORDER BY <field>) , limiting ARRAY_AGG(<field> LIMIT 5)
+- Structs - ARRAY values give you the flexibility to go deep into the granularity of your fields, think like a separate table pre-joined. Documentation : [Structs](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#struct-type)
+- Structs props : One or many fields in it , The same or different data types for each field , It's own alias. 
+- Structs are containers that can have multiple field names and data types nested inside., Arrays can be one of the field types inside of a Struct.
+- Good documentation on working with structs and arrays : [link](https://cloud.google.com/bigquery/docs/arrays#flattening-arrays) , [additional reading](https://cloud.google.com/bigquery/docs/arrays)
+
+![big_query_4](big_query_4.png)
+
+```sql
+-- example schema while creating one of the table
+[
+    {
+        "name": "race",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "participants",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [
+            {
+                "name": "name",
+                "type": "STRING",
+                "mode": "NULLABLE"
+            },
+            {
+                "name": "splits",
+                "type": "FLOAT",
+                "mode": "REPEATED"
+            }
+        ]
+    }
+]
+
+
+```
+
+### Some of the queries to remember the syntax, UNNEST, ARRAY_AGG , ARRAY_LENGTH
+
+```sql
+#standardSQL
+SELECT
+['raspberry', 'blackberry', 'strawberry', 'cherry'] AS fruit_array;
+
+#standardSQL
+SELECT
+['raspberry', 'blackberry', 'strawberry', 'cherry', 1234567] AS fruit_array;
+--Array elements of types {INT64, STRING} do not have a common supertype at [3:1]
+
+#standardSQL
+SELECT person, fruit_array, total_cost FROM `data-to-insights.advanced.fruit_store`;
+
+SELECT
+  fullVisitorId,
+  date,
+  ARRAY_AGG(v2ProductName) AS products_viewed,
+  ARRAY_AGG(pageTitle) AS pages_viewed
+  FROM `data-to-insights.ecommerce.all_sessions`
+WHERE visitId = 1501570398
+GROUP BY fullVisitorId, date
+ORDER BY date
+
+
+SELECT
+  fullVisitorId,
+  date,
+  ARRAY_AGG(DISTINCT v2ProductName) AS products_viewed,
+  ARRAY_LENGTH(ARRAY_AGG(DISTINCT v2ProductName)) AS distinct_products_viewed,
+  ARRAY_AGG(DISTINCT pageTitle) AS pages_viewed,
+  ARRAY_LENGTH(ARRAY_AGG(DISTINCT pageTitle)) AS distinct_pages_viewed
+  FROM `data-to-insights.ecommerce.all_sessions`
+WHERE visitId = 1501570398
+GROUP BY fullVisitorId, date
+ORDER BY date
+
+
+SELECT
+  visitId,
+  hits.page.pageTitle
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_20170801`
+WHERE visitId = 1501570398
+-- you can not access it directly from array, 
+
+SELECT DISTINCT
+  visitId,
+  h.page.pageTitle
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_20170801`,
+UNNEST(hits) AS h
+WHERE visitId = 1501570398
+LIMIT 10
+-- UNNEST() always follows the table name in your FROM clause (think of it conceptually like a pre-joined table)
+
+
+SELECT
+  visitId,
+  totals.*,
+  device.*
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_20170801`
+WHERE visitId = 1501570398
+LIMIT 10;
+-- the .* syntax tells BigQuery to return all fields for that STRUCT (much like it would if totals.* was a separate table we joined against).
+
+#standardSQL
+SELECT STRUCT("Rudisha" as name, [23.4, 26.3, 26.4, 26.1] as splits) AS runner
+
+#standardSQL
+SELECT race, participants.name
+FROM racing.race_results
+CROSS JOIN
+race_results.participants # full STRUCT name
+
+
+#standardSQL
+SELECT race, participants.name
+FROM racing.race_results AS r, r.participants
+
+#standardSQL
+SELECT COUNT(p.name) AS racer_count
+FROM racing.race_results AS r, UNNEST(r.participants) AS p
+
+
+#he total race time for racers whose names begin with R. Order the results with the fastest total time first. Use the UNNEST() operator and start with the partially written query below.
+SELECT
+  p.name,
+  SUM(split_times) as total_race_time
+FROM racing.race_results AS r
+, UNNEST(r.participants) AS p
+, UNNEST(p.splits) AS split_times
+WHERE p.name LIKE 'R%'
+GROUP BY p.name
+ORDER BY total_race_time ASC;
+
+
+#see that the fastest lap time recorded for the 800 M race was 23.2 seconds, but you did not see which runner ran that particular lap. Create a query that returns that result.
+SELECT
+  p.name,
+  split_time
+FROM racing.race_results AS r
+, UNNEST(r.participants) AS p
+, UNNEST(p.splits) AS split_time
+WHERE split_time = 23.2;
+```
+#### Lab link - [gcp big query](https://www.cloudskillsboost.google/course_templates/624/labs/489693)
+
+
+### Build a Data Warehouse with BigQuery (Challenge)
+
+
 
 #### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
