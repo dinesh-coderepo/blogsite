@@ -637,6 +637,98 @@ WHERE split_time = 23.2;
 
 ### Build a Data Warehouse with BigQuery (Challenge)
 
+#### Challenge to solve few concepts 
+
+#### Prob 1
+
+- Create a new dataset covid and create a table oxford_policy_tracker in that dataset partitioned by date, with an expiry of 1445 days. The table should initially use the schema defined for the oxford_policy_tracker table in the COVID 19 Government Response public dataset .
+- You must also populate the table with the data from the source table for all countries and exclude the United Kingdom (GBR), Brazil (BRA), Canada (CAN) and the United States (USA) as instructed above.
+
+#### Solving process
+
+- Got the public dataset from the link directly - [link](https://console.cloud.google.com/bigquery?p=bigquery-public-data&d=covid19_govt_response&page=dataset&inv=1&invt=Abkxew&project=astro-yuga&ws=!1m5!1m4!4m3!1sbigquery-public-data!2scovid19_govt_response!3soxford_policy_tracker)
+- Initially to create table we will need either the complete create table schema or we can insert from a source directly before inserting and define partition by and expiry as below.
+
+```sql
+ CREATE OR REPLACE TABLE covid.oxford_policy_tracker
+ PARTITION BY date
+ OPTIONS(
+   partition_expiration_days = 1445,
+   description="Covid oxford_policy_tracker"
+ ) AS
+SELECT *  FROM `bigquery-public-data.covid19_govt_response.oxford_policy_tracker` 
+where alpha_3_code not in ('GBR','CAN','BRA','USA');
+```
+
+#### Prob 2
+
+- Create a new table 'country_area_data' within the dataset named as 'covid_data'. The table should initially use the schema defined for the country_names_area table data from the Census Bureau International public dataset.
+- Add the country area data to the 'country_area_data' table with country_names_area table data from the Census Bureau International public dataset.
+
+
+#### Solving process
+
+- This looks like a name change for the table name and inserting the raw data while creating the table at the same time.
+
+```sql
+CREATE OR REPLACE TABLE covid_data.country_area_data
+AS
+SELECT * FROM `bigquery-public-data.census_bureau_international.country_names_area`;
+
+```
+
+#### Prob3
+
+- Create a new table 'mobility_data' within the dataset named as 'covid_data'. The table should initially use the schema defined for the mobility_report table data from the Google COVID 19 Mobility public dataset.
+- Add the mobility record data to the 'mobility_data' table with data from the Google COVID 19 Mobility public dataset.
+
+
+#### Solving process
+
+- Same as above task
+
+```sql
+CREATE OR REPLACE TABLE covid_data.mobility_data
+AS
+select * from `bigquery-public-data.covid19_google_mobility.mobility_report`;
+```
+
+#### Prob 4 
+
+- Delete data from the oxford_policy_tracker_by_countries table in the covid_data dataset where the population value is null.
+- Now delete data from the oxford_policy_tracker_by_countries table in the covid_data dataset where the country_area value is null.
+
+#### Solving process
+
+
+- Created a copy table first to do the delete rows.
+- DELETE FROM syntax similar to other data bases.
+
+
+```sql
+
+-- creating a copy backup as I am changing in place for new values.
+
+CREATE OR REPLACE TABLE covid_data.oxford_policy_tracker_by_countries_copy
+AS 
+select * from covid_data.oxford_policy_tracker_by_countries;
+
+-- It was important to create a backup table always beofre operating on the table in production
+-- Initially I did do mistakes while deleting , but could recover using the copy table.
+-- Rule 1 to create a copy table of modifying table.
+
+DELETE from covid_data.oxford_policy_tracker_by_countries
+where population is null or country_area is null;
+```
+
+#### Completed the course, earned the badge for completing this module : [Certificate](https://www.credly.com/badges/c0d726c8-4348-4270-8e70-9391a3299dbd/public_url) 
+
+
+![big_query_completion](big_query_completion.png)
+
+### Cloud Storage Guide: Storage Quickstart
+
+### Next in-depth analysis is on storage layer
 
 
 #### Also documenting in Notion : [link](https://blushing-drink-f49.notion.site/GCP-Learning-Basics-154f681975c780dc9e6af2fa316b945a?pvs=4). 
