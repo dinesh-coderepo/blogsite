@@ -25,6 +25,8 @@ date: 2024-12-01
 ### 1. Introduction to Azure Data Explorer
 Azure Data Explorer (ADX) is a fast and highly scalable data exploration service for log and telemetry data. It enables you to run complex queries on large datasets quickly.
 
+- Going through the documentation : [link](https://learn.microsoft.com/en-us/training/modules/intro-to-azure-data-explorer/1-introduction)
+
 ### 2. Understanding Kusto Query Language (KQL)
 KQL is a powerful query language used to interact with ADX. It is designed for high-performance querying and data manipulation.
 
