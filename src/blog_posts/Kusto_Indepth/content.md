@@ -10,6 +10,8 @@ date: 2024-12-01
 
 - Generated the plan to get good using copilot , will be following below plan to start learning and blog the progress under each section
 
+- Sample KQL Cluster : [Link](https://dataexplorer.azure.com/clusters/help/)
+
 ### Table of Contents
 1. Introduction to Azure Data Explorer
 2. Understanding Kusto Query Language (KQL)
