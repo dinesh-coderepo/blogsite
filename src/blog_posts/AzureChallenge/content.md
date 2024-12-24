@@ -12,11 +12,12 @@ date: 2024-12-23
 
 ## Microsoft Fabric Challenge
 
-### Introduction to end-to-end analytics using Microsoft Fabric : [Link](https://learn.microsoft.com/en-us/collections/8wy3ioj77zzgyd?sharingId=6A9F03F25E12DA9E&ref=collection&listId=d1z7cn7do0xpxr&wt.mc_id=ignitechallenge25_landingpage_wwl)
+#### Introduction to end-to-end analytics using Microsoft Fabric : [Link](https://learn.microsoft.com/en-us/collections/8wy3ioj77zzgyd?sharingId=6A9F03F25E12DA9E&ref=collection&listId=d1z7cn7do0xpxr&wt.mc_id=ignitechallenge25_landingpage_wwl)
 
 
-- Getting started with the intro module, fabric is a analytics platform with all the required services for data integrated to one service. It has services integrated to ingest, store, transform and analyze data all in one place. Exciting for any member in data field having all in one place and managing it will be simpler than managing 4-5 different services in different places and permissions across services.
+- Getting started with the intro module, fabric is a analytics platform with all the required services for data integrated to one service. It has services integrated to ingest, store, transform and analyze data all in one place. 
+- Exciting for any member in data field having all in one place and managing it will be simpler than managing 4-5 different services in different places and permissions across services.
 - 
 
 
-### learning soon...
+### continue...
