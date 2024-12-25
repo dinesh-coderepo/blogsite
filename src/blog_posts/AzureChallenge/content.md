@@ -14,6 +14,7 @@ date: 2024-12-23
 
 #### Introduction to end-to-end analytics using Microsoft Fabric : [Link](https://learn.microsoft.com/en-us/collections/8wy3ioj77zzgyd?sharingId=6A9F03F25E12DA9E&ref=collection&listId=d1z7cn7do0xpxr&wt.mc_id=ignitechallenge25_landingpage_wwl)
 
+Note : while I follow this challenge I will also create the resources in Azure and attach screenshots for better documentation.
 
 - Getting started with the intro module, fabric is a analytics platform with all the required services for data integrated to one service. It has services integrated to ingest, store, transform and analyze data all in one place. 
 - Exciting for any member in data field having all in one place and managing it will be simpler than managing 4-5 different services in different places and permissions across services.
@@ -22,7 +23,9 @@ date: 2024-12-23
 - In Onelake we can create shortcuts and point the data assets to other services , source data will always be in sync with other links.
 - Workspaces - we can control resources and access controls on the workspaces and differentiate DEV UAT PROD env. 
 - Workspace resources can be integrated to GIT and deploy, we can configure compute resources and other config details directly from ADO.
-- 
+- Fabric brings together data ingestion and storage with OneLake, and for transformation we can use ADF and connect data ingested using DirectLake, easy integration to Power BI and much more.
+-  we need an organizational email to create a trail account , process : [link](https://go.microsoft.com/fwlink/?linkid=2227864) , free trial restrictions and capabilities : [link](https://learn.microsoft.com/en-us/fabric/get-started/fabric-trial)
 
+![signed_up_fabric](signed_up_fabric.png)
 
 ### continue...
