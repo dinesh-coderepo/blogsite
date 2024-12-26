@@ -27,5 +27,17 @@ Note : while I follow this challenge I will also create the resources in Azure a
 -  we need an organizational email to create a trail account , process : [link](https://go.microsoft.com/fwlink/?linkid=2227864) , free trial restrictions and capabilities : [link](https://learn.microsoft.com/en-us/fabric/get-started/fabric-trial)
 
 ![signed_up_fabric](signed_up_fabric.png)
+![activate_freetrial](activate_freetrial.png)
+![new_workspace](new_workspace.png)
+
+- Login to Azure fabric : [https://app.fabric.microsoft.com/home](https://app.fabric.microsoft.com/home) , you can provide access to other users even in trail account.
+- By default onelake creates files in delta file format. Intro to fabric is module is now complete, on to the next module in this challenge. 
+
+![intro_to_fabric](intro_to_fabric.png)
+
+
+### Get started with lakehouses in Microsoft Fabric Module : [link](https://learn.microsoft.com/en-us/training/modules/get-started-lakehouses/)
+
+- 
 
 ### continue...
