@@ -38,6 +38,11 @@ Note : while I follow this challenge I will also create the resources in Azure a
 
 ### Get started with lakehouses in Microsoft Fabric Module : [link](https://learn.microsoft.com/en-us/training/modules/get-started-lakehouses/)
 
+- Foundation of Fabric is lakehouse built on top of onelake storage layer, good integration to compute engines for processing.
+- lakehouse data is organized as schema on read, stores data by default as delta table format but supports all file formats. 
+- Ingest data to lakehouse from many different sources and also there is a concept of shortcuts where we can link data from ADLS gen2 or some external sources directly.
+- Access to lakehouse can be managed at workspace level or item-level sharing, item-level access is useful for granting read-only access for reporting or analytical needs.
+- Lakehouse supports data governance features , sensitivity labels (microsoft purview). Transformation on ingested data can be done using spark or dataflows gen 2.
 - 
 
 ### continue...
