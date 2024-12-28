@@ -43,6 +43,8 @@ Note : while I follow this challenge I will also create the resources in Azure a
 - Ingest data to lakehouse from many different sources and also there is a concept of shortcuts where we can link data from ADLS gen2 or some external sources directly.
 - Access to lakehouse can be managed at workspace level or item-level sharing, item-level access is useful for granting read-only access for reporting or analytical needs.
 - Lakehouse supports data governance features , sensitivity labels (microsoft purview). Transformation on ingested data can be done using spark or dataflows gen 2.
-- 
+- For a new data lake house we create it creates three data items : lakehouse(which contains shortcuts,folders,files,tables) , Semantic model , SQL analytics endpoint (to allow read-only access to query data)
+- To ingest data to lakehouse we have three options, upload data(local data) , Dataflow Gen2 (import and transform using power query) , Notebooks (will have access to pools) ,  Data Factory copy activity. We will have two options load to place files directly or load to tables.
+- we can use custom JARS to create framworks in spark and provide 
 
 ### continue...
