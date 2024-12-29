@@ -45,6 +45,9 @@ Note : while I follow this challenge I will also create the resources in Azure a
 - Lakehouse supports data governance features , sensitivity labels (microsoft purview). Transformation on ingested data can be done using spark or dataflows gen 2.
 - For a new data lake house we create it creates three data items : lakehouse(which contains shortcuts,folders,files,tables) , Semantic model , SQL analytics endpoint (to allow read-only access to query data)
 - To ingest data to lakehouse we have three options, upload data(local data) , Dataflow Gen2 (import and transform using power query) , Notebooks (will have access to pools) ,  Data Factory copy activity. We will have two options load to place files directly or load to tables.
-- we can use custom JARS to create framworks in spark and provide 
+- we can use custom JARS to create frameworks in spark and provide for custom implementations. - more info in the link : [spark-config](https://learn.microsoft.com/en-us/fabric/data-engineering/create-spark-job-definition)
+- 
+
+![lake_house](lake_house.png)
 
 ### continue...
