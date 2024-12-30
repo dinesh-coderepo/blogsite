@@ -46,6 +46,10 @@ Note : while I follow this challenge I will also create the resources in Azure a
 - For a new data lake house we create it creates three data items : lakehouse(which contains shortcuts,folders,files,tables) , Semantic model , SQL analytics endpoint (to allow read-only access to query data)
 - To ingest data to lakehouse we have three options, upload data(local data) , Dataflow Gen2 (import and transform using power query) , Notebooks (will have access to pools) ,  Data Factory copy activity. We will have two options load to place files directly or load to tables.
 - we can use custom JARS to create frameworks in spark and provide for custom implementations. - more info in the link : [spark-config](https://learn.microsoft.com/en-us/fabric/data-engineering/create-spark-job-definition)
+- Fabric can access to shortcuts (data) directly from source systems( integrate data into your lakehouse while keeping it stored in external storage ) . While accessing the source data from fabric it uses the user credential to source systems for example we are accessing a storage to query(sql query end point), the user need to have read permissions in source system inorder to be able to read the data using the tool.  - more info on creating short cuts in lakehouse : [shortcuts](https://learn.microsoft.com/en-us/fabric/onelake/onelake-shortcuts)
+- There are three mechanisms to ingest or transform data - notebooks (pyspark,scala, SQl), dataflow gen2( power query interface) , Pipelines to do Ingesting, transforming and loading. 
+- The final enriched data can be accessed from notebooks (for ML development or analytical), using semantic model users can build power BI reports, also analysts can use SQL endpoint to query data.
+- Doing the exercise on creating lakehouse in my trail account - [link](https://learn.microsoft.com/en-us/training/modules/get-started-lakehouses/5-exercise-lakehouse)
 - 
 
 ![lake_house](lake_house.png)
