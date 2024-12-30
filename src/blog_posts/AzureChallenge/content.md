@@ -50,8 +50,26 @@ Note : while I follow this challenge I will also create the resources in Azure a
 - There are three mechanisms to ingest or transform data - notebooks (pyspark,scala, SQl), dataflow gen2( power query interface) , Pipelines to do Ingesting, transforming and loading. 
 - The final enriched data can be accessed from notebooks (for ML development or analytical), using semantic model users can build power BI reports, also analysts can use SQL endpoint to query data.
 - Doing the exercise on creating lakehouse in my trail account - [link](https://learn.microsoft.com/en-us/training/modules/get-started-lakehouses/5-exercise-lakehouse)
-- 
+- Using visual tools for transformation and querying using sql pool, below attached few dashboard pics created on ingested sales data.
 
 ![lake_house](lake_house.png)
+
+![exercise](exercise_1_1.png)
+
+![exercise_2](exercise_1_2.png)
+
+![alt text](exercise_1_3.png)
+
+- Final view of lakehouse in the workspace for the exercise.
+
+![exercise_1_4](exercise_1_4.png)
+
+- Completed this module , on to the next module ... 
+
+![completed_2](completed_module_2.png)
+
+### Use Apache Spark in Microsoft Fabric : [Link](https://learn.microsoft.com/en-us/training/modules/use-apache-spark-work-files-lakehouse/)
+
+- 
 
 ### continue...
