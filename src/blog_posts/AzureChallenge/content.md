@@ -16,6 +16,8 @@ date: 2024-12-23
 
 Note : while I follow this challenge I will also create the resources in Azure and attach screenshots for better documentation.
 
+### Azure fabric workspace: https://app.fabric.microsoft.com/home 
+
 - Getting started with the intro module, fabric is a analytics platform with all the required services for data integrated to one service. It has services integrated to ingest, store, transform and analyze data all in one place. 
 - Exciting for any member in data field having all in one place and managing it will be simpler than managing 4-5 different services in different places and permissions across services.
 - Fabric has integrated data lake called onelake, OneCopy methodology seems to be key and looks like this paradigm will eliminate a separate copy(Costly Query Clusters) just for Product Managers to query data. [link](https://learn.microsoft.com/en-us/training/modules/introduction-end-analytics-use-microsoft-fabric/2-explore-analytics-fabric)
@@ -51,6 +53,7 @@ Note : while I follow this challenge I will also create the resources in Azure a
 - The final enriched data can be accessed from notebooks (for ML development or analytical), using semantic model users can build power BI reports, also analysts can use SQL endpoint to query data.
 - Doing the exercise on creating lakehouse in my trail account - [link](https://learn.microsoft.com/en-us/training/modules/get-started-lakehouses/5-exercise-lakehouse)
 - Using visual tools for transformation and querying using sql pool, below attached few dashboard pics created on ingested sales data.
+- Complete lab instructions : [lab-link](https://microsoftlearning.github.io/mslearn-fabric/Instructions/Labs/01-lakehouse.html#create-a-workspace)
 
 ![lake_house](lake_house.png)
 
@@ -70,6 +73,11 @@ Note : while I follow this challenge I will also create the resources in Azure a
 
 ### Use Apache Spark in Microsoft Fabric : [Link](https://learn.microsoft.com/en-us/training/modules/use-apache-spark-work-files-lakehouse/)
 
+- In this module looking in to configuring spark in fabric, scenarios for spark jobs, utilizing spark df,sql and visualize data in spark notebooks.
+- In fabric we have spark pools to compute and process data, the pools contains two kind of nodes - A head node which coordinated and distributes process through driver program. - worker nodes are where the distributed compute happens
+![spark_nodes](spark_nodes.png)
+- we will initially have starterpool but we can also create custom pool depending on our workload and compute needs.
+![spark_pools](spark_pools.png)
 - 
 
 ### continue...
