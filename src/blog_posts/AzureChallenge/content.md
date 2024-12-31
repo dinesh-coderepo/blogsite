@@ -78,6 +78,29 @@ Note : while I follow this challenge I will also create the resources in Azure a
 ![spark_nodes](spark_nodes.png)
 - we will initially have starterpool but we can also create custom pool depending on our workload and compute needs.
 ![spark_pools](spark_pools.png)
+- while creating a new pool, we have options to select either memory optimized pools or other (Node family). In node size we have small, medium, big pools to select from. It also has auto scale and dynamically allocate executor bars where we can select and provide the range. more details on custom spark pool : [link](https://learn.microsoft.com/en-us/fabric/data-engineering/create-custom-spark-pools)
+-  we can have pools with multiple run times and import/install compatible libraries, we can select which env to run with a pool. runtime documentation : [link](https://learn.microsoft.com/en-us/fabric/data-engineering/runtime)
+- we can create custom env with specifying spark version, check built-in functions , add public libraries and custom libraries, specify spark pool that env should use and over ride any default spark configurations , we can also upload resource files which are accessible in the env. more details : [link](https://learn.microsoft.com/en-us/fabric/data-engineering/create-and-use-environment)
+![custom_env](custom_env.png)
+![custom_resources](custom_resources.png)
+- enable native execution engine in fabric for better performance on data stored in onelake (parquet and delta format) with below code blog -  more on this in the documentation [link](https://learn.microsoft.com/en-us/fabric/data-engineering/native-execution-engine-overview?tabs=sparksql)
+
+```json
+
+%%configure 
+{ 
+   "conf": {
+       "spark.native.enabled": "true", 
+       "spark.shuffle.manager": "org.apache.spark.shuffle.sort.ColumnarShuffleManager" 
+   } 
+}
+
+```
+- we can enable high concurrency to allow two concurrent users to utilize same session resources without over-riding  variables from two sessions, we also have MLFlow logging option to log model training and management operations for ML workloads and experiments.
+- we have two modes to invoke a spark session, by notebook or a spark job. Use notebook mode to do interactive analysis or define a spark job to run a script on demand or on schedule. this option is available when clicked on new item in the workspace page.
+![spark_notebook](spark_notebook.png)
+![custom_spark](custom_spark.png)
 - 
 
-### continue...
+
+### continued...
