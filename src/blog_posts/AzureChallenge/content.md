@@ -174,6 +174,85 @@ display(road_bikes_df.limit(5))
 ```
 ![spark_notebook_run](spark_notebook_run.png)
 
+- spark sql, we can create the view from the df and then use spark sql to write queries, this is temp view only exists in the session. If we need to persist we can save as table.
+- Microsoft fabrics preferred method of saving is delta format, the spark catalog support tables of various formats. we can also create external tables pointing data to external storage location, typically folder in lakehouse. Note : Deleting an external table doesn't delete the underlying data.
+- We can apply partitioning on the delta tables and bucketing as well. we cal also %%sql magic command and execute sql.
+
+```py
+df.createOrReplaceTempView("sales_view")
+
+# over writing the table
+df.write.format("delta").mode('overwrite').saveAsTable("products")
+
+
+df_products = spark.sql("SELECT * FROM challenge.products")
+display(df_products.count())
+
+
+#Partitioning the delta table for better performance
+
+df.write.format("delta").mode("overwrite").partitionBy("OrderDate").saveAsTable("sales_partitioned")
+
+
+sales_df = spark.sql("SELECT * \
+                      FROM challenge.sales_partitioned ")
+display(sales_df.count())
+
+
+%%sql
+
+SELECT OrderDate, COUNT(SalesOrderNumber) AS ProductCount
+FROM sales_partitioned
+GROUP BY OrderDate
+ORDER BY OrderDate
+
+```
+
+![table_temp](table_temp.png)
+
+![alt text](magic_commands_spark.png)
+
+- For plotting we can convert the df to pandas and use matplotlib , 
+
+```py
+from matplotlib import pyplot as plt
+
+# Get the data as a Pandas dataframe
+data = spark.sql("SELECT OrderDate, COUNT(SalesOrderNumber) AS ProductCount \
+FROM sales_partitioned \
+GROUP BY OrderDate \
+ORDER BY OrderDate").toPandas()
+
+# Clear the plot area
+plt.clf()
+
+# Create a Figure
+fig = plt.figure(figsize=(12,8))
+
+# Create a bar plot of product counts by category
+plt.bar(x=data['OrderDate'], height=data['ProductCount'], color='orange')
+
+# Customize the chart
+plt.title('Product Counts by OrderDate')
+plt.xlabel('OrderDate')
+plt.ylabel('Products')
+plt.grid(color='#95a5a6', linestyle='--', linewidth=2, axis='y', alpha=0.7)
+plt.xticks(rotation=70)
+
+# Show the plot area
+plt.show()
+```
+
+![plot_result](plot_result.png)
+
+- exercise to revise all concepts on spark df and charting : [link](https://microsoftlearning.github.io/mslearn-fabric/Instructions/Labs/02-analyze-spark.html)
+- completed the module on to the next..
+
+![module_3_completed](module_3_completed.png)
+
+
+### Orchestrate processes and data movement with Microsoft Fabric : [link](https://learn.microsoft.com/en-us/training/modules/use-data-factory-pipelines-fabric/?username=saidineshreddymaluchuru-9386&section=activity)
+
 - 
 
 ### continued...
