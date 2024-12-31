@@ -100,7 +100,80 @@ Note : while I follow this challenge I will also create the resources in Azure a
 - we have two modes to invoke a spark session, by notebook or a spark job. Use notebook mode to do interactive analysis or define a spark job to run a script on demand or on schedule. this option is available when clicked on new item in the workspace page.
 ![spark_notebook](spark_notebook.png)
 ![custom_spark](custom_spark.png)
-- 
+- reading csv file to a spark df and doing more, 
 
+
+![spark_df](spark_df.png)
+
+#### Code blocks and all the data used here is sales data : [sales](https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/sales.csv)
+
+
+```py
+# running using pyspark
+%%pyspark
+df = spark.read.load('Files/data/sales.csv',
+    format='csv',
+    header=True
+)
+display(df.limit(10))
+
+# running using scala
+%%spark
+val df = spark.read.format("csv").option("header", "true").load("Files/data/sales.csv")
+display(df.limit(10))
+
+# Defining schema for loading
+
+from pyspark.sql.types import *
+from pyspark.sql.functions import *
+
+productSchema = StructType([
+    StructField("SalesOrderNumber", StringType()),
+    StructField("SalesOrderLineNumber", StringType()),
+    StructField("OrderDate", StringType()),
+    StructField("CustomerName", FloatType()),
+    StructField("EmailAddress", StringType()),
+    StructField("Item", StringType()),
+    StructField("Quantity", StringType()),
+    StructField("UnitPrice", StringType()),
+    StructField("TaxAmount", StringType())
+    ])
+
+df = spark.read.load('Files/data/sales.csv',
+    format='csv',
+    schema=productSchema,
+    header=False)
+display(df.limit(10))
+
+#Selecting required columns
+pricelist_df = df.select("OrderDate", "EmailAddress")
+
+# Filtering with some conditions
+bikes_df = df.select("OrderDate", "EmailAddress", "UnitPrice").where((df["UnitPrice"]>=3200) & (df["OrderDate"] >= "2019-07-05") )
+
+# Group by with aggregation sum
+counts_df = df.select("OrderDate", "EmailAddress", "UnitPrice").groupBy("OrderDate").agg(sum("UnitPrice").alias("Total_Price"))
+display(counts_df)
+
+# Just getting group by with count
+counts_df = df.select("OrderDate", "EmailAddress", "UnitPrice").groupBy("OrderDate").count()
+display(counts_df)
+
+# Writing to parquet
+bikes_df.write.mode("overwrite").parquet('Files/data/bikes.parquet')
+
+# Writing to a partition
+bikes_df.write.partitionBy("OrderDate").mode("overwrite").parquet("Files/bike_data")
+
+# Reading from a partition 
+road_bikes_df = spark.read.parquet('Files/bike_data/OrderDate=2019-07-05')
+display(road_bikes_df.limit(5))
+
+# Observation from reading above command - not showing the partition column while reading
+
+```
+![spark_notebook_run](spark_notebook_run.png)
+
+- 
 
 ### continued...
