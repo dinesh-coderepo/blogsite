@@ -3,6 +3,7 @@
 ## Blog type site to publish articles
 ## AI and ML solutions
 
+## Site : [blog](https://dineshblog.com)
 
 ```
 /src/
