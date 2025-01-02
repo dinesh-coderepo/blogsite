@@ -253,7 +253,32 @@ plt.show()
 
 ### Orchestrate processes and data movement with Microsoft Fabric : [link](https://learn.microsoft.com/en-us/training/modules/use-data-factory-pipelines-fabric/?username=saidineshreddymaluchuru-9386&section=activity)
 
+
 - Data Pipelines in fabric - series of activities which copy/transform/load to onelake or other sources. we can schedule them and it is very similar to ADF in azure
-- 
+- Core concepts in pipelines - activities which are kind of executable tasks and we can control the flow of pipeline from the final execution status of the activity and control the flow, in activities we have transformation activites (copy data from source , data flow to apply transformations ,we can also use notebooks to transform as we did in earlier module and provide destination to write to) 
+- control flow activities to implement loops , conditional branching , manage variables and parameters. 
+- more on the activities overview : [documentation](https://learn.microsoft.com/en-us/fabric/data-factory/activity-overview)
+- Pipelines can be parametrized so that we can use this as a parameter in your activites (final saved folder name can be this parameter), each pipeline run creates a Unique run ID
+- Copy data - mostly used activity to get the source data ingested, copy data good to directly connect to source get raw data, but if you have multiple sources and needs transformation before storing use Data Flow - [Documentation](https://learn.microsoft.com/en-us/training/modules/use-dataflow-gen-2-fabric/).
+
+![copy_data_activity](copy_data_activity.png)
+
+- there are already some pipeline templates to choose from in fabric , check and select the template that best suits your usecase to have a better starting point.
+- You can see the pipeline execution history, run the pipelines. 
+
+![pipeline_execution](pipeline_execution.png)
+![pipeline_monitor](pipeline_monitor.png)
+
+- exercise in this module : [link](https://microsoftlearning.github.io/mslearn-fabric/Instructions/Labs/04-ingest-pipeline.html)
+
+- Completed this modules, on to the next..
+
+![module_4](module_4.png)
+
+
+### Ingest Data with Dataflows Gen2 in Microsoft Fabric : [link](https://learn.microsoft.com/en-us/training/modules/use-dataflow-gen-2-fabric/?username=saidineshreddymaluchuru-9386&section=activity)
+
+- In this module we will see : Dataflow capabilities in Microsoft Fabric, Dataflow solutions to ingest and transform data and Include a Dataflow in a pipeline
+- 7 modules left in this challenge, need to pick up the pace.
 
 ### continued...
