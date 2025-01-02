@@ -16,7 +16,7 @@ date: 2024-12-23
 
 Note : while I follow this challenge I will also create the resources in Azure and attach screenshots for better documentation.
 
-### Azure fabric workspace: https://app.fabric.microsoft.com/home 
+### Azure fabric workspace: [https://app.fabric.microsoft.com/home](https://app.fabric.microsoft.com/home)
 
 - Getting started with the intro module, fabric is a analytics platform with all the required services for data integrated to one service. It has services integrated to ingest, store, transform and analyze data all in one place. 
 - Exciting for any member in data field having all in one place and managing it will be simpler than managing 4-5 different services in different places and permissions across services.
@@ -253,6 +253,7 @@ plt.show()
 
 ### Orchestrate processes and data movement with Microsoft Fabric : [link](https://learn.microsoft.com/en-us/training/modules/use-data-factory-pipelines-fabric/?username=saidineshreddymaluchuru-9386&section=activity)
 
+- Data Pipelines in fabric - series of activities which copy/transform/load to onelake or other sources. we can schedule them and it is very similar to ADF in azure
 - 
 
 ### continued...
