@@ -271,7 +271,40 @@ plt.show()
 
 - exercise in this module : [link](https://microsoftlearning.github.io/mslearn-fabric/Instructions/Labs/04-ingest-pipeline.html)
 
-- Completed this modules, on to the next..
+- setting the http to read data from git sales csv and writing as files to lakehouse workspace. There is delete activity which we used to delete the in files/folders if any retention needs to be applied (wild card also supported). 
+- we also can add notebooks directly to the pipeline to trigger.
+
+![pipeline_copy](pipeline_copy.png)
+
+
+```py
+table_name = "sales_copy"
+
+from pyspark.sql.functions import *
+
+# Read the new sales data
+df = spark.read.format("csv").option("header","true").load("Files/new_data/*.csv")
+
+## Add month and year columns
+df = df.withColumn("Year", year(col("OrderDate"))).withColumn("Month", month(col("OrderDate")))
+
+# Derive FirstName and LastName columns
+df = df.withColumn("FirstName", split(col("CustomerName"), " ").getItem(0)).withColumn("LastName", split(col("CustomerName"), " ").getItem(1))
+
+# Filter and reorder columns
+df = df["SalesOrderNumber", "SalesOrderLineNumber", "OrderDate", "Year", "Month", "FirstName", "LastName", "EmailAddress", "Item", "Quantity", "UnitPrice", "TaxAmount"]
+
+# Load the data into a table
+df.write.format("delta").mode("append").saveAsTable(table_name)
+
+# Just checking some syntax
+display(df.select(df_copy['OrderDate'],year(to_date(df_copy['OrderDate'],'yyyy-MM-dd'))))
+
+```
+
+![copy_pipline_delete](copy_pipline_delete.png)
+
+- Completed this module, on to the next..
 
 ![module_4](module_4.png)
 
