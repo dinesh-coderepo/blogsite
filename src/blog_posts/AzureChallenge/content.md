@@ -312,6 +312,10 @@ display(df.select(df_copy['OrderDate'],year(to_date(df_copy['OrderDate'],'yyyy-M
 ### Ingest Data with Dataflows Gen2 in Microsoft Fabric : [link](https://learn.microsoft.com/en-us/training/modules/use-dataflow-gen-2-fabric/?username=saidineshreddymaluchuru-9386&section=activity)
 
 - In this module we will see : Dataflow capabilities in Microsoft Fabric, Dataflow solutions to ingest and transform data and Include a Dataflow in a pipeline
-- 7 modules left in this challenge, need to pick up the pace.
+- data flow gen 2 used for executing ETL pipelines , allows to extract from different source, apply transformations and load to destination. we can add dataflow gen2 in to data pipeline activity if we choose to, destination is not compulsory in dataflow gen2.
+- low code interface, reusability and provide self-serve user access to subset of data lakehouse.
+- data flow gen2 uses power query online to visualize transformations. link to modules [link](https://learn.microsoft.com/en-us/training/modules/use-dataflow-gen-2-fabric/3-explore-dataflows-gen-2)
+- 
+
 
 ### continued...
