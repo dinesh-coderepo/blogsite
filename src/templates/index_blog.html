@@ -15,7 +15,8 @@
         }
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, var(--background) 0%, var(--primary) 100%);
+            background: linear-gradient(135deg, var(--background) 0%, var(--secondary) 100%);
+            background-attachment: fixed; /* Add this line */
             color: var(--text);
             line-height: 1.6;
             margin: 0;
@@ -263,9 +264,9 @@
     </div>
 
     <header>
-        <h1>Maluchuru Dinesh's <br> Blog</h1>
+        <h1>Maluchuru Dinesh's<br>Tech Blog</h1>
         <nav>
-            <a href="{{ url_for('about') }}">Intro</a>
+            <a href="{{ url_for('about') }}">About Me</a>
         </nav>
     </header>
     
