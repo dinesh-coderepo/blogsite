@@ -339,7 +339,14 @@ display(df.select(df_copy['OrderDate'],year(to_date(df_copy['OrderDate'],'yyyy-M
 
 ### Get started with data warehouses in Microsoft Fabric : [link](https://learn.microsoft.com/en-us/training/modules/get-started-data-warehouse/?sharingId=6A9F03F25E12DA9E&ref=collection&listId=d1z7cn7do0xpxr&wt.mc_id=ignitechallenge25_landingpage_wwl)
 
+- Official documentation on data warehouses in fabric : [link](https://learn.microsoft.com/en-us/fabric/data-warehouse/data-warehousing)
 - Data warehouses are analytical stores built on a relational schema to support SQL queries, in this module we have describe what is data warehouses in fabric, data warehouse vs lakehouse, working with data warehouse, manage fact and dim tables in data warehouse. Seems to be a important module in fabric as this is where the enriched data layers are defined.
+- Data warehouse in fabric is designed for more structured relational type data ingestion, dim and fact. Supports T-SQL to query and transform similar to a relational storage, its like a relational layer ontop of lakehouse.
+- Other than the key - key relationship in star schema between fact and dim (business key), there seems to be a surrogate key(kind of index) to maintain consistency?
+- There are special type of dimension tables to provide additional context? : time dimensions provide event occurred during time periods , SCD(slowly changing dimensions) are dimension tables that track changes to dimension attributes overtime?
+- [star schema](https://learn.microsoft.com/en-us/power-bi/guidance/star-schema), most transactional dbs tables are normally normalized to reduce duplications. In data warehouses tables are de-normed to avoid joins while querying data. 
+![star_schema](star_schema.png)
+
 - 
 
 ### continued...
