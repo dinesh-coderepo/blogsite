@@ -314,8 +314,32 @@ display(df.select(df_copy['OrderDate'],year(to_date(df_copy['OrderDate'],'yyyy-M
 - In this module we will see : Dataflow capabilities in Microsoft Fabric, Dataflow solutions to ingest and transform data and Include a Dataflow in a pipeline
 - data flow gen 2 used for executing ETL pipelines , allows to extract from different source, apply transformations and load to destination. we can add dataflow gen2 in to data pipeline activity if we choose to, destination is not compulsory in dataflow gen2.
 - low code interface, reusability and provide self-serve user access to subset of data lakehouse.
-- data flow gen2 uses power query online to visualize transformations. link to modules [link](https://learn.microsoft.com/en-us/training/modules/use-dataflow-gen-2-fabric/3-explore-dataflows-gen-2)
-- 
+- dataflow gen2 uses power query online to visualize transformations, we can create Dataflow Gen2 in DF workload, powerbi workspace or directly in lackhouse.
+- It supports wide connectors to on-prem relational dbs, excel or flat files, shareporint, fabric lakehouses. some transformations which we can apply with this are obviously filter and sorting, pivot , unpivot, merge,append,split, conditional split, replace, reorder columns, ranking, top n etc.
+- There is a concept called queries which persists as tables, once loaded to the data store we can reference this same data and split to dim and fact tables (star schema) or avoid it and disable this feature if not REQUIRED!!.
+- Diagram view shows the pictorial representation with diff shapes for diff functions/transformations.
+- data preview pane lets you see a subset of data with transformations applied. Query settings pane shows the M code backend of the visuals. You can also set a data destination to lakehouse, warehouse,dql db.
+- Power Query Documentation - [link](https://learn.microsoft.com/en-us/power-query/)
+- We can combine dataflow gen2 and pipelines to have additional operations on transformed data. and to orchestrate it we need to use pipelines to trigger the dataflow gen2.
+- Exercise - [link](https://microsoftlearning.github.io/mslearn-fabric/Instructions/Labs/05-dataflows-gen2.html)
+- Raw data using for the exercise : [sales.csv](https://raw.githubusercontent.com/dinesh-coderepo/dp-data/refs/heads/main/orders.csv)
+- Import the above data by selecting import Text/CSV and give URL, add custom column and give logic (in this case extracting month), add destination to your lakehouse (append or replace options)
 
+![dataflow_gen2_1](dataflow_gen2_1.png)
+
+- we can add the dataflow created by adding a dataflow activity to the pipeline and tag to the already created dataflow gen2 flow to the activity settings of dataflow. Provide the destination to the lakehouse as append type or replace to directly load to the table.
+
+![dataflow_gen2_1](dataflow_gen2_2.png)
+
+![dataflow_gen2_3](dataflow_gen2_3.png)
+
+- Data factory in fabric documentation to learn more : [link](https://learn.microsoft.com/en-us/fabric/data-factory/), finally completed this module.
+
+![module_5](module_5.png)
+
+### Get started with data warehouses in Microsoft Fabric : [link](https://learn.microsoft.com/en-us/training/modules/get-started-data-warehouse/?sharingId=6A9F03F25E12DA9E&ref=collection&listId=d1z7cn7do0xpxr&wt.mc_id=ignitechallenge25_landingpage_wwl)
+
+- Data warehouses are analytical stores built on a relational schema to support SQL queries, in this module we have describe what is data warehouses in fabric, data warehouse vs lakehouse, working with data warehouse, manage fact and dim tables in data warehouse. Seems to be a important module in fabric as this is where the enriched data layers are defined.
+- 
 
 ### continued...
