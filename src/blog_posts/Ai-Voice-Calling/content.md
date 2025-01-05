@@ -8,8 +8,6 @@ date: 2024-11-12
 ## Provide solutions and raise service tickets.
 
 
-## App link : [techvistara-ai-voice.azurewebsites.net](https://techvistara-ai-voice.azurewebsites.net/)
-
 ## Initial Architecture - Version V1
 
 Link to the architecture diagram : [User draw.io to render](https://github.com/dinesh-coderepo/all-spec-draws/blob/main/AI-Voice-Support.drawio)
@@ -70,12 +68,11 @@ gunicorn --bind 0.0.0.0:$PORT main:app
 ### Generating text from the generated audio file from the user
 - Exploring Azure Speech to Text service 
 
+---
 
+### Project Suspension Notice
 
-
-### Building - Next steps
-### coming soon
-
+### `Due to budget constraints and the need to prioritize other projects, I have decided to temporarily suspend the AI Voice chatting application. The web application will be shut down until the next steps are designed and finalized. All progress has been archived and can be accessed here: ` [Project Archive](https://github.com/dinesh-coderepo/techvistara-voice)
 
 
 
