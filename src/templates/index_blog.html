@@ -88,7 +88,7 @@
         .translator-link,
         nav a {
             display: inline-block;
-            background-color: var(--secondary);
+            background-color: var(--primary); /* Change to primary color for better visibility */
             color: var(--background);
             padding: 10px 15px;
             text-decoration: none;
@@ -99,7 +99,7 @@
         .read-more:hover,
         .translator-link:hover,
         nav a:hover {
-            background-color: var(--primary);
+            background-color: var(--secondary); /* Adjust hover color to secondary */
             color: var(--background);
             transform: translateY(-2px);
         }
@@ -138,15 +138,17 @@
         }
         .translator-link {
             display: inline-block;
-            background-color: var(--secondary);
+            background-color: var(--primary); /* Ensure consistent background color */
             color: var(--background);
             padding: 10px 15px;
             text-decoration: none;
             border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
         }
         .translator-link:hover {
-            background-color: var(--primary);
+            background-color: var(--secondary); /* Ensure consistent hover color */
+            color: var(--background);
             transform: translateY(-2px);
         }
         body.dark-mode {
@@ -236,14 +238,14 @@
             display: inline-block;
             padding: 8px 16px;
             margin: 0 8px;
-            background-color: var(--secondary);
+            background-color: var(--primary); /* Ensure consistent background color */
             color: var(--background);
             border-radius: 5px;
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
         }
         nav a:hover {
-            background-color: var(--primary);
+            background-color: var(--secondary); /* Ensure consistent hover color */
             transform: translateY(-2px);
         }
         body.dark-mode nav a {
