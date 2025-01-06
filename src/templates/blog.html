@@ -217,6 +217,10 @@
         body.dark-mode a:hover {
             color: #5BC0BE;  /* Slightly darker cyan for hover in dark mode */
         }
+        .back-link-container {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
@@ -258,7 +262,10 @@
         <div class="blog-content">
             {{ blog.content|safe }}
         </div>
-        <a href="{{ url_for('home') }}" class="back-link">Back to home</a>
+        <div class="back-link-container">
+            <a href="{{ url_for('home') }}" class="back-link">Back to home</a>
+            <a href="#" class="back-link" id="top-link">Return to top</a>
+        </div>
     </div>
 
     <script>
@@ -302,6 +309,13 @@
         // Check for saved mode preference
         const savedMode = localStorage.getItem('mode');
         setDarkMode(savedMode === 'dark');
+
+        // Scroll to top functionality
+        const topLink = document.getElementById('top-link');
+        topLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
