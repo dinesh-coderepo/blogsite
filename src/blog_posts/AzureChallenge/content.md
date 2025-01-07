@@ -347,6 +347,9 @@ display(df.select(df_copy['OrderDate'],year(to_date(df_copy['OrderDate'],'yyyy-M
 - [star schema](https://learn.microsoft.com/en-us/power-bi/guidance/star-schema), most transactional dbs tables are normally normalized to reduce duplications. In data warehouses tables are de-normed to avoid joins while querying data. 
 ![star_schema](star_schema.png)
 
-- 
+- General process to implement a dw solution, ingest data to data lake, load data from these files present in data lake to staging tables, upsert to dim and fact , do the post-load optimizations as updating indexing and distribution stats. 
+- If we just need to query data on top of data lake, we can do so with out duplicating it to data warehouse, but by directly querying from lakehouse by cross-database querying.
+
+![data_warehouse_1](data_warehouse_1.png)
 
 ### continued...
