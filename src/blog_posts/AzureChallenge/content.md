@@ -352,4 +352,27 @@ display(df.select(df_copy['OrderDate'],year(to_date(df_copy['OrderDate'],'yyyy-M
 
 ![data_warehouse_1](data_warehouse_1.png)
 
+- we can use t-sql in query editor from the browser to run DML and DDL commands, create views, tables. Also these is a low code ETL visual query editor where we can apply transformations. 
+- We have datamodel view and building relations between tables. we can also create measures(similar to calculated fields in power BI - DAX) , Data Analysis Expressions (DAX) formula language. 
+- New tables in the Lakehouse are automatically added to the default semantic model, semantic model allows to query the dw content externally by BAs. Also we can create reports on query results or create new reports on dw tables directly.
+- there are different roles and security while querying and storing data in fabric, we have workspace permissions and item permissions . workspace permissions provide access throughout the workspace contents. with item permissions we can provide access to individual warehouses in workspace and Read (sql endpoint connection), ReadData (allows user to query any table), ReadAll(able to read files in onelake using spark?)
+- Monitoring tools provide frameworks to identify query metrics, anomalies. also Kill the queries if the query is consuming lot of resources.
+    - sys.dm_exec_connections: Returns information about each connection established between the warehouse and the engine.
+    - sys.dm_exec_sessions: Returns information about each session authenticated between the item and engine.
+    - sys.dm_exec_requests: Returns information about each active request in a session.
+- Data warehouse exercise : [Link](https://microsoftlearning.github.io/mslearn-fabric/Instructions/Labs/06-data-warehouse.html)
+
+![dw_completed](dw_completed.png)
+
+### Load data into a Microsoft Fabric data warehouse : [link](https://learn.microsoft.com/en-us/training/modules/load-data-into-microsoft-fabric-data-warehouse/?sharingId=6A9F03F25E12DA9E&ref=collection&listId=d1z7cn7do0xpxr&wt.mc_id=ignitechallenge25_landingpage_wwl)
+
+- In this modules, strategies to load data into fabric, data pipelines, loading data using T-SQL, load and transform using dataflow gen2.
+
+![fabric_view](fabric_view.png)
+
+- Microsoft Fabric is centered around a single data lake. 
+- 
+
+
+
 ### continued...
