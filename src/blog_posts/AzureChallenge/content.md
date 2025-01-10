@@ -370,9 +370,62 @@ display(df.select(df_copy['OrderDate'],year(to_date(df_copy['OrderDate'],'yyyy-M
 
 ![fabric_view](fabric_view.png)
 
-- Microsoft Fabric is centered around a single data lake. 
+- Microsoft Fabric is centered around a single data lake. data in fabric is stored in parquet files in data lake and between different services the data can be shared without copying for etl/analysis.
+- data load strategies in to dw in fabric, staging your data , staging need not be loading data into the internal storage but could be external as well. It serves to optimize resources and avoid throttling. Full load/incremental loading mechanisms. More on incremental loading : [link](https://learn.microsoft.com/en-us/fabric/data-factory/tutorial-incremental-copy-data-warehouse-lakehouse)
+
+![etl_dw](etl_dw.png)
+
+- dimension tables - attributes with details or characteristics. the changes of these dimension tables can be characterized to SCD - slowly changing dimensions with below defs(picked as is from module)
+    - Type 0 SCD: The dimension attributes never change.
+    - Type 1 SCD: Overwrites existing data, doesn't keep history.
+    - Type 2 SCD: Adds new records for changes, keeps full history for a given natural key.
+    - Type 3 SCD: History is added as a new column.
+    - Type 4 SCD: A new dimension is added.
+    - Type 5 SCD: When certain attributes of a large dimension change over time, but using type 2 isn't feasible due to the dimension’s large size.
+    - Type 6 SCD: Combination of type 2 and type 3.
+- scd type 2 example below where the latest record is set to active. we have insert, update, create procedures
+```sql
+IF EXISTS (SELECT 1 FROM Dim_Products WHERE SourceKey = @ProductID AND IsActive = 'True')
+BEGIN
+    -- Existing product record
+    UPDATE Dim_Products
+    SET ValidTo = GETDATE(), IsActive = 'False'
+    WHERE SourceKey = @ProductID 
+        AND IsActive = 'True';
+END
+ELSE
+BEGIN
+    -- New product record
+    INSERT INTO Dim_Products (SourceKey, ProductName, StartDate, EndDate, IsActive)
+    VALUES (@ProductID, @ProductName, GETDATE(), '9999-12-31', 'True');
+END
+```
+![scd_dw](scd_dw.png)
+
+- first we normally load the dim tables so if fact references the dim it will be already present. data pipelines to load data in warehouse, All data in a Warehouse is automatically stored in the Delta Parquet format in OneLake. 
+- ingesting using data pipelines - [link](https://learn.microsoft.com/en-us/fabric/data-warehouse/ingest-data-pipelines)
+- there seems to be datatype enforcement while loading the data to the schema, and looks like I can not change the datatype in pipeline once the copy stage is established. I need to remove and recreate the stage again. Keeping varchar is better for raw layer.
+
+```
+ErrorCode=DWCopyCommandOperationFailed,'Type=Microsoft.DataTransfer.Common.Shared.HybridDeliveryException,Message='DataWarehouse' Copy Command operation failed with error ''Column 'TaxAmount' of type 'REAL' is not compatible with external data type 'Parquet physical type: BYTE_ARRAY, logical type: UTF8', please try with 'VARCHAR(8000)'. Underlying data description: file 'https://olspn5q0h1kvg2htgcb6p.dfs.core.windows.net/93ba4f12-bd72-422f-b6f8-869e5ee2c177/_system/services/DI/pipelines/6906c723-8f93-4afa-a121-4ab78f070661/MSSQLImportCommand/6f2ec288-dfaa-450b-ad61-5fb9b4f90c79.parquet'.
+```
+![4-query-using-workspace](4-query-using-workspace.gif)
+![data_pipeline_ingest](data_pipeline_ingest.png)
+![data_pipeline_ingest_staging](data_pipeline_ingest_staging.png)
+
+- we can also load data using t-sql, copy command loads data to the table from sources,we can provide arguments to store rejected rows, skip header etc while copying(The COPY statement currently supports the PARQUET and CSV file formats.)
+- we can also load data using data flow gen2, keeping gifs from module here for reference.
+
+![Load data using Dataflow](5-load-using-dataflow.gif)
+
+- exercise for loading data in to dw using t-sql : [link](https://microsoftlearning.github.io/mslearn-fabric/Instructions/Labs/06a-data-warehouse-load.html)
+
+![data_warehouse_load_module_done](data_warehouse_load_module_done.png)
+
+### Secure a Microsoft Fabric data warehouse : [link](https://learn.microsoft.com/en-us/training/modules/secure-data-warehouse-in-microsoft-fabric/?sharingId=6A9F03F25E12DA9E&ref=collection&listId=d1z7cn7do0xpxr&wt.mc_id=ignitechallenge25_landingpage_wwl)
+
+- in this module, secure data in fabric, implementing dynamic data masking to mask sensitive info, row-level security for granular control, column-level security to protect sensitive data, granular permissions using t-sql
+- security is very important in the current world of data, many orgs have to secure the access and permissions for data audit purposes, 
 - 
-
-
 
 ### continued...
