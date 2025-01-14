@@ -8,7 +8,8 @@ date: 2025-01-12
 
 ## Link : [MEDICAL ERROR DETECTION AND CORRECTION IN CLINICAL NOTES](https://github.com/dinesh-coderepo/blogsite/blob/main/src/blog_posts/medical_llms/MEDEC-%20A%20BENCHMARK%20FOR%20MEDICAL%20ERROR%20DETECTION%20AND%20CORRECTION%20IN%20CLINICAL%20NOTES.pdf)
 
-### Reading in progress
+**Note: This plan and the questions are generated with GitHub Workspaces.**
+
 
 ## Plan to Read the Paper
 
@@ -47,7 +48,7 @@ date: 2025-01-12
 8. What are the ethical considerations when using LLMs for medical error detection and correction?
 
 ## Note
-
 This plan and the questions are generated with GitHub Workspaces.
 
-**Note: This plan and the questions are generated with GitHub Workspaces.**
+## Reading...
+
