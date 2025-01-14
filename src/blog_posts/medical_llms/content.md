@@ -13,28 +13,28 @@ date: 2025-01-12
 
 ## Plan to Read the Paper
 
-1. **Abstract and Introduction**:
+- **Abstract and Introduction**:
    - Understand the motivation behind the study.
    - Identify the key objectives and contributions of the paper.
 
-2. **Related Work**:
-   - Review previous research and methodologies in medical error detection and correction.
-   - Note the gaps that this paper aims to address.
+- **Related Work**:
+    - Review previous research and methodologies in medical error detection and correction.
+    - Note the gaps that this paper aims to address.
 
-3. **Methodology**:
-   - Study the proposed approach for detecting and correcting medical errors.
-   - Understand the architecture and algorithms used.
+- **Methodology**:
+    - Study the proposed approach for detecting and correcting medical errors.
+    - Understand the architecture and algorithms used.
 
-4. **Experiments and Results**:
-   - Analyze the experiments conducted to validate the methodology.
-   - Review the results and their significance.
+- **Experiments and Results**:
+    - Analyze the experiments conducted to validate the methodology.
+    - Review the results and their significance.
 
-5. **Discussion**:
-   - Understand the implications of the findings.
-   - Note any limitations and future work suggested by the authors.
+- **Discussion**:
+    - Understand the implications of the findings.
+    - Note any limitations and future work suggested by the authors.
 
-6. **Conclusion**:
-   - Summarize the key takeaways from the paper.
+- **Conclusion**:
+    - Summarize the key takeaways from the paper.
 
 ## Questions to Know After Completing the Paper
 
