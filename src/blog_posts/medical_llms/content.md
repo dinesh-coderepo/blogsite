@@ -14,8 +14,8 @@ date: 2025-01-12
 ## Plan to Read the Paper
 
 - **Abstract and Introduction**:
-   - Understand the motivation behind the study.
-   - Identify the key objectives and contributions of the paper.
+    - Understand the motivation behind the study.
+    - Identify the key objectives and contributions of the paper.
 
 - **Related Work**:
     - Review previous research and methodologies in medical error detection and correction.
