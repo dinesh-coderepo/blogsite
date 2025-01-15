@@ -10,5 +10,9 @@ date: 2025-01-13
 
 - As part of intro,  going through the YouTube video : [youtube](https://youtu.be/nC766APIZFM?si=Vx8n4cJoQCmckgkP)
 - AI foundry agent intro : [youtube](https://youtu.be/ltt7JNd30Ag?si=TUHrwTrdDgAu-2eN)
-- 
+- Azure AI Foundry learning path by azure : [link](https://learn.microsoft.com/en-gb/training/paths/create-custom-copilots-ai-studio/)
+
+### My findings and progress 
+
+#### Continued 
 
