@@ -8,6 +8,12 @@ date: 2025-01-12
 
 ## Link : [MEDICAL ERROR DETECTION AND CORRECTION IN CLINICAL NOTES](https://github.com/dinesh-coderepo/blogsite/blob/main/src/blog_posts/medical_llms/MEDEC-%20A%20BENCHMARK%20FOR%20MEDICAL%20ERROR%20DETECTION%20AND%20CORRECTION%20IN%20CLINICAL%20NOTES.pdf)
 
+### Using Notebook LM for generating audio discussion on the paper to get the gist: [NotebookLM](https://notebooklm.google.com/notebook/a066cf7e-e61d-49bc-9e47-c8636c17ba65/audio) , [Drive](https://drive.google.com/file/d/1ACmw08az2Xu1B2MUVB3VNbh9HeuFx-RG/view?usp=drivesdk)
+
+- The above discussion is awesome to understand the paper with to and fro point making, <b>going forward for all the paper or material reading use Googles Notebook LM to get the gist of the paper and then divedeep</b>
+
+
+
 **Note: This plan and the questions are generated with GitHub Workspaces.**
 
 
@@ -50,8 +56,6 @@ date: 2025-01-12
 ## Note
 This plan and the questions are generated with GitHub Workspaces.
 
-### Using Notebook LM for generating audio discussion on the paper to get the summary : [NotebookLM](https://notebooklm.google.com/notebook/a066cf7e-e61d-49bc-9e47-c8636c17ba65/audio)
 
-- The above discussion is awesome to understand the paper with to and fro point making, *going forward for all the paper or material reading use Googles Notebook LM to get the gist of the paper and then divedeep.*
 
 
