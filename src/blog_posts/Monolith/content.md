@@ -10,7 +10,7 @@ date: 2025-01-21
 
 - Paper : [https://arxiv.org/pdf/2209.07663](https://arxiv.org/pdf/2209.07663)
 - Repo : [https://github.com/dinesh-coderepo/tiktok](https://github.com/dinesh-coderepo/ticktok)
-- NotebookLM Discussion on Paper : [Audio](https://notebooklm.google.com/notebook/90206acf-4d80-44e1-abba-eac94345e840/audio)
+- NotebookLM Discussion on Paper : [Audio](https://notebooklm.google.com/notebook/90206acf-4d80-44e1-abba-eac94345e840/audio) , [Copied to google drive](https://drive.google.com/file/d/1_9RxAeDVjJEUDqrGIHcUzO0_wbpepjxa/view?usp=drivesdk)
 - NotebookLM private link : [NotebookLM Knowledge base](https://notebooklm.google.com/notebook/90206acf-4d80-44e1-abba-eac94345e840)
 
 ### Progress...
