@@ -59,7 +59,7 @@ pip install -r requirements.txt
 # protobuf
 ```
 
-- creating a first ml model in vertex ai , in notebook we will install loggin modules
+- creating a first ml model in vertex ai , in notebook we will install logging modules
 
 ![data_ask](data_ask.png)
 
@@ -83,7 +83,7 @@ xs = np.array([-1.0, 0.0, 1.0, 2.0, 3.0, 4.0], dtype=float)
 ys = np.array([-2.0, 1.0, 4.0, 7.0, 10.0, 13.0], dtype=float)
 
 ```
-- designing the model, neural network : 1 layer and 1 neuron. The neural network input is one at a time.you must specify 2 functions, a loss and an optimizer.
+- Designing the model, neural network : 1 layer and 1 neuron. The neural network input is one at a time. You must specify 2 functions, a loss and an optimizer.
 
 ```py
 model = tf.keras.Sequential([tf.keras.layers.Dense(units=1, input_shape=[1])])
@@ -118,8 +118,7 @@ model.fit(xs, ys, epochs=500)
 - Documentation from the lab , important points picked for reference
     -  From your previous examination, you know that the relationship between the numbers is y=3x+1. (picked from documentation)
     - When the computer is trying to learn this relationship, it makes a guess...maybe y=10x+10. The loss function measures the guessed answers against the known correct answers and measures how well or how badly it did.
-    - 
-    - Note: Learn more about different types of loss functions available in tf.keras from the Module: tf.keras.losses documentation.
+    - Note: Learn more about different types of loss functions available in tf.keras from the [Module: tf.keras.losses documentation.](https://keras.io/api/losses/)
     - Next, the model uses the optimizer function to make another guess. Based on the loss function's result, it will try to minimize the loss. At this point, maybe it will come up with something like y=5x+5. While this is still pretty bad, it's closer to the correct result (i.e. the loss is lower).
     - Note: Learn more about different types of [optimizers available in tf.keras from the Module: tf.keras.optimizers documentation.](https://www.tensorflow.org/api_docs/python/tf/keras/optimizers)
     - Learn more about model.fit from the [fit section of the tf.keras.Model documentation.](https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit)
@@ -138,6 +137,6 @@ cloud_logger.info(str(model.predict(np.array([10.0]))))
 
 - Completed the module 1
 
-![module1](module1.png)
+![module1](image.png)
 
 ### Continued...
