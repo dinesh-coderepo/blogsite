@@ -139,4 +139,21 @@ cloud_logger.info(str(model.predict(np.array([10.0]))))
 
 ![module1](image.png)
 
+
+
+### Lab 2 : Introduction to Computer Vision with TensorFlow - [link](https://www.cloudskillsboost.google/course_templates/646/labs/503713)
+
+#### Objectives of the lab:
+- Design, compile, train and evaluate a Tensorflow model
+- Save and load models
+- Write your own callbacks to customize behavior during training
+- Complete a series of exercises to guide you through experimenting with the different layers of the network
+
+
+
+#### Notes :
+
+- This will be detailed exercise where we can learn about training with images, optimizations and indepth on internals while training a neural net. 
+- 
+
 ### Continued...
