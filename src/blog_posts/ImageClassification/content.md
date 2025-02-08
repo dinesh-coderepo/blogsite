@@ -137,7 +137,7 @@ cloud_logger.info(str(model.predict(np.array([10.0]))))
 
 - Completed the module 1
 
-![module1](image.png)
+![module1](mod1.png)
 
 
 
@@ -152,6 +152,14 @@ cloud_logger.info(str(model.predict(np.array([10.0]))))
 
 #### Notes:
 
+- Lets understand about neural networks, weights, activation functions so that we can understand indepth about how does training works in a neural network. Also tensorflow is a framework to train neural network models.
+- NN is kind of inspired from operations of brain, consists of layers (some hidden), a node in NN takes in multiple input values and generate one output value. The neuron calculates weighted sum and applies activation function (non-linearity) to calculate the output value. 
+- This lab has many readings, listing below for easier reference.
+- More about hidden layer - [hidden layer](https://developers.google.com/machine-learning/glossary/#hidden_layer)
+- ![hidden layer](hidden_layer.png)
+- More on Activation Function - [Activation function](https://developers.google.com/machine-learning/glossary/#activation_function)
+- ![acivation_function](acivation_function.png)
+- Best visual understanding of how weights and activation functions moves - [hands-on](https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers)
 - 
 
 
