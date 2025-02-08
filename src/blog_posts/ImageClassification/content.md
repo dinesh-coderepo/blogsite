@@ -116,13 +116,13 @@ model.fit(xs, ys, epochs=500)
 
 ```
 - Documentation from the lab , important points picked for reference
-    -  From your previous examination, you know that the relationship between the numbers is y=3x+1. (picked from documentation)
+    - the relationship between the numbers for above ref is y=3x+1. (picked from documentation)
     - When the computer is trying to learn this relationship, it makes a guess...maybe y=10x+10. The loss function measures the guessed answers against the known correct answers and measures how well or how badly it did.
     - Note: Learn more about different types of loss functions available in tf.keras from the [Module: tf.keras.losses documentation.](https://keras.io/api/losses/)
     - Next, the model uses the optimizer function to make another guess. Based on the loss function's result, it will try to minimize the loss. At this point, maybe it will come up with something like y=5x+5. While this is still pretty bad, it's closer to the correct result (i.e. the loss is lower).
     - Note: Learn more about different types of [optimizers available in tf.keras from the Module: tf.keras.optimizers documentation.](https://www.tensorflow.org/api_docs/python/tf/keras/optimizers)
     - Learn more about model.fit from the [fit section of the tf.keras.Model documentation.](https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit)
-    -  A number with e- in the value is being displayed in scientific notation with a negative exponent.
+    - A number with e- in the value is being displayed in scientific notation with a negative exponent.
 
 
 - model.predict method to figure out the Y for an X not previously seen by the model during training
@@ -150,10 +150,11 @@ cloud_logger.info(str(model.predict(np.array([10.0]))))
 - Complete a series of exercises to guide you through experimenting with the different layers of the network
 
 
+#### Notes:
 
-#### Notes :
-
-- This will be detailed exercise where we can learn about training with images, optimizations and indepth on internals while training a neural net. 
 - 
+
+
+
 
 ### Continued...
