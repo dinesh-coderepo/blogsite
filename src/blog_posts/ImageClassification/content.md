@@ -160,6 +160,11 @@ cloud_logger.info(str(model.predict(np.array([10.0]))))
 - More on Activation Function - [Activation function](https://developers.google.com/machine-learning/glossary/#activation_function)
 - ![acivation_function](acivation_function.png)
 - Best visual understanding of how weights and activation functions moves - [hands-on](https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers)
+- All the available datasets in tensorflow_datasets - [all_datasets](https://www.tensorflow.org/datasets/catalog/overview#all_datasets)
+
+```python
+import tensorflow_datasets as tfds
+```
 - 
 
 
