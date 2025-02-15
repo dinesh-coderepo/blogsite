@@ -255,6 +255,7 @@
         <nav>
             <a href="{{ url_for('home') }}">Home</a>
             <a href="{{ url_for('about') }}">About Me</a>
+            <a href="#" id="bottom-link" class="back-link">Return to Bottom</a>
         </nav>
     </header>
     
@@ -315,6 +316,13 @@
         topLink.addEventListener('click', (e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Scroll to bottom functionality
+        const bottomLink = document.getElementById('bottom-link');
+        bottomLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         });
     </script>
 </body>

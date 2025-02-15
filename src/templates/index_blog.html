@@ -40,7 +40,7 @@
             z-index: -1;
         }
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -61,7 +61,19 @@
         }
         .blog-posts {
             display: grid;
-            gap: 40px;
+            gap: 40px; /* increased gap */
+            padding: 0 20px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @media (max-width: 1200px) {
+            .blog-posts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .blog-posts {
+                grid-template-columns: 1fr;
+            }
         }
         .blog-post {    
             background-color: rgba(240, 245, 249, 0.8);
@@ -178,7 +190,7 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            z-index: 1000;
+            z-index: 1100; /* increased from 1000 */
         }
         .switch {
             position: relative;
@@ -255,6 +267,45 @@
         body.dark-mode nav a:hover {
             background-color: var(--primary);
         }
+
+        /* New styles for blog view toggle and responsive grid */
+        .view-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--background);
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            overflow: hidden;
+            z-index: 1000;
+        }
+        .view-toggle button {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+            transition: background 0.3s, color 0.3s;
+        }
+        .view-toggle button.active {
+            background: var(--primary);
+            color: var(--background);
+        }
+        /* Remove extra spacing (if any) inside control */
+        .view-toggle button:not(:last-child) {
+            border-right: 1px solid var(--secondary);
+        }
+        .blog-posts.list-view {
+            display: block;
+        }
+        .blog-posts.list-view .blog-post {
+            max-width: 800px;
+            margin: 10px auto;
+            padding: 15px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -263,6 +314,12 @@
             <input type="checkbox" id="mode-switch">
             <span class="slider"></span>
         </label>
+    </div>
+
+    <!-- Replace the old view toggle markup with the new segmented control -->
+    <div class="view-toggle">
+        <button id="list-view-btn" class="active">List</button>
+        <button id="grid-view-btn">Grid</button>
     </div>
 
     <header>
@@ -313,6 +370,36 @@
             // Subsequent visit, use saved preference
             const savedMode = localStorage.getItem('mode');
             setDarkMode(savedMode === 'light' ? false : true);
+        }
+
+        // New view toggle code using segmented control
+        const listBtn = document.getElementById('list-view-btn');
+        const gridBtn = document.getElementById('grid-view-btn');
+        const blogPosts = document.querySelector('.blog-posts');
+        const savedView = localStorage.getItem('blogView') || 'list'; // default list
+
+        function setListView() {
+            blogPosts.classList.add('list-view');
+            listBtn.classList.add('active');
+            gridBtn.classList.remove('active');
+            localStorage.setItem('blogView', 'list');
+        }
+
+        function setGridView() {
+            blogPosts.classList.remove('list-view');
+            gridBtn.classList.add('active');
+            listBtn.classList.remove('active');
+            localStorage.setItem('blogView', 'grid');
+        }
+
+        listBtn.addEventListener('click', setListView);
+        gridBtn.addEventListener('click', setGridView);
+        
+        // Apply saved view on load
+        if (savedView === 'grid') {
+            setGridView();
+        } else {
+            setListView();
         }
     </script>
 </body>
