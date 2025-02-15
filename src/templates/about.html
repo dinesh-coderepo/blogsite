@@ -250,6 +250,21 @@
         body.dark-mode a:hover {
             color: #5BC0BE;  /* Slightly darker cyan for hover in dark mode */
         }
+        /* New company logo style */
+        .company-logo {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+            vertical-align: middle;
+            transition: transform .3s ease;
+        }
+        .company-logo:hover {
+            transform: scale(1.1);
+        }
+        .job-header {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -282,7 +297,21 @@
                 <h3>Work Experience</h3>
                 
                 <div class="job">
-                    <h3>Amazon, India - Data Engineer 2</h3>
+                    <div class="job-header">
+                        <img class="company-logo" src="/static/logos/microsoft.png" alt="Microsoft Logo">
+                        <h3>Microsoft, India - Engineer</h3>
+                    </div>
+                    <div class="job-details">Dec 2024 - Present</div>
+                    <ul>
+                        <li>Developing data platform to support scaling needs and exploring new methods to derive insights</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <img class="company-logo" src="/static/logos/amazon.png" alt="Amazon Logo">
+                        <h3>Amazon, India - Data Engineer 2</h3>
+                    </div>
                     <div class="job-details">Feb 2024 - Oct 2024</div>
                     <p><strong>Languages:</strong> Python, Bash, Hive SQL, JS</p>
                     <ul>
@@ -292,7 +321,10 @@
                 </div>
 
                 <div class="job">
-                    <h3>Microsoft, India - Data & ML Engineer 2</h3>
+                    <div class="job-header">
+                        <img class="company-logo" src="/static/logos/microsoft.png" alt="Microsoft Logo">
+                        <h3>Microsoft, India - Data & ML Engineer 2</h3>
+                    </div>
                     <div class="job-details">July 2022 - Feb 2024</div>
                     <p><strong>Languages:</strong> SQL, Python, Bash</p>
                     <ul>
@@ -303,7 +335,10 @@
                 </div>
 
                 <div class="job">
-                    <h3>Amazon, India - Data Engineer</h3>
+                    <div class="job-header">
+                        <img class="company-logo" src="/static/logos/amazon.png" alt="Amazon Logo">
+                        <h3>Amazon, India - Data Engineer</h3>
+                    </div>
                     <div class="job-details">July 2019 - July 2022</div>
                     <p><strong>Languages:</strong> SQL, Python, Bash</p>
                     <ul>
@@ -315,7 +350,10 @@
                 </div>
 
                 <div class="job">
-                    <h3>JPMorgan Chase, India - Associate</h3>
+                    <div class="job-header">
+                        <img class="company-logo" src="/static/logos/jpmorgan.png" alt="JPMorgan Chase Logo">
+                        <h3>JPMorgan Chase, India - Associate</h3>
+                    </div>
                     <div class="job-details">Jun 2017 - July 2019</div>
                     <p><strong>Areas:</strong> Big Data, Hadoop, BI Reporting | <strong>Languages:</strong> SQL, Python, Bash</p>
                     <ul>
@@ -327,7 +365,10 @@
                 </div>
 
                 <div class="job">
-                    <h3>General Electric - Summer Intern</h3>
+                    <div class="job-header">
+                        <img class="company-logo" src="/static/logos/ge.png" alt="General Electric Logo">
+                        <h3>General Electric - Summer Intern</h3>
+                    </div>
                     <div class="job-details">May 2015 - July 2015</div>
                     <p><strong>Areas:</strong> Machine Learning, NLP | <strong>Languages:</strong> Python, R</p>
                     <ul>

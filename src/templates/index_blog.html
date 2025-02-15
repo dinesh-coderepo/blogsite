@@ -324,6 +324,15 @@
             padding: 15px;
             border-radius: 10px;
         }
+        /* Align "Read More" in grid view */
+        .blog-posts:not(.list-view) .blog-post {
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-posts:not(.list-view) .blog-post .read-more {
+            margin-top: auto;
+            align-self: flex-start;  /* change alignment from center to left */
+        }
     </style>
 </head>
 <body>
@@ -336,8 +345,8 @@
 
     <!-- Replace the old view toggle markup with the new segmented control -->
     <div class="view-toggle">
-        <button id="list-view-btn" class="active">List</button>
-        <button id="grid-view-btn">Grid</button>
+        <button id="list-view-btn">List</button>
+        <button id="grid-view-btn" class="active">Grid</button>
     </div>
 
     <header>
@@ -395,6 +404,7 @@
         const listBtn = document.getElementById('list-view-btn');
         const gridBtn = document.getElementById('grid-view-btn');
         const blogPosts = document.querySelector('.blog-posts');
+        // Set default view to list if not stored
         const savedView = localStorage.getItem('blogView') || 'list';
 
         function setListView(e) {
