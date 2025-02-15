@@ -275,9 +275,10 @@
             right: 20px;
             background: var(--background);
             border: none;
-            border-radius: 30px;
+            border-radius: 50px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             overflow: hidden;
+            display: inline-flex;
             z-index: 1000;
         }
         .view-toggle button {
@@ -288,9 +289,26 @@
             cursor: pointer;
             outline: none;
             transition: background 0.3s, color 0.3s;
+            color: var(--primary); /* default text color for inactive state */
+        }
+        /* Make sure the left and right buttons have proper rounding */
+        #list-view-btn {
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 50px;
+        }
+        #grid-view-btn {
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
         }
         .view-toggle button.active {
             background: var(--primary);
+            color: var(--background);
+        }
+        body.dark-mode .view-toggle button {
+            color: #ccc;  /* lighter text for inactive buttons in dark mode */
+        }
+        body.dark-mode .view-toggle button.active {
+            background: var(--accent);  /* accent for active selection in dark mode */
             color: var(--background);
         }
         /* Remove extra spacing (if any) inside control */
@@ -323,7 +341,8 @@
     </div>
 
     <header>
-        <h1>Maluchuru Dinesh's<br>Tech Blog</h1>
+        <h1>Maluchuru Dinesh's Blog</h1>
+        <p class="tagline">Learn more about LLMs, AI, ML, data engineering, and cloud tools with in-depth analysis.</p>
         <nav>
             <a href="{{ url_for('about') }}">About Me</a>
         </nav>
@@ -372,30 +391,29 @@
             setDarkMode(savedMode === 'light' ? false : true);
         }
 
-        // New view toggle code using segmented control
+        // Updated view toggle code for list/grid selection
         const listBtn = document.getElementById('list-view-btn');
         const gridBtn = document.getElementById('grid-view-btn');
         const blogPosts = document.querySelector('.blog-posts');
-        const savedView = localStorage.getItem('blogView') || 'list'; // default list
+        const savedView = localStorage.getItem('blogView') || 'list';
 
-        function setListView() {
+        function setListView(e) {
+            e && e.preventDefault && e.preventDefault();
             blogPosts.classList.add('list-view');
             listBtn.classList.add('active');
             gridBtn.classList.remove('active');
             localStorage.setItem('blogView', 'list');
         }
-
-        function setGridView() {
+        function setGridView(e) {
+            e && e.preventDefault && e.preventDefault();
             blogPosts.classList.remove('list-view');
             gridBtn.classList.add('active');
             listBtn.classList.remove('active');
             localStorage.setItem('blogView', 'grid');
         }
-
         listBtn.addEventListener('click', setListView);
         gridBtn.addEventListener('click', setGridView);
-        
-        // Apply saved view on load
+
         if (savedView === 'grid') {
             setGridView();
         } else {
