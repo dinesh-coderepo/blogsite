@@ -140,6 +140,20 @@
             background-color: var(--secondary);
         }
 
+        .button {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .button:hover {
+            background: var(--secondary);
+        }
+
         .translator-section {
             margin-top: 4rem;
             text-align: center;
@@ -224,6 +238,7 @@
         <div class="header-content">
             <h1>Maluchuru Dinesh's Blog</h1>
             <p class="tagline">Exploring Tech, AI, and Engineering Excellence</p>
+            <a href="{{ url_for('about') }}" class="button">About Me</a>
         </div>
     </header>
 
