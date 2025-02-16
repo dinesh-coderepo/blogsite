@@ -333,6 +333,38 @@
             margin-top: auto;
             align-self: flex-start;  /* change alignment from center to left */
         }
+        @media (max-width: 768px) {
+            body {
+                font-size: 0.9em; /* Slight decrease overall */
+            }
+            h1 {
+                font-size: 2.5em; /* Adjust header size */
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            .container, .blog-posts {
+                padding: 10px;
+            }
+        }
+        /* New media query for smaller devices (phones) */
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            .blog-posts {
+                gap: 20px;
+                padding: 0 10px;
+            }
+            /* Optionally adjust view-toggle button padding */
+            .view-toggle button {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -343,7 +375,7 @@
         </label>
     </div>
 
-    <!-- Replace the old view toggle markup with the new segmented control -->
+    <!-- Moved view toggle below dark/light theme toggle -->
     <div class="view-toggle">
         <button id="list-view-btn">List</button>
         <button id="grid-view-btn" class="active">Grid</button>
