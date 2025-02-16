@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maluchuru Dinesh's Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #3A506B;
-            --secondary: #5BC0BE;
-            --background: #F0F5F9;
-            --text: #1C2541;
-            --accent: #6FFFE9;
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --accent: #0ea5e9;
+            --border: #e2e8f0;
         }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, var(--background) 0%, var(--secondary) 100%);
-            background-attachment: fixed; /* Add this line */
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
             color: var(--text);
             line-height: 1.6;
             margin: 0;
@@ -24,373 +27,212 @@
             min-height: 100vh;
             transition: background 0.3s ease, color 0.3s ease;
         }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
-                linear-gradient(to right, rgba(28, 37, 65, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(28, 37, 65, 0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
-            z-index: -1;
-        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem;
         }
+
         header {
-            background-color: rgba(58, 80, 107, 0.1);
-            backdrop-filter: blur(10px);
-            color: var(--primary);
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             text-align: center;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(28, 37, 65, 0.1);
-            margin-bottom: 40px;
         }
+
         h1 {
-            font-size: 3em;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-        .blog-posts {
-            display: grid;
-            gap: 40px; /* increased gap */
-            padding: 0 20px;
-            grid-template-columns: repeat(3, 1fr);
-        }
-        @media (max-width: 1200px) {
-            .blog-posts {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 768px) {
-            .blog-posts {
-                grid-template-columns: 1fr;
-            }
-        }
-        .blog-post {    
-            background-color: rgba(240, 245, 249, 0.8);
-            backdrop-filter: blur(5px);
-            border-radius: 10px;
-            border: 1px solid rgba(28, 37, 65, 0.1);
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .blog-post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-        .blog-post h2 {
-            color: var(--primary);
-            margin-top: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .blog-post p {
-            margin-bottom: 10px;
-        }
-        .read-more,
-        .translator-link,
-        nav a {
-            display: inline-block;
-            background-color: var(--primary); /* Change to primary color for better visibility */
-            color: var(--background);
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
-        }
-        .read-more:hover,
-        .translator-link:hover,
-        nav a:hover {
-            background-color: var(--secondary); /* Adjust hover color to secondary */
-            color: var(--background);
-            transform: translateY(-2px);
-        }
-        body.dark-mode .read-more,
-        body.dark-mode .translator-link,
-        body.dark-mode nav a {
-            background-color: var(--accent);
-            color: var(--background);
-        }
-        body.dark-mode .read-more:hover,
-        body.dark-mode .translator-link:hover,
-        body.dark-mode nav a:hover {
-            background-color: var(--primary);
-            color: var(--background);
-        }
-
-        nav a {
-            margin: 0 8px;
-        }
-
-        /* Ensure text color contrast in dark mode */
-        body.dark-mode .blog-post h2,
-        body.dark-mode .translator-section h2,
-        body.dark-mode .translator-section p {
+            font-size: 2.5rem;
+            font-weight: 700;
             color: var(--text);
+            margin: 0;
+            letter-spacing: -0.025em;
+        }
+
+        .tagline {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .blog-posts {
+            margin-bottom: 3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-posts.grid-view {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .blog-posts.list-view {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .view-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+        
+        .view-toggle button {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .view-toggle button.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .blog-post {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .blog-post h2 {
+            font-size: 1.25rem;
+            margin: 0 0 0.5rem 0;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .blog-post p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.875rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .read-more:hover {
+            background-color: var(--secondary);
         }
 
         .translator-section {
-            margin-top: 60px;
+            margin-top: 4rem;
             text-align: center;
-            padding: 20px;
-            background-color: rgba(240, 245, 249, 0.8);
-            backdrop-filter: blur(5px);
-            border-radius: 10px;
-            border: 1px solid rgba(28, 37, 65, 0.1);
-        }
-        .translator-link {
-            display: inline-block;
-            background-color: var(--primary); /* Ensure consistent background color */
-            color: var(--background);
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
-        }
-        .translator-link:hover {
-            background-color: var(--secondary); /* Ensure consistent hover color */
-            color: var(--background);
-            transform: translateY(-2px);
-        }
-        body.dark-mode {
-            --primary: #5BC0BE;
-            --secondary: #3A506B;
-            --background: #0B132B;
-            --text: #F0F5F9;
-            --accent: #6FFFE9;
-        }
-        body.dark-mode::before {
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
-                linear-gradient(to right, rgba(240, 245, 249, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(240, 245, 249, 0.02) 1px, transparent 1px);
-        }
-        body.dark-mode .blog-post,
-        body.dark-mode .translator-section {
-            background-color: rgba(11, 19, 43, 0.8);
-            border-color: rgba(240, 245, 249, 0.1);
-        }
-        body.dark-mode header {
-            background-color: rgba(91, 192, 190, 0.1);
-            border-bottom-color: rgba(240, 245, 249, 0.1);
-        }
-        .mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1100; /* increased from 1000 */
-        }
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--secondary);
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: var(--background);
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: var(--primary);
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        .slider:after {
-            content: '☀️';
-            position: absolute;
-            left: 8px;
-            top: 6px;
-            font-size: 16px;
-        }
-        input:checked + .slider:after {
-            content: '🌙';
-            left: auto;
-            right: 8px;
-        }
-        nav {
-            margin-top: 20px;
-        }
-        nav a {
-            display: inline-block;
-            padding: 8px 16px;
-            margin: 0 8px;
-            background-color: var(--primary); /* Ensure consistent background color */
-            color: var(--background);
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
-        }
-        nav a:hover {
-            background-color: var(--secondary); /* Ensure consistent hover color */
-            transform: translateY(-2px);
-        }
-        body.dark-mode nav a {
-            background-color: var(--accent);
-            color: var(--background);
-        }
-        body.dark-mode nav a:hover {
-            background-color: var(--primary);
+            padding: 3rem;
+            background: var(--surface);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
         }
 
-        /* New styles for blog view toggle and responsive grid */
-        .view-toggle {
+        .translator-section h2 {
+            color: var(--text);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .translator-link {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+
+        .translator-link:hover {
+            background-color: var(--secondary);
+        }
+
+        body.dark-mode {
+            --primary: #3b82f6;
+            --secondary: #60a5fa;
+            --background: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --accent: #0ea5e9;
+            --border: #334155;
+        }
+
+        .theme-switch {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--background);
-            border: none;
-            border-radius: 50px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            overflow: hidden;
-            display: inline-flex;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 0.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             z-index: 1000;
         }
-        .view-toggle button {
-            padding: 10px 20px;
-            border: none;
-            background: transparent;
-            font-size: 14px;
-            cursor: pointer;
-            outline: none;
-            transition: background 0.3s, color 0.3s;
-            color: var(--primary); /* default text color for inactive state */
+
+        .theme-switch span {
+            font-size: 1.25rem;
         }
-        /* Make sure the left and right buttons have proper rounding */
-        #list-view-btn {
-            border-top-left-radius: 50px;
-            border-bottom-left-radius: 50px;
-        }
-        #grid-view-btn {
-            border-top-right-radius: 50px;
-            border-bottom-right-radius: 50px;
-        }
-        .view-toggle button.active {
-            background: var(--primary);
-            color: var(--background);
-        }
-        body.dark-mode .view-toggle button {
-            color: #ccc;  /* lighter text for inactive buttons in dark mode */
-        }
-        body.dark-mode .view-toggle button.active {
-            background: var(--accent);  /* accent for active selection in dark mode */
-            color: var(--background);
-        }
-        /* Remove extra spacing (if any) inside control */
-        .view-toggle button:not(:last-child) {
-            border-right: 1px solid var(--secondary);
-        }
-        .blog-posts.list-view {
-            display: block;
-        }
-        .blog-posts.list-view .blog-post {
-            max-width: 800px;
-            margin: 10px auto;
-            padding: 15px;
-            border-radius: 10px;
-        }
-        /* Align "Read More" in grid view */
-        .blog-posts:not(.list-view) .blog-post {
-            display: flex;
-            flex-direction: column;
-        }
-        .blog-posts:not(.list-view) .blog-post .read-more {
-            margin-top: auto;
-            align-self: flex-start;  /* change alignment from center to left */
-        }
+
         @media (max-width: 768px) {
-            body {
-                font-size: 0.9em; /* Slight decrease overall */
+            .container {
+                padding: 1rem;
             }
-            h1 {
-                font-size: 2.5em; /* Adjust header size */
-            }
-            h2 {
-                font-size: 1.5em;
-            }
-            .container, .blog-posts {
-                padding: 10px;
-            }
-        }
-        /* New media query for smaller devices (phones) */
-        @media (max-width: 480px) {
-            body {
-                font-size: 14px;
-            }
-            header h1 {
-                font-size: 2em;
-            }
+
             .blog-posts {
-                gap: 20px;
-                padding: 0 10px;
+                grid-template-columns: 1fr;
             }
-            /* Optionally adjust view-toggle button padding */
-            .view-toggle button {
-                padding: 8px 15px;
-                font-size: 13px;
+
+            h1 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="mode-toggle">
-        <label class="switch">
-            <input type="checkbox" id="mode-switch">
-            <span class="slider"></span>
-        </label>
-    </div>
-
-    <!-- Moved view toggle below dark/light theme toggle -->
-    <div class="view-toggle">
-        <button id="list-view-btn">List</button>
-        <button id="grid-view-btn" class="active">Grid</button>
-    </div>
+    <button class="theme-switch" id="theme-toggle">
+        <span id="theme-icon">🌞</span>
+    </button>
 
     <header>
-        <h1>Maluchuru Dinesh's Blog</h1>
-        <p class="tagline">Learn more about LLMs, AI, ML, data engineering, and cloud tools with in-depth analysis.</p>
-        <nav>
-            <a href="{{ url_for('about') }}">About Me</a>
-        </nav>
+        <div class="header-content">
+            <h1>Maluchuru Dinesh's Blog</h1>
+            <p class="tagline">Exploring Tech, AI, and Engineering Excellence</p>
+        </div>
     </header>
-    
+
     <div class="container">
-        <div class="blog-posts">
+        <div class="view-toggle">
+            <button id="grid-view" class="active">Grid View</button>
+            <button id="list-view">List View</button>
+        </div>
+        <div class="blog-posts grid-view">
             {% for blog in blogs %}
             <div class="blog-post">
                 <h2>{{ blog.title }}</h2>
@@ -401,66 +243,56 @@
         </div>
 
         <div class="translator-section">
-            <h2>Language Translator</h2>
-            <p>Try our AI-powered translator tool!</p>
-            <a href="{{ url_for('index') }}" class="translator-link">Go to Translator</a>
+            <h2>Try Our AI Translator</h2>
+            <p>Experience seamless language translation powered by AI</p>
+            <a href="{{ url_for('index') }}" class="translator-link">Start Translating</a>
         </div>
     </div>
 
     <script>
-        const modeSwitch = document.getElementById('mode-switch');
-        const body = document.body;
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
 
-        function setDarkMode(isDark) {
-            body.classList.toggle('dark-mode', isDark);
-            modeSwitch.checked = isDark;
-            localStorage.setItem('mode', isDark ? 'dark' : 'light');
+        function setTheme(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            themeIcon.textContent = isDark ? '🌙' : '🌞';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
 
-        modeSwitch.addEventListener('change', () => {
-            setDarkMode(modeSwitch.checked);
+        themeToggle.addEventListener('click', () => {
+            const isDark = !document.body.classList.contains('dark-mode');
+            setTheme(isDark);
         });
 
-        // Check if this is the first visit
-        if (!localStorage.getItem('firstVisit')) {
-            // First visit, set to dark mode
-            setDarkMode(true);
-            localStorage.setItem('firstVisit', 'true');
-        } else {
-            // Subsequent visit, use saved preference
-            const savedMode = localStorage.getItem('mode');
-            setDarkMode(savedMode === 'light' ? false : true);
-        }
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        setTheme(savedTheme === 'dark');
 
-        // Updated view toggle code for list/grid selection
-        const listBtn = document.getElementById('list-view-btn');
-        const gridBtn = document.getElementById('grid-view-btn');
+        // View toggle functionality
+        const gridViewBtn = document.getElementById('grid-view');
+        const listViewBtn = document.getElementById('list-view');
         const blogPosts = document.querySelector('.blog-posts');
-        // Set default view to list if not stored
-        const savedView = localStorage.getItem('blogView') || 'list';
-
-        function setListView(e) {
-            e && e.preventDefault && e.preventDefault();
-            blogPosts.classList.add('list-view');
-            listBtn.classList.add('active');
-            gridBtn.classList.remove('active');
-            localStorage.setItem('blogView', 'list');
+        
+        function setView(view) {
+            localStorage.setItem('view-preference', view);
+            if (view === 'grid') {
+                blogPosts.classList.add('grid-view');
+                blogPosts.classList.remove('list-view');
+                gridViewBtn.classList.add('active');
+                listViewBtn.classList.remove('active');
+            } else {
+                blogPosts.classList.add('list-view');
+                blogPosts.classList.remove('grid-view');
+                listViewBtn.classList.add('active');
+                gridViewBtn.classList.remove('active');
+            }
         }
-        function setGridView(e) {
-            e && e.preventDefault && e.preventDefault();
-            blogPosts.classList.remove('list-view');
-            gridBtn.classList.add('active');
-            listBtn.classList.remove('active');
-            localStorage.setItem('blogView', 'grid');
-        }
-        listBtn.addEventListener('click', setListView);
-        gridBtn.addEventListener('click', setGridView);
-
-        if (savedView === 'grid') {
-            setGridView();
-        } else {
-            setListView();
-        }
+        
+        gridViewBtn.addEventListener('click', () => setView('grid'));
+        listViewBtn.addEventListener('click', () => setView('list'));
+        
+        const savedView = localStorage.getItem('view-preference') || 'grid';
+        setView(savedView);
     </script>
 </body>
 </html>

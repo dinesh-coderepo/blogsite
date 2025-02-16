@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me - Digital Bits and Builds</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #3A506B;
-            --secondary: #5BC0BE;
-            --background: #F0F5F9;
-            --text: #1C2541;
-            --accent: #6FFFE9;
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --accent: #0ea5e9;
+            --border: #e2e8f0;
         }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, var(--background) 0%, var(--secondary) 100%);
-            background-attachment: fixed; /* Add this line */
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
             color: var(--text);
             line-height: 1.6;
             margin: 0;
@@ -24,409 +27,188 @@
             min-height: 100vh;
             transition: background 0.3s ease, color 0.3s ease;
         }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
-                linear-gradient(to right, rgba(28, 37, 65, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(28, 37, 65, 0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
-            z-index: -1;
-        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem;
         }
+
         header {
-            background-color: rgba(58, 80, 107, 0.1);
-            backdrop-filter: blur(10px);
-            color: var(--primary);
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 0;
+            margin-bottom: 3rem;
             text-align: center;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(28, 37, 65, 0.1);
-            margin-bottom: 40px;
         }
+
         h1 {
-            font-size: 3em;
+            font-size: 2.5rem;
+            font-weight: 700;
             margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--primary);
-        }
-        h2, h3 {
-            color: var(--primary);
-        }
-        .about-content {
-            background-color: rgba(240, 245, 249, 0.8);
-            backdrop-filter: blur(5px);
-            border-radius: 10px;
-            border: 1px solid rgba(28, 37, 65, 0.1);
-            padding: 20px;
-            margin-top: 20px;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
-        .job {
-            margin-bottom: 20px;
-            border-left: 3px solid var(--secondary);
-            padding-left: 15px;
-        }
-        .job h3 {
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        .job-details {
-            font-size: 0.9em;
-            color: #3A506B;  /* Darker blue for better visibility in light mode */
-            margin-bottom: 10px;  /* Add some space below the date range */
-        }
-        body.dark-mode .job-details {
-            color: var(--accent);  /* Use accent color in dark mode for contrast */
-        }
-        .button,
-        nav a {
-            display: inline-block;
-            background-color: var(--primary); /* Change to primary color for better visibility */
-            color: var(--background);
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .button:hover,
-        nav a:hover {
-            background-color: var(--secondary); /* Adjust hover color to secondary */
-            color: var(--background);
-            transform: translateY(-2px);
-        }
-        body.dark-mode .button,
-        body.dark-mode nav a {
-            background-color: var(--accent);
-            color: var(--background);
-        }
-        body.dark-mode .button:hover,
-        body.dark-mode nav a:hover {
-            background-color: var(--primary);
-            color: var(--background);
-        }
-        .mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--secondary);
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: var(--background);
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: var(--primary);
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        .slider:after {
-            content: '☀️';
-            position: absolute;
-            left: 8px;
-            top: 6px;
-            font-size: 16px;
-        }
-        input:checked + .slider:after {
-            content: '🌙';
-            left: auto;
-            right: 8px;
-        }
-        body.dark-mode {
-            --primary: #5BC0BE;
-            --secondary: #3A506B;
-            --background: #0B132B;
-            --text: #F0F5F9;
-            --accent: #6FFFE9;
-        }
-        body.dark-mode::before {
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
-                linear-gradient(to right, rgba(240, 245, 249, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(240, 245, 249, 0.02) 1px, transparent 1px);
-        }
-        body.dark-mode .about-content {
-            background-color: rgba(11, 19, 43, 0.8);
-            border-color: rgba(240, 245, 249, 0.1);
-        }
-        body.dark-mode header {
-            background-color: rgba(91, 192, 190, 0.1);
-            border-bottom-color: rgba(240, 245, 249, 0.1);
-        }
-        nav {
-            margin-top: 20px;
-        }
-        nav a {
-            margin: 0 8px;
-        }
-        .email-section {
-            background-color: var(--secondary);
-            color: var(--background);
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .email-section a {
-            color: var(--background);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        body.dark-mode .email-section {
-            background-color: #1C2541;
             color: var(--text);
         }
-        body.dark-mode .email-section a {
-            color: var(--accent);
+
+        .about-content {
+            background: var(--surface);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid var(--border);
         }
-        .name-section {
+
+        .profile-section {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 2rem;
         }
-        .name-section h2 {
-            color: var(--primary);
-            font-size: 2em;
-            margin-bottom: 10px;
+
+        .profile-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text);
         }
-        a {
-            color: #1C2541;  /* Dark blue for light mode */
-            text-decoration: underline;
-            transition: color 0.3s ease;
+
+        .interests {
+            margin: 2rem 0;
         }
-        a:hover {
-            color: #3A506B;  /* Slightly lighter blue for hover in light mode */
+
+        .interests h3 {
+            color: var(--text);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
         }
-        body.dark-mode a {
-            color: #6FFFE9;  /* Bright cyan for dark mode */
+
+        .interests ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
         }
-        body.dark-mode a:hover {
-            color: #5BC0BE;  /* Slightly darker cyan for hover in dark mode */
+
+        .interests li {
+            background: var(--background);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            text-align: center;
         }
-        /* New company logo style */
-        .company-logo {
-            width: 40px;
-            height: auto;
-            margin-right: 10px;
-            vertical-align: middle;
-            transition: transform .3s ease;
-        }
-        .company-logo:hover {
-            transform: scale(1.1);
-        }
-        .job-header {
+
+        .links {
+            margin-top: 2rem;
             display: flex;
-            align-items: center;
+            gap: 1rem;
+            justify-content: center;
         }
+
+        .button {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .button:hover {
+            background: var(--secondary);
+        }
+
+        body.dark-mode {
+            --primary: #3b82f6;
+            --secondary: #60a5fa;
+            --background: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --accent: #0ea5e9;
+            --border: #334155;
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 0.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
         @media (max-width: 768px) {
-            body {
-                font-size: 0.9em;
-            }
-            h1, h2, h3 {
-                font-size: 0.9em; /* Reduce header sizes */
-            }
             .container {
-                padding: 10px;
+                padding: 1rem;
             }
-            .about-content, .job, .email-section {
-                padding: 15px;
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .interests ul {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="mode-toggle">
-        <label class="switch">
-            <input type="checkbox" id="mode-switch">
-            <span class="slider"></span>
-        </label>
-    </div>
+    <button class="theme-switch" id="theme-toggle">
+        <span id="theme-icon">🌞</span>
+    </button>
 
     <header>
         <h1>ABOUT ME</h1>
-        <nav>
-            <a href="{{ url_for('home') }}">Home</a>
-        </nav>
     </header>
-    
+
     <div class="container">
-        <div class="name-section">
-            <h2>Maluchuru Sai Dinesh Reddy</h2>
-            <h3>🙏 Gratitude 🌟 Meditation 🧘‍♂️ Reflection 💭 Determination 💪</h3>
-            <p>👨‍💻 Data & ML Engineer, Tech Enthusiast 🚀 Passionate about space exploration 🪐, time travel ⏳, and the mysteries of the universe. ☕ Chai lover and meditation practitioner 🧘‍♂️. <br>🌟 <b> Feel free to reach out to me via below email for any project idea or collaboration. 📧 </p>
-        </div>
         <div class="about-content">
-            <div class="email-section">
-                <p>Email: <a href="mailto:maluchurudinesh@gmail.com">maluchurudinesh@gmail.com</a></p>
-            </div>
-            
-            <div class="section">
-                <h3>Work Experience</h3>
-                
-                <div class="job">
-                    <div class="job-header">
-                        <img class="company-logo" src="/static/logos/microsoft.png" alt="Microsoft Logo">
-                        <h3>Microsoft, India - Engineer</h3>
-                    </div>
-                    <div class="job-details">Dec 2024 - Present</div>
-                    <ul>
-                        <li>Developing data platform to support scaling needs and exploring new methods to derive insights</li>
-                    </ul>
-                </div>
-
-                <div class="job">
-                    <div class="job-header">
-                        <img class="company-logo" src="/static/logos/amazon.png" alt="Amazon Logo">
-                        <h3>Amazon, India - Data Engineer 2</h3>
-                    </div>
-                    <div class="job-details">Feb 2024 - Oct 2024</div>
-                    <p><strong>Languages:</strong> Python, Bash, Hive SQL, JS</p>
-                    <ul>
-                        <li>Fintech and Tax: Enhancing and building data pipelines to generate monthly, weekly compliance reports and implement new business expansions in all regions.</li>
-                        <li>Internal Tooling: Developing ETL product with different functionalities such as modeling/report generation/orchestration for Tax audit teams as a self-serving tool.</li>
-                    </ul>
-                </div>
-
-                <div class="job">
-                    <div class="job-header">
-                        <img class="company-logo" src="/static/logos/microsoft.png" alt="Microsoft Logo">
-                        <h3>Microsoft, India - Data & ML Engineer 2</h3>
-                    </div>
-                    <div class="job-details">July 2022 - Feb 2024</div>
-                    <p><strong>Languages:</strong> SQL, Python, Bash</p>
-                    <ul>
-                        <li>Windows + Devices: Ingesting and building business-critical metrics for Windows such as MAD/DAD Calculations, OKRs. Understanding business to identify and calculate different cohorts consumed by 28 teams internally to manage their targets.</li>
-                        <li>Azure Services: Leveraging Azure services. Migrating existing legacy services to Azure using Synapse Analytics, Azure Data Factory.</li>
-                        <li>Store Personalization: Productionized ML models and implemented new frameworks to train deep-learning models and reduced training costs by 80% using Resilience LPG framework.</li>
-                    </ul>
-                </div>
-
-                <div class="job">
-                    <div class="job-header">
-                        <img class="company-logo" src="/static/logos/amazon.png" alt="Amazon Logo">
-                        <h3>Amazon, India - Data Engineer</h3>
-                    </div>
-                    <div class="job-details">July 2019 - July 2022</div>
-                    <p><strong>Languages:</strong> SQL, Python, Bash</p>
-                    <ul>
-                        <li>Architecture Design: Using Amazon ECS, Fargate, EC2 and S3 designed a scalable solution for ingesting large datasets.</li>
-                        <li>Data Ingestion: Built Critical Datasets using Redshift for Amazon Logistics (AMZL) and also supported Incremental improvements for existing datasets. Across Amazon, more than 80 Teams use the datasets built for their reporting needs.</li>
-                        <li>Data Pipeline: To timely deliver the critical datasets to customer clusters, built and optimized processes which resulted in 25% SLA improvement and better data quality.</li>
-                        <li>Business Support: Worked with Business Users to identify DEA (Delivery Estimate Accuracy) misses in Amazon Indian Logistics process and built datasets to identify the DEA daily for packages.</li>
-                    </ul>
-                </div>
-
-                <div class="job">
-                    <div class="job-header">
-                        <img class="company-logo" src="/static/logos/jpmorgan.png" alt="JPMorgan Chase Logo">
-                        <h3>JPMorgan Chase, India - Associate</h3>
-                    </div>
-                    <div class="job-details">Jun 2017 - July 2019</div>
-                    <p><strong>Areas:</strong> Big Data, Hadoop, BI Reporting | <strong>Languages:</strong> SQL, Python, Bash</p>
-                    <ul>
-                        <li>Business: Delivered Cost-Based Allocation Model for Chase Merchant Services which reduced time for business users to make decisions proactively on managing excess costs.</li>
-                        <li>Reporting: Built Tableau Dashboards for the Mortgage Banking sector which helped project executives to monitor pipelines. Worked with Alteryx for data blending, wrangling, and creating final extracts. There were 300 Unique daily active users for these dashboards.</li>
-                        <li>Process Improvement: Worked on optimizing the process execution using Spark SQL by tweaking memory parameters which resulted in 50% Improvement in SLA.</li>
-                        <li>Operational Excellence: Adopted Autosys for scheduling, Bit Bucket for version controlling to our project. Automated deployment of code using Jenkins into production environments for decreasing operational overhead. Understanding of Big data architecture which includes YARN, Hive, Impala, Spark to resolve high critical issues.</li>
-                    </ul>
-                </div>
-
-                <div class="job">
-                    <div class="job-header">
-                        <img class="company-logo" src="/static/logos/ge.png" alt="General Electric Logo">
-                        <h3>General Electric - Summer Intern</h3>
-                    </div>
-                    <div class="job-details">May 2015 - July 2015</div>
-                    <p><strong>Areas:</strong> Machine Learning, NLP | <strong>Languages:</strong> Python, R</p>
-                    <ul>
-                        <li>Vehicle Fault Detection Techniques: Developing algorithms that can detect faults in Vehicle engines using the data of other parameters. Also developed text mining techniques to filter the bad data and find ground truth.</li>
-                    </ul>
-                </div>
+            <div class="profile-section">
+                <h2>Maluchuru Sai Dinesh Reddy</h2>
+                <p>🚀 Tech enthusiast and innovator passionate about AI, space exploration, and the mysteries of the universe.</p>
             </div>
 
-            <div class="section">
-                <h3>Education</h3>
-                <div class="job">
-                    <h3>Indian Institute of Technology, Madras</h3>
-                    <div class="job-details">Chennai, India | July 2012 - May 2017</div>
-                    <p>Dual Degree (B.Tech + M.Tech) in Electrical Engineering - Minor in Development Sciences</p>
-                    <p>All India Rank 728 in the IIT Joint Entrance Exam (IIT-JEE), among 560,000 students who appeared in 2012</p>
-                </div>
+            <div class="interests">
+                <h3>Interests & Passions</h3>
+                <ul>
+                    <li>🤖 Artificial Intelligence</li>
+                    <li>🌌 Space Exploration</li>
+                    <li>⚡ Technology Innovation</li>
+                    <li>🧘‍♂️ Meditation</li>
+                    <li>📚 Continuous Learning</li>
+                    <li>🌟 Personal Growth</li>
+                </ul>
             </div>
 
-            <div class="section">
-                <h3>Skills</h3>
-                <p><strong>Languages:</strong> SQL, Python, Bash, R, JavaScript, Hive SQL</p>
-                <p><strong>Software/Tools/Frameworks:</strong> Tableau, Power BI, Spark SQL, Hive, Impala, Shell Scripting, Hadoop, Amazon ECS, Fargate, EC2, S3, Redshift, Azure Synapse Analytics, Azure Data Factory, Autosys, Bit Bucket, Jenkins, YARN</p>
+            <div class="professional-profile">
+                <h3>Professional Profile</h3>
+                <p>For a complete overview of my professional experience, projects, and achievements, visit my portfolio website.</p>
+            </div>
+            <div class="links">
+                <a href="https://maluchurudinesh.com" class="button" target="_blank">View Full Portfolio</a>
+                <a href="{{ url_for('home') }}" class="button">Back to Blog</a>
             </div>
         </div>
-        <a href="{{ url_for('home') }}" class="button">Return to Home</a>
     </div>
 
     <script>
-        const modeSwitch = document.getElementById('mode-switch');
-        const body = document.body;
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
 
-        function setDarkMode(isDark) {
-            body.classList.toggle('dark-mode', isDark);
-            modeSwitch.checked = isDark;
-            localStorage.setItem('mode', isDark ? 'dark' : 'light');
+        function setTheme(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            themeIcon.textContent = isDark ? '🌙' : '🌞';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
 
-        modeSwitch.addEventListener('change', () => {
-            setDarkMode(modeSwitch.checked);
+        themeToggle.addEventListener('click', () => {
+            const isDark = !document.body.classList.contains('dark-mode');
+            setTheme(isDark);
         });
 
-        // Check for saved mode preference
-        const savedMode = localStorage.getItem('mode');
-        setDarkMode(savedMode === 'dark');
+        const savedTheme = localStorage.getItem('theme');
+        setTheme(savedTheme === 'dark');
     </script>
 </body>
 </html>

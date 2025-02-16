@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ blog.title }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #3A506B;
-            --secondary: #5BC0BE;
-            --background: #F0F5F9;
-            --text: #1C2541;
-            --accent: #6FFFE9;
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --accent: #0ea5e9;
+            --border: #e2e8f0;
         }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, var(--background) 0%, var(--secondary) 100%);
-            background-attachment: fixed; /* Add this line */
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
             color: var(--text);
             line-height: 1.6;
             margin: 0;
@@ -24,225 +27,94 @@
             min-height: 100vh;
             transition: background 0.3s ease, color 0.3s ease;
         }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
-                linear-gradient(to right, rgba(28, 37, 65, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(28, 37, 65, 0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
-            z-index: -1;
-        }
-        header {
-            background-color: rgba(52, 152, 219, 0.1);
-            backdrop-filter: blur(10px);
-            color: var(--accent-color);
-            text-align: center;
-            padding: 40px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        /* New responsive navigation styling */
-        header nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem;
         }
+
+        header {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text);
+        }
+
         .blog-content {
-            background-color: rgba(240, 245, 249, 0.8);
-            backdrop-filter: blur(5px);
-            border-radius: 10px;
-            border: 1px solid rgba(28, 37, 65, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
+            background: var(--surface);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
         }
-        .blog-content p {
-            margin-bottom: 15px;
-        }
+
         .blog-content img {
             max-width: 100%;
             height: auto;
-            border-radius: 5px;
-            margin: 10px 0;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
         }
-        .back-link,
-        nav a {
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .button {
             display: inline-block;
-            padding: 8px 16px;
-            margin: 0 8px;
-            background-color: var(--primary); /* Change to primary color for better visibility */
-            color: var(--background);
-            border-radius: 5px;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
+            transition: background-color 0.2s ease;
         }
-        .back-link:hover,
-        nav a:hover {
-            background-color: var(--secondary); /* Adjust hover color to secondary */
-            color: var(--background);
-            transform: translateY(-2px);
+
+        .button:hover {
+            background: var(--secondary);
         }
-        .mode-toggle {
+
+        body.dark-mode {
+            --primary: #3b82f6;
+            --secondary: #60a5fa;
+            --background: #0a1929;
+            --surface: #132f4c;
+            --text: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --accent: #0ea5e9;
+            --border: #1e3a8a;
+        }
+
+        .theme-switch {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 0.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
             z-index: 1000;
         }
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--secondary);
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: var(--background);
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: var(--primary);
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        .slider:after {
-            content: '☀️';
-            position: absolute;
-            left: 8px;
-            top: 6px;
-            font-size: 16px;
-        }
-        input:checked + .slider:after {
-            content: '🌙';
-            left: auto;
-            right: 8px;
-        }
-        nav {
-            margin-top: 20px;
-        }
-        nav a,
-        .back-link {
-            display: inline-block;
-            padding: 8px 16px;
-            margin: 0 8px;
-            background-color: var(--primary); /* Change to primary color for better visibility */
-            color: var(--background);
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
-        }
-        nav a:hover,
-        .back-link:hover {
-            background-color: var(--secondary); /* Adjust hover color to secondary */
-            transform: translateY(-2px);
-        }
-        body.dark-mode {
-            --primary: #5BC0BE;
-            --secondary: #3A506B;
-            --background: #0B132B;
-            --text: #F0F5F9;
-            --accent: #6FFFE9;
-        }
-        body.dark-mode::before {
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%),
-                linear-gradient(to right, rgba(240, 245, 249, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(240, 245, 249, 0.02) 1px, transparent 1px);
-        }
-        body.dark-mode .blog-content {
-            background-color: rgba(11, 19, 43, 0.8); /* Keep dark mode styling */
-            border-color: rgba(240, 245, 249, 0.1);
-        }
-        body.dark-mode header {
-            background-color: rgba(91, 192, 190, 0.1);
-            border-bottom-color: rgba(240, 245, 249, 0.1);
-        }
-        body.dark-mode .back-link,
-        body.dark-mode nav a {
-            background-color: var(--accent);
-            color: var(--background);
-        }
-        body.dark-mode .back-link:hover,
-        body.dark-mode nav a:hover {
-            background-color: var(--primary);
-            color: var(--background);
-        }
-        a {
-            color: #1C2541;  /* Dark blue for light mode */
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
 
-        a:hover {
-            color: #3A506B;  /* Slightly lighter blue for hover in light mode */
-        }
-
-        body.dark-mode a {
-            color: #6FFFE9;  /* Bright cyan for dark mode */
-        }
-
-        body.dark-mode a:hover {
-            color: #5BC0BE;  /* Slightly darker cyan for hover in dark mode */
-        }
-        .back-link-container {
-            display: flex;
-            justify-content: space-between;
-        }
         @media (max-width: 768px) {
-            body {
-                font-size: 0.9em;
-            }
-            h1 {
-                font-size: 2em; /* Slightly smaller header */
-            }
-            h2 {
-                font-size: 1.4em;
-            }
             .container {
-                padding: 10px;
+                padding: 1rem;
             }
-            .blog-content {
-                padding: 15px;
+
+            h1 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -250,103 +122,67 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'dark',
-            themeVariables: {
-                primaryColor: '#00ffff',
-                secondaryColor: '#ff00ff',
-                tertiaryColor: '#ffffff',
-                primaryTextColor: '#e0e0e0',
-                lineColor: '#e0e0e0',
-                fontSize: '16px'
-            }
-        });
-    </script>
 </head>
 <body>
-    <div class="mode-toggle">
-        <label class="switch">
-            <input type="checkbox" id="mode-switch">
-            <span class="slider"></span>
-        </label>
-    </div>
+    <button class="theme-switch" id="theme-toggle">
+        <span id="theme-icon">🌞</span>
+    </button>
 
     <header>
-        <h1>{{ blog.title|upper }}</h1>
-        <p>{{ blog.subheading }}</p>
-        <nav>
-            <a href="{{ url_for('home') }}">Home</a>
-            <a href="{{ url_for('about') }}">About Me</a>
-            <a href="#" id="bottom-link" class="back-link">Go Down</a>
-        </nav>
+        <h1>{{ blog.title }}</h1>
+        <p class="tagline">{{ blog.subheading }}</p>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}" class="button">Home</a>
+            <a href="{{ url_for('about') }}" class="button">About Me</a>
+        </div>
     </header>
-    
+
     <div class="container">
         <div class="blog-content">
             {{ blog.content|safe }}
         </div>
-        <div class="back-link-container">
-            <a href="{{ url_for('home') }}" class="back-link">Back to home</a>
-            <a href="#" class="back-link" id="top-link">Return to top</a>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}" class="button">Back to Home</a>
+            <a href="#" class="button" id="top-link">Return to Top</a>
         </div>
     </div>
 
     <script>
-        const modeSwitch = document.getElementById('mode-switch');
-        const body = document.body;
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
 
-        function setDarkMode(isDark) {
-            body.classList.toggle('dark-mode', isDark);
-            modeSwitch.checked = isDark;
-            localStorage.setItem('mode', isDark ? 'dark' : 'light');
+        function setTheme(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            themeIcon.textContent = isDark ? '🌙' : '🌞';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
             updateMermaidTheme(isDark);
         }
 
         function updateMermaidTheme(isDark) {
-            const theme = isDark ? 'dark' : 'default';
-            const primaryColor = isDark ? '#00ffff' : '#0066cc';
-            const secondaryColor = isDark ? '#ff00ff' : '#cc00cc';
-            const tertiaryColor = isDark ? '#ffffff' : '#333333';
-            const primaryTextColor = isDark ? '#e0e0e0' : '#333333';
-            const lineColor = isDark ? '#e0e0e0' : '#333333';
-
             mermaid.initialize({
-                theme: theme,
+                theme: isDark ? 'dark' : 'default',
                 themeVariables: {
-                    primaryColor: primaryColor,
-                    secondaryColor: secondaryColor,
-                    tertiaryColor: tertiaryColor,
-                    primaryTextColor: primaryTextColor,
-                    lineColor: lineColor
+                    primaryColor: isDark ? '#3b82f6' : '#2563eb',
+                    secondaryColor: isDark ? '#60a5fa' : '#3b82f6',
+                    tertiaryColor: isDark ? '#132f4c' : '#ffffff',
+                    primaryTextColor: isDark ? '#f8fafc' : '#0f172a',
+                    lineColor: isDark ? '#cbd5e1' : '#475569'
                 }
             });
-
-            // Re-render all Mermaid diagrams
             mermaid.init(undefined, document.querySelectorAll('.mermaid'));
         }
 
-        modeSwitch.addEventListener('change', () => {
-            setDarkMode(modeSwitch.checked);
+        themeToggle.addEventListener('click', () => {
+            const isDark = !document.body.classList.contains('dark-mode');
+            setTheme(isDark);
         });
 
-        // Check for saved mode preference
-        const savedMode = localStorage.getItem('mode');
-        setDarkMode(savedMode === 'dark');
+        const savedTheme = localStorage.getItem('theme');
+        setTheme(savedTheme === 'dark');
 
-        // Scroll to top functionality
-        const topLink = document.getElementById('top-link');
-        topLink.addEventListener('click', (e) => {
+        document.getElementById('top-link').addEventListener('click', (e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Scroll to bottom functionality
-        const bottomLink = document.getElementById('bottom-link');
-        bottomLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         });
     </script>
 </body>
