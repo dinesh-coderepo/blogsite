@@ -7,14 +7,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --secondary: #3b82f6;
-            --background: #ffffff;
-            --surface: #f8fafc;
-            --text: #0f172a;
-            --text-secondary: #475569;
-            --accent: #0ea5e9;
-            --border: #e2e8f0;
+            /* Updated accessible palette for Light Protanopia & Deuteranopia.
+               References:
+               1. Okabe & Ito (2008), Color Universal Design.
+               2. ColorBrewer (http://colorbrewer2.org/).
+               3. WebAIM Contrast Checker.
+               4. Material Design Accessibility.
+               5. Coblis Color Blindness Simulator. */
+            --primary: #0072B2;
+            --secondary: #E69F00;
+            --background: #FFFFFF;
+            --surface: #F0F0F0;
+            --text: #000000;
+            --text-secondary: #555555;
+            --accent: #D55E00;
+            --border: #CCCCCC;
         }
 
         body {
@@ -185,14 +192,14 @@
         }
 
         body.dark-mode {
-            --primary: #3b82f6;
-            --secondary: #60a5fa;
-            --background: #0f172a;
-            --surface: #1e293b;
-            --text: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --accent: #0ea5e9;
-            --border: #334155;
+            --primary: #56B4E9;
+            --secondary: #E69F00;
+            --background: #121212;
+            --surface: #1E1E1E;
+            --text: #F8F8F8;
+            --text-secondary: #B0B0B0;
+            --accent: #D55E00;
+            --border: #333333;
         }
 
         .theme-switch {
@@ -243,11 +250,14 @@
     </header>
 
     <div class="container">
+        <!-- Replace view-toggle buttons with a dropdown -->
         <div class="view-toggle">
-            <button id="grid-view" class="active">Grid View</button>
-            <button id="list-view">List View</button>
+            <select id="view-select">
+                <option value="grid">Grid View</option>
+                <option value="list">List View</option>
+            </select>
         </div>
-        <div class="blog-posts grid-view">
+        <div class="blog-posts list-view"> <!-- Switched from grid-view to list-view -->
             {% for blog in blogs %}
             <div class="blog-post">
                 <h2>{{ blog.title }}</h2>
@@ -284,8 +294,7 @@
         setTheme(savedTheme === 'dark');
 
         // View toggle functionality
-        const gridViewBtn = document.getElementById('grid-view');
-        const listViewBtn = document.getElementById('list-view');
+        const viewSelect = document.getElementById('view-select');
         const blogPosts = document.querySelector('.blog-posts');
         
         function setView(view) {
@@ -293,20 +302,19 @@
             if (view === 'grid') {
                 blogPosts.classList.add('grid-view');
                 blogPosts.classList.remove('list-view');
-                gridViewBtn.classList.add('active');
-                listViewBtn.classList.remove('active');
             } else {
                 blogPosts.classList.add('list-view');
                 blogPosts.classList.remove('grid-view');
-                listViewBtn.classList.add('active');
-                gridViewBtn.classList.remove('active');
             }
         }
         
-        gridViewBtn.addEventListener('click', () => setView('grid'));
-        listViewBtn.addEventListener('click', () => setView('list'));
+        viewSelect.addEventListener('change', () => {
+            setView(viewSelect.value);
+        });
         
-        const savedView = localStorage.getItem('view-preference') || 'grid';
+        // Set default view from storage or default to list
+        const savedView = localStorage.getItem('view-preference') || 'list';
+        viewSelect.value = savedView;
         setView(savedView);
     </script>
 </body>
