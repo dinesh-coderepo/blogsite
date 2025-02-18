@@ -89,20 +89,21 @@
         .view-toggle {
             display: flex;
             justify-content: flex-end;
+            align-items: center;
             margin-bottom: 1rem;
+            gap: 1rem;
         }
         
-        .view-toggle button {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
+        .view-toggle label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            color: var(--text);
         }
         
-        .view-toggle button.active {
-            background: var(--primary);
-            color: white;
+        .view-toggle input[type="radio"] {
+            cursor: pointer;
         }
 
         .blog-post {
@@ -252,10 +253,12 @@
     <div class="container">
         <!-- Replace view-toggle buttons with a dropdown -->
         <div class="view-toggle">
-            <select id="view-select">
-                <option value="grid">Grid View</option>
-                <option value="list">List View</option>
-            </select>
+            <label>
+                <input type="radio" name="view" value="grid"> Grid View
+            </label>
+            <label>
+                <input type="radio" name="view" value="list" checked> List View
+            </label>
         </div>
         <div class="blog-posts list-view"> <!-- Switched from grid-view to list-view -->
             {% for blog in blogs %}
@@ -294,7 +297,7 @@
         setTheme(savedTheme === 'dark');
 
         // View toggle functionality
-        const viewSelect = document.getElementById('view-select');
+        const viewRadios = document.querySelectorAll('input[name="view"]');
         const blogPosts = document.querySelector('.blog-posts');
         
         function setView(view) {
@@ -308,13 +311,15 @@
             }
         }
         
-        viewSelect.addEventListener('change', () => {
-            setView(viewSelect.value);
+        viewRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                setView(e.target.value);
+            });
         });
         
         // Set default view from storage or default to list
         const savedView = localStorage.getItem('view-preference') || 'list';
-        viewSelect.value = savedView;
+        document.querySelector(`input[name="view"][value="${savedView}"]`).checked = true;
         setView(savedView);
     </script>
 </body>
