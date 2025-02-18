@@ -141,6 +141,8 @@
         <div class="nav-links">
             <a href="{{ url_for('home') }}" class="button">Home</a>
             <a href="{{ url_for('about') }}" class="button">About Me</a>
+            <!-- Added Go Down button beside About Me -->
+            <a href="#" class="button" id="header-bottom-link">Go Down</a>
         </div>
     </header>
 
@@ -190,6 +192,34 @@
         document.getElementById('top-link').addEventListener('click', (e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Custom slow scroll to bottom function over a specified duration (in ms)
+        function smoothScrollToBottom(duration) {
+            const start = window.pageYOffset;
+            const end = document.body.scrollHeight - window.innerHeight;
+            const change = end - start;
+            const startTime = performance.now();
+            
+            function animateScroll(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // ease in-out quad
+                const ease = progress < 0.5 
+                    ? 2 * progress * progress 
+                    : -1 + (4 - 2 * progress) * progress;
+                window.scrollTo(0, start + change * ease);
+                if (progress < 1) {
+                    requestAnimationFrame(animateScroll);
+                }
+            }
+            requestAnimationFrame(animateScroll);
+        }
+
+        // Replace the event listener for header Go Down button to use smoothScrollToBottom
+        document.getElementById('header-bottom-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            smoothScrollToBottom(1000); // scroll over 1 second
         });
     </script>
 </body>
