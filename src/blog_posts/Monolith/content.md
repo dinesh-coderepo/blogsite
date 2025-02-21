@@ -13,5 +13,7 @@ date: 2025-01-21
 - NotebookLM Discussion on Paper : [Audio](https://notebooklm.google.com/notebook/90206acf-4d80-44e1-abba-eac94345e840/audio) , [Copied to google drive](https://drive.google.com/file/d/1_9RxAeDVjJEUDqrGIHcUzO0_wbpepjxa/view?usp=drivesdk)
 - NotebookLM private link : [NotebookLM Knowledge base](https://notebooklm.google.com/notebook/90206acf-4d80-44e1-abba-eac94345e840)
 - Diving deep using LLM : [Information dump](https://chatgpt.com/share/679469dd-80ec-8001-a849-9922322eab61)
+- New Notebook LM, included info to include more on embeddings and other details as well : [Recording](https://notebooklm.google.com/notebook/a89ae316-624d-474b-ac45-148d391602c7/audio)
+
 
 ### Progress...
