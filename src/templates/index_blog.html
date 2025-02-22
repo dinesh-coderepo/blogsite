@@ -280,7 +280,7 @@
         });
         
         // Set default view from storage or default to list
-        const savedView = localStorage.getItem('view-preference') || 'list';
+        const savedView = localStorage.getItem('view-preference') || 'grid';
         document.querySelector(`input[name="view"][value="${savedView}"]`).checked = true;
         setView(savedView);
     </script>
