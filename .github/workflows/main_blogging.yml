@@ -13,6 +13,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read #This is required for actions/checkout
 
     steps:
       - uses: actions/checkout@v4
@@ -51,6 +53,7 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
 
     steps:
       - name: Download artifact from build job
@@ -61,50 +64,13 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-
-            # Second service principal login for fetching secrets from Key Vault
-      - name: Login to Azure for Key Vault
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.KEYVAULT_CLIENTID }}
-          tenant-id: ${{ secrets.KEYVAULT_TENANTID }}
-          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0845F312B65649FB884B115CED156AE4 }}
-
-           # Fetch secrets from Azure Key Vault using the second service principal
-      - name: Fetch secrets from Azure Key Vault
-        id: get-secrets
-        uses: Azure/get-keyvault-secrets@v1
-        with:
-          keyvault: 'blogkeys'
-          secrets: 'subkey,translatorendpoint,translatorlocation'
-
-      # Set the secrets as environment variables
-      - name: Set environment variables
-        run: |
-          echo "KEY=${{ steps.get-secrets.outputs.subkey }}" >> $GITHUB_ENV
-          echo "ENDPOINT=${{ steps.get-secrets.outputs.translatorendpoint }}" >> $GITHUB_ENV
-          echo "LOCATION=${{ steps.get-secrets.outputs.translatorlocation }}" >> $GITHUB_ENV
-
-      - name: Create .env file
-        run: |
-          echo "FLASK_ENV=production" > .env
-          echo "KEY=${{ steps.get-secrets.outputs.subkey }}" >> .env
-          echo "ENDPOINT=${{ steps.get-secrets.outputs.translatorendpoint }}" >> .env
-          echo "LOCATION=${{ steps.get-secrets.outputs.translatorlocation }}" >> .env
-
-      - name: Debug Secrets
-        run: |
-          echo "ENDPOINT=${{ steps.get-secrets.outputs.translatorendpoint }}"
-          echo "LOCATION=${{ steps.get-secrets.outputs.translatorlocation }}"
-
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B05A5D265C284249932881F7E8D5141D }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0001C408F5E04459B530A0259B79FD0B }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0845F312B65649FB884B115CED156AE4 }}
-
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0CDBB6A05EB84D88A24353168A2EA668 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0CBB96E9A14248538A611623E41C9079 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BC5E8A5D5C85433A92C9D64BC6093231 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
