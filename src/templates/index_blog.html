@@ -7,20 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Updated accessible palette for Light Protanopia & Deuteranopia.
-               References:
-               1. Okabe & Ito (2008), Color Universal Design.
-               2. ColorBrewer (http://colorbrewer2.org/).
-               3. WebAIM Contrast Checker.
-               4. Material Design Accessibility.
-               5. Coblis Color Blindness Simulator. */
-            --primary: #0072B2;
-            --secondary: #E69F00;
-            --background: #FFFFFF;
-            --surface: #F0F0F0;
+            /* Light theme variables */
+            --primary: #009B4D;
+            --secondary: #FFCC00;
+            --background: #FAF5E9;
+            --surface: #FFFFFF;
             --text: #000000;
             --text-secondary: #555555;
-            --accent: #D55E00;
+            --accent: #FFCC00;
             --border: #CCCCCC;
         }
 
@@ -162,44 +156,17 @@
             background: var(--secondary);
         }
 
-        .translator-section {
-            margin-top: 4rem;
-            text-align: center;
-            padding: 3rem;
-            background: var(--surface);
-            border-radius: 1rem;
-            border: 1px solid var(--border);
-        }
 
-        .translator-section h2 {
-            color: var(--text);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .translator-link {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.2s ease;
-        }
-
-        .translator-link:hover {
-            background-color: var(--secondary);
-        }
 
         body.dark-mode {
-            --primary: #56B4E9;
-            --secondary: #E69F00;
-            --background: #121212;
-            --surface: #1E1E1E;
+            /* Dark theme variables */
+            --primary: #BFA181;
+            --secondary: #178582;
+            --background: #0A1828;
+            --surface: #132F4C;
             --text: #F8F8F8;
             --text-secondary: #B0B0B0;
-            --accent: #D55E00;
+            --accent: #178582;
             --border: #333333;
         }
 
@@ -270,11 +237,6 @@
             {% endfor %}
         </div>
 
-        <div class="translator-section">
-            <h2>Try Our AI Translator</h2>
-            <p>Experience seamless language translation powered by AI</p>
-            <a href="{{ url_for('index') }}" class="translator-link">Start Translating</a>
-        </div>
     </div>
 
     <script>

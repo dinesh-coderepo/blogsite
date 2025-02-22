@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #3A506B;
-            --secondary: #5BC0BE;
+            --primary: #01257D;        /* changed to deep navy blue */
+            --secondary: #00FFFF;        /* changed to electric blue */
             --background: #F0F5F9;
             --text: #1C2541;
             --accent: #6FFFE9;
@@ -77,18 +77,6 @@
         }
         .back-link:hover {
             background-color: var(--secondary-accent);
-        }
-        body.dark-mode {
-            --primary: #5BC0BE;
-            --secondary: #3A506B;
-            --background: #0B132B;
-            --text: #F0F5F9;
-            --accent: #6FFFE9;
-        }
-        body.dark-mode::before {
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(91, 192, 190, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(111, 255, 233, 0.05) 0%, transparent 20%);
         }
         .mode-toggle {
             position: fixed;
@@ -200,13 +188,21 @@
             transform: translateY(0);
         }
 
-        body.dark-mode button {
-            background-color: var(--accent);
-            color: var(--background);
+        [data-bs-theme="dark"] {
+            --gradient-start: #101820;
+            --gradient-end: #101820;
+            --card-bg: rgba(16, 24, 32, 0.98);
+            --bs-body-color: #FEE715;
+            --accent-color: #FEE715;
+            --navbar-bg: #101820;
+            --dropdown-bg: #101820;
+            --dropdown-hover: #2d3748;
         }
-
-        body.dark-mode button:hover {
-            background-color: var(--primary);
+        [data-bs-theme="dark"] .card {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        [data-bs-theme="dark"] .btn-outline-primary:hover {
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
     </style>
 </head>
