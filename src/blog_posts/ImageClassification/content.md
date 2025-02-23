@@ -278,7 +278,7 @@ model = tf.keras.models.Sequential([tf.keras.layers.Flatten(),
 
 ```
 
-- Optimizers : (Optimizers)[https://www.tensorflow.org/api_docs/python/tf/keras/optimizers], Loss Function : [Loss](https://www.tensorflow.org/api_docs/python/tf/keras/losses) , Metric Paramters : [Params](https://www.tensorflow.org/api_docs/python/tf/keras/metrics)
+- Optimizers : [Optimizers](https://www.tensorflow.org/api_docs/python/tf/keras/optimizers), Loss Function : [Loss](https://www.tensorflow.org/api_docs/python/tf/keras/losses) , Metric Paramters : [Params](https://www.tensorflow.org/api_docs/python/tf/keras/metrics)
 
 ![training_ex2](training_ex2.png)
 

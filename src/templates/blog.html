@@ -69,6 +69,7 @@
             display: flex;
             gap: 1rem;
             justify-content: center;
+            flex-wrap: wrap; /* Added to prevent overflow */
             margin-top: 1rem;
         }
 
@@ -87,31 +88,41 @@
         }
 
         body.dark-mode {
-            /* Dark theme variables */
-            --primary: #BFA181;
-            --secondary: #178582;
-            --background: #0A1828;
-            --surface: #132F4C;
-            --text: #F8F8F8;
-            --text-secondary: #B0B0B0;
-            --accent: #178582;
-            --border: #333333;
+            /* Updated Dark theme variables */
+            --primary: #80cbc4;
+            --secondary: #4db6ac;
+            --background: #263238;
+            --surface: #37474f;
+            --text: #eceff1;
+            --text-secondary: #b0bec5;
+            --accent: #4db6ac;
+            --border: #546e7a;
+            /* New Dark theme variables */
+            --gradient-start: #101820;
+            --gradient-end: #101820;
+            --card-bg: rgba(16, 24, 32, 0.98);
+            --bs-body-color: #FEE715;
+            --accent-color: #FEE715;
+            --navbar-bg: #101820;
+            --dropdown-bg: #101820;
+            --dropdown-hover: #2d3748;
         }
 
         /* Dark mode override for links/buttons */
         body.dark-mode a.button {
-            background: var(--primary); /* #BFA181 */
-            color: var(--background);    /* #0A1828 for contrast */
+            background: var(--accent-color);
+            color: var(--navbar-bg);
+            border: none;
         }
 
         body.dark-mode a.button:hover {
-            background: var(--secondary);
+            background: var(--dropdown-hover);
         }
 
         .theme-switch {
             position: fixed;
             top: 1.5rem;
-            right: 1.5rem;
+            left: 1.5rem; /* Changed from right to left for consistency */
             background: var(--surface);
             border: 1px solid var(--border);
             padding: 0.5rem;

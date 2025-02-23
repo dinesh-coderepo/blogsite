@@ -1,0 +1,86 @@
+/*https://www.hostinger.in/tutorials/website-color-schemes -- good site for themes*/
+
+:root {
+    /* Updated for Lime (#00DD00) and White (#FFFFFF) theme with darker green adjustments */
+    --bs-primary: #00AA00; /* darker green */
+    --bs-primary-rgb: 0, 170, 0;
+    --gradient-start: #FFFFFF;
+    --gradient-end: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --bs-body-color: #000000; /* Ensure text is clearly visible */
+    --accent-color: #00AA00; /* updated accent as well */
+    --navbar-bg: #FFFFFF;
+    --dropdown-bg: #FFFFFF;
+    --dropdown-hover: #e0e0e0; /* subtle hover effect */
+}
+
+[data-bs-theme="dark"] { --gradient-start: #101820; --gradient-end: #101820; --card-bg: rgba(16, 24, 32, 0.98); --bs-body-color: #FEE715; --accent-color: #FEE715; --navbar-bg: #101820; --dropdown-bg: #101820; --dropdown-hover: #2d3748; }
+
+body { background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); min-height: 100vh; color: var(--bs-body-color); }
+
+section { scroll-margin-top: 60px; padding: 5rem 0; }
+
+.card { border: none; background: var(--card-bg); backdrop-filter: blur(10px); transition: all 0.3s ease; border-radius: 16px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06); }
+
+.card:hover { transform: translateY(-5px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); }
+
+.card-body { padding: 2rem; }
+
+.card ul li { color: var(--bs-body-color); margin-bottom: 1rem; font-size: 1.1rem; opacity: 0.9; }
+
+.navbar { backdrop-filter: blur(10px); background: var(--navbar-bg); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); padding: 1rem 0; }
+
+.navbar-brand { font-weight: 700; color: var(--accent-color) !important; font-size: 1.5rem; }
+
+.navbar-nav .nav-link { color: var(--bs-body-color); font-weight: 500; padding: 0.5rem 1rem; transition: color 0.3s ease; }
+
+.navbar-nav .nav-link:hover { color: var(--accent-color); }
+
+.dropdown-menu { background: var(--dropdown-bg); border: 1px solid rgba(37, 99, 235, 0.1); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); border-radius: 12px; overflow: hidden; }
+
+.dropdown-item { color: var(--bs-body-color); padding: 0.75rem 1.5rem; transition: all 0.3s ease; }
+
+.dropdown-item:hover { background: var(--dropdown-hover); color: var(--accent-color); }
+
+.btn-outline-primary { color: var(--accent-color); border-color: var(--accent-color); transition: all 0.3s ease; font-weight: 500; padding: 0.8rem 1.5rem; border-radius: 12px; }
+
+.btn-outline-primary:hover { background-color: var(--accent-color); border-color: var(--accent-color); color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
+
+#theme-toggle { background: none; border: none; padding: 0.5rem; cursor: pointer; color: var(--accent-color); }
+
+#theme-toggle:hover { opacity: 0.8; }
+
+#skills .card { background: var(--card-bg); border: 1px solid rgba(37, 99, 235, 0.1); }
+
+#skills .card-title { color: var(--accent-color); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; font-size: 1.1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+#skills ul li { padding: 1rem 0; border-bottom: 1px solid rgba(37, 99, 235, 0.1); transition: all 0.3s ease; }
+
+#skills ul li:hover { padding-left: 0.5rem; color: var(--accent-color); }
+
+#skills ul li:last-child { border-bottom: none; }
+
+footer { background: var(--navbar-bg); backdrop-filter: blur(10px); border-top: 1px solid rgba(37, 99, 235, 0.1); padding: 2rem 0; }
+
+[data-bs-theme="dark"] .card { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); }
+
+[data-bs-theme="dark"] .btn-outline-primary:hover { box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+
+.bg-dark { background-color: var(--navbar-bg) !important; }
+
+/* New styling for consistent logo background */
+.company-logo {
+    background-color: #FFFFFF !important; /* white–shade background */
+    padding: 4px;
+    border-radius: 4px;
+}
+
+[data-bs-theme="dark"] .company-logo {
+    background-color: #dddd52 !important; /* turquoise background for dark mode */
+}
+
+/* Add extra spacing between job experience cards */
+.timeline-item {
+    margin-bottom: 3rem;
+}
+
