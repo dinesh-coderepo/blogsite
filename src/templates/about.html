@@ -116,20 +116,7 @@
             background: var(--secondary);
         }
 
-        body.dark-mode {
-            /* Updated Dark theme variables */
-            --primary: #80cbc4;
-            --secondary: #4db6ac;
-            --background: #263238;
-            --surface: #37474f;
-            --text: #eceff1;
-            --text-secondary: #b0bec5;
-            --accent: #4db6ac;
-            --border: #546e7a;
-        }
-
-        body.dark-mode {
-            /* New Dark theme variables */
+        html[data-bs-theme="dark"] {
             --gradient-start: #101820;
             --gradient-end: #101820;
             --card-bg: rgba(16, 24, 32, 0.98);
@@ -138,16 +125,23 @@
             --navbar-bg: #101820;
             --dropdown-bg: #101820;
             --dropdown-hover: #2d3748;
+            --primary: var(--accent-color);
+            --secondary: var(--dropdown-hover);
+            --background: #101820;
+            --surface: #10100a;
+            --text: #FEE715;
+            --border: var(--dropdown-hover);
         }
 
-        /* Dark mode button override */
-        body.dark-mode a.button {
-            background: var(--accent-color);
+        html[data-bs-theme="dark"] a.button {
+            background: var(--primary);
             color: var(--navbar-bg);
             border: none;
         }
-        body.dark-mode a.button:hover {
-            background: var(--dropdown-hover);
+
+        html[data-bs-theme="dark"] a.button:hover {
+            background: var(--secondary);
+            color: white; /* Updated hover text color for dark mode */
         }
 
         .theme-switch {
@@ -222,18 +216,18 @@
         const themeIcon = document.getElementById('theme-icon');
 
         function setTheme(isDark) {
-            document.body.classList.toggle('dark-mode', isDark);
-            themeIcon.textContent = isDark ? '🌙' : '🌞';
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.documentElement.setAttribute("data-bs-theme", isDark ? "dark" : "light");
+            themeIcon.textContent = isDark ? "🌙" : "🌞";
+            localStorage.setItem("theme", isDark ? "dark" : "light");
         }
 
         themeToggle.addEventListener('click', () => {
-            const isDark = !document.body.classList.contains('dark-mode');
+            const isDark = document.documentElement.getAttribute("data-bs-theme") !== "dark";
             setTheme(isDark);
         });
 
-        const savedTheme = localStorage.getItem('theme');
-        setTheme(savedTheme === 'dark');
+        const savedTheme = localStorage.getItem("theme");
+        setTheme(savedTheme === "dark");
     </script>
 </body>
 </html>

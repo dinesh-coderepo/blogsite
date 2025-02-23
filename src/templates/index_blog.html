@@ -129,7 +129,7 @@
         .read-more {
             display: inline-block;
             background-color: var(--primary);
-            color: white;
+            color: white; /* existing setting for light theme */
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             text-decoration: none;
@@ -156,19 +156,7 @@
             background: var(--secondary);
         }
 
-
-
-        body.dark-mode {
-            /* Updated Dark theme variables */
-            --primary: #30301f;
-            --secondary: #FEE715;
-            --background: #101820;
-            --surface: #10100a;
-            --text: #FEE715;
-            --text-secondary: #b0bec5;
-            --accent: #4db6ac;
-            --border: #546e7a;
-            /* New Dark theme variables */
+        html[data-bs-theme="dark"] {
             --gradient-start: #101820;
             --gradient-end: #101820;
             --card-bg: rgba(16, 24, 32, 0.98);
@@ -177,31 +165,36 @@
             --navbar-bg: #101820;
             --dropdown-bg: #101820;
             --dropdown-hover: #2d3748;
+            --primary: var(--accent-color);
+            --secondary: var(--dropdown-hover);
+            --background: #101820;
+            --surface: #10100a;
+            --text: #FEE715;
+            --border: var(--dropdown-hover);
+            --text-secondary: #bbbbbb; /* Updated for better subheading visibility */
         }
 
-        .theme-switch {
-            position: fixed;
-            top: 1.5rem;
-            left: 1.5rem; /* Ensure button is fixed on the left */
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 0.5rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            z-index: 1000;
+        html[data-bs-theme="dark"] .read-more {
+            color: black; /* Updated text color for dark mode */
         }
 
-        /* Dark mode button override to mimic btn btn-primary */
-        body.dark-mode a.button {
-            background: var(--accent-color);
+        body a.button {
+            /* light mode remains unchanged */
+        }
+
+        html[data-bs-theme="dark"] a.button {
+            background: var(--primary);
             color: var(--navbar-bg);
             border: none;
         }
-        body.dark-mode a.button:hover {
-            background: var(--dropdown-hover);
+
+        html[data-bs-theme="dark"] a.button:hover {
+            background: var(--secondary);
+            color: white; /* Updated hover text color for dark mode */
+        }
+
+        html[data-bs-theme="dark"] .blog-post {
+            border: 1px solid var(--dropdown-hover);
         }
 
         @media (max-width: 768px) {
@@ -216,6 +209,19 @@
             h1 {
                 font-size: 2rem;
             }
+        }
+
+        /* Added/Updated dark/light theme button styling */
+        .theme-switch {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem; /* Moved left for consistency */
+            background: var(--surface);
+            border: 1px solid var(--border); /* Added border */
+            padding: 0.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -259,19 +265,18 @@
         const themeIcon = document.getElementById('theme-icon');
 
         function setTheme(isDark) {
-            document.body.classList.toggle('dark-mode', isDark);
-            themeIcon.textContent = isDark ? '🌙' : '🌞';
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.documentElement.setAttribute("data-bs-theme", isDark ? "dark" : "light");
+            themeIcon.textContent = isDark ? "🌙" : "🌞";
+            localStorage.setItem("theme", isDark ? "dark" : "light");
         }
 
         themeToggle.addEventListener('click', () => {
-            const isDark = !document.body.classList.contains('dark-mode');
+            const isDark = document.documentElement.getAttribute("data-bs-theme") !== "dark";
             setTheme(isDark);
         });
 
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme');
-        setTheme(savedTheme === 'dark');
+        const savedTheme = localStorage.getItem("theme");
+        setTheme(savedTheme === "dark");
 
         // View toggle functionality
         const viewRadios = document.querySelectorAll('input[name="view"]');
