@@ -46,7 +46,9 @@ jobs:
           # Copy requirements.txt to root
           cp requirements.txt release/
           # Copy the entire src/ directory
-          # cp -r src release/
+          mkdir -p release/src
+          cp --remove-destination src/app.py release/src/
+          cp -r --remove-destination src/template release/src/
           # Zip the release directory
           cd release
           zip -r ../release.zip .
