@@ -1,10 +1,10 @@
 ---
-title: Classify Images with TensorFlow on Google Cloud
+title: Introduction to TensorFlow on Google Cloud
 subheading: Diving deep into a Google Skill boost
 date: 2025-01-27
 ---
 
-# Tenserflow to classify images
+# Basics of TensorFlow using GCP
 
 - we will be using google cloud to do this dive deep tut.
 - Link to the [Skill](https://www.cloudskillsboost.google/course_templates/646)
