@@ -10,10 +10,9 @@ Normally, when doing research, we used to go to Google, search the query, and vi
 
 **So now with this, I have developed a prompt which can be used to gather all the information together at one place. The main reason for this prompt is to listen to the test output while commuting. I use Speechify for listening to documents. If anyone wants to use it, please use the link: [referral](https://share.speechify.com/mzCpvvX) to get it.** 
 
-
 ## Prompt Details
 
-```markdown
+```md
 
 ### Objective:
 I want an in-depth, well-structured, and fully elaborated explanation on the topic I provide. The output should not be just high-level; it must break down each concept in detail, provide solutions, and offer practical steps where applicable. I also want it to be formatted properly for easy text-to-speech conversion.

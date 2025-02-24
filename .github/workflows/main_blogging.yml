@@ -46,7 +46,7 @@ jobs:
           # Copy requirements.txt to root
           cp requirements.txt release/
           # Copy the entire src/ directory
-          cp -r src release/
+          # cp -r src release/
           # Zip the release directory
           cd release
           zip -r ../release.zip .
