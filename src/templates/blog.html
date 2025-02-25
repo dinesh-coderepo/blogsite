@@ -33,6 +33,17 @@
             --surface: #10100a;
             --text: #FEE715;
             --border: var(--dropdown-hover);
+            /* New dark mode override for code blocks */
+            pre,
+            code {
+                background: #1c1818;
+                color: #ffffff;
+            }
+            /* New dark mode override for copy button */
+            .copy-button {
+                background: #ffffff;
+                color: #000000;
+            }
         }
 
         body {
@@ -133,6 +144,25 @@
         }
         .blog-content a:hover {
             color: #4a86c5; /* darker slight blue */
+        }
+
+        /* New rule for copy button */
+        .copy-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        .copy-button:hover {
+            background: var(--secondary);
+            opacity: 1;
         }
 
         @media (max-width: 768px) {
@@ -240,6 +270,28 @@
         document.getElementById('header-bottom-link').addEventListener('click', (e) => {
             e.preventDefault();
             smoothScrollToBottom(1000); // scroll over 1 second
+        });
+
+        // Add copy buttons to all <pre> blocks
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll("pre").forEach(block => {
+                block.style.position = "relative";
+                const button = document.createElement("button");
+                button.innerText = "Copy";
+                button.className = "copy-button";
+                button.addEventListener("click", () => {
+                    const cloned = block.cloneNode(true);
+                    const btnInClone = cloned.querySelector('.copy-button');
+                    if(btnInClone) btnInClone.remove();
+                    navigator.clipboard.writeText(cloned.innerText)
+                        .then(() => {
+                            button.innerText = "Copied";
+                            setTimeout(() => button.innerText = "Copy", 2000);
+                        })
+                        .catch(err => console.error("Error copying text: ", err));
+                });
+                block.appendChild(button);
+            });
         });
     </script>
 </body>
