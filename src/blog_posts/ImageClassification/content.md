@@ -8,6 +8,88 @@ date: 2025-01-27
 
 - we will be using google cloud to do this dive deep tut.
 - Link to the [Skill](https://www.cloudskillsboost.google/course_templates/646)
+- First going over all the main concepts in tensorflow and how we can understand each item at very indepth level.
+
+
+## Neural Network basics and TenserFlow basics
+
+## Neural Network Basics
+
+### What is a Neural Network?
+### Key Components of Neural Networks
+### How Neural Networks Learn
+
+## TensorFlow Basics and Activation Functions
+
+### Introduction to TensorFlow
+### Common Activation Functions and Their Roles
+
+## Loss Functions in Deep Learning
+
+### Overview of Loss Functions
+### Choosing the Right Loss Function
+
+## Training a Basic Model
+
+### Building and Compiling Your Model
+### The Training Process and Best Practices
+
+## Simple Neural Network for Negative-to-Positive Classification
+
+This section demonstrates a very simple neural network. The network is trained on inputs ranging from -12 to 12, with a target output of 0 for negative values and 1 for positive values. The input is normalized by dividing by 12 to map values to a [-1, 1] range. A single neuron with a sigmoid activation function is used, and the model is compiled with the Adam optimizer and binary crossentropy loss.
+
+### Training
+
+```python
+import numpy as np
+import tensorflow as tf
+
+# Create synthetic training data: inputs between -12 and 12
+x_train = np.linspace(-12, 12, num=1000)
+y_train = (x_train >= 0).astype(np.float32)  # Output 1 if x >= 0, else 0
+
+# Normalize the input to the range [-1, 1]
+x_train_norm = x_train / 12.0
+
+# Define a simple sequential model with one neuron
+model = tf.keras.Sequential([
+  tf.keras.layers.Input(shape=(1,)),
+  tf.keras.layers.Dense(1, activation='sigmoid')
+])
+
+# Compile the model with Adam optimizer and binary crossentropy loss
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.01),
+        loss=tf.keras.losses.BinaryCrossentropy(),
+        metrics=['accuracy'])
+
+# Train the model
+model.fit(x_train_norm, y_train, epochs=50, batch_size=32)
+```
+
+### Inference
+
+```python
+# Test the trained model with new inputs
+test_inputs = np.array([-15, -6, 0, 3, 15], dtype=np.float32)
+test_inputs_norm = test_inputs / 12.0
+
+# Get predictions (raw values)
+predictions = model.predict(test_inputs_norm)
+print("Test Inputs:", test_inputs)
+print("Raw Predictions:", predictions)
+
+# Convert raw predictions to binary outputs using a 0.5 threshold
+binary_predictions = (predictions > 0.5).astype(int)
+print("Binary Predictions:", binary_predictions)
+```
+
+
+
+
+
+
+
+
 
 
 ## Classify Images with TensorFlow on Google Cloud
