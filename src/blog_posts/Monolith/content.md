@@ -16,4 +16,10 @@ date: 2025-01-21
 - New Notebook LM, included info to include more on embeddings and other details as well : [Recording](https://notebooklm.google.com/notebook/a89ae316-624d-474b-ac45-148d391602c7/audio)
 
 
+### Plan to do a exercise implementing this approach for recommendation
+
+#### asked grok to give me a plan I can use to learn about the topic : [GROK](https://grok.com/share/bGVnYWN5_0d71808d-755e-4091-9c63-399e48712388)
+
+
+
 ### Progress...
