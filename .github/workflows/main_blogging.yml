@@ -47,10 +47,20 @@ jobs:
             fi
           done < changed_files.txt
           # Always copy requirements.txt and key app files to ensure Azure detects the Python app
-          cp -n requirements.txt release/  # -n avoids overwriting if already copied
-          cp -rn src/app.py release/src/  # Adjust path to your app entry point (e.g., app.py or wsgi.py)
+          mkdir -p release/  # Ensure release/ exists (already done, but redundant safety)
+          cp --update=none requirements.txt release/  # Use --update=none instead of -n
+          mkdir -p release/src/  # Ensure release/src/ exists before copying app.py
+          cp --update=none src/app.py release/src/  # Use --update=none instead of -rn
           cd release
           zip -r ../release.zip .
+        shell: /usr/bin/bash -e {0}
+        env:
+          pythonLocation: /opt/hostedtoolcache/Python/3.12.9/x64
+          PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.9/x64/lib/pkgconfig
+          Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.9/x64
+          Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.9/x64
+          Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.9/x64
+          LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.9/x64/lib
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
