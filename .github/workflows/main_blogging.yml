@@ -1,4 +1,4 @@
-name: Build and deploy Python app to Azure Web App - blogging (No Artifacts)
+name: Build and deploy Python app to Azure Web App - blogging
 
 on:
   push:
@@ -7,12 +7,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
       contents: read
-      actions: write  # Required for potential future artifact cleanup or other actions
 
     steps:
       - uses: actions/checkout@v4
@@ -54,6 +52,33 @@ jobs:
           cd release
           zip -r ../release.zip .
 
+      - name: Upload artifact for deployment jobs
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-app
+          path: release.zip
+          retention-days: 7  # Reduce retention to minimize storage usage
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write
+      contents: read
+      actions: write  # Needed for artifact cleanup
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: python-app
+
+      - name: Unzip artifact for deployment
+        run: unzip release.zip -d ./release
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -63,7 +88,26 @@ jobs:
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
           app-name: 'blogging'
           slot-name: 'Production'
-          package: ./release  # Fixed typo: "firx this" → "./release"
+          package: ./release
+
+      - name: Clean up artifacts
+        if: always()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+            });
+            for (const artifact of artifacts.data.artifacts) {
+              await github.rest.actions.deleteArtifact({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                artifact_id: artifact.id,
+              });
+            }
