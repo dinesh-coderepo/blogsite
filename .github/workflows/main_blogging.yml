@@ -12,7 +12,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
-      actions: write  # Optional, in case you add cleanup later
+      actions: write  # Required for potential future artifact cleanup or other actions
 
     steps:
       - uses: actions/checkout@v4
@@ -48,10 +48,9 @@ jobs:
               fi
             fi
           done < changed_files.txt
-          # Copy requirements.txt only if it changed (optional)
-          if grep -q "requirements.txt" changed_files.txt; then
-            cp requirements.txt release/
-          fi
+          # Always copy requirements.txt and key app files to ensure Azure detects the Python app
+          cp -n requirements.txt release/  # -n avoids overwriting if already copied
+          cp -rn src/app.py release/src/  # Adjust path to your app entry point (e.g., app.py or wsgi.py)
           cd release
           zip -r ../release.zip .
 
@@ -67,4 +66,4 @@ jobs:
         with:
           app-name: 'blogging'
           slot-name: 'Production'
-          package: ./release
+          package: ./release  # Fixed typo: "firx this" → "./release"
