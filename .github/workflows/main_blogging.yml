@@ -1,3 +1,7 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+# More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
+
 name: Build and deploy Python app to Azure Web App - blogging
 
 on:
@@ -32,35 +36,20 @@ jobs:
       - name: Package changed files and essentials
         run: |
           mkdir -p release
-          # Copy only changed files and their dependencies (if needed)
+          # Copy changed files
           while IFS= read -r file; do
             if [ -f "$file" ]; then
               mkdir -p "release/$(dirname "$file")"
               cp "$file" "release/$file"
-              # If a Python file changes, include dependent files (e.g., imports from src/)
-              if [[ "$file" == *.py ]]; then
-                grep -h "^import " "$file" | while read -r import_line; do
-                  import_name=$(echo "$import_line" | awk '{print $2}' | cut -d'.' -f1)
-                  find src/ -name "$import_name.py" -exec cp --parents {} release/ \;
-                done
-              fi
             fi
           done < changed_files.txt
-          # Always copy requirements.txt and key app files to ensure Azure detects the Python app
-          mkdir -p release/  # Ensure release/ exists (already done, but redundant safety)
-          cp --update=none requirements.txt release/  # Use --update=none instead of -n
-          mkdir -p release/src/  # Ensure release/src/ exists before copying app.py
-          cp --update=none src/app.py release/src/  # Use --update=none instead of -rn
+          # Copy requirements.txt to root
+          cp requirements.txt release/
+          # Copy the entire src/ directory
+          cp -r src release/
+          # Zip the release directory
           cd release
           zip -r ../release.zip .
-        shell: /usr/bin/bash -e {0}
-        env:
-          pythonLocation: /opt/hostedtoolcache/Python/3.12.9/x64
-          PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.9/x64/lib/pkgconfig
-          Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.9/x64
-          Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.9/x64
-          Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.9/x64
-          LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.9/x64/lib
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
@@ -78,7 +67,6 @@ jobs:
     permissions:
       id-token: write
       contents: read
-      actions: write  # Needed for artifact cleanup
 
     steps:
       - name: Download artifact from build job
