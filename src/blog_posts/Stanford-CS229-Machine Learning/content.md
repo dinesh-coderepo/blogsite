@@ -12,4 +12,5 @@ date: 2025-03-03
 
 ### Course lecture : [Lecture - 1](https://youtu.be/KzH1ovd4Ots?si=PXEupTsR0HnD0Fpr)
 
-- 
+- Slides : [Slides](https://github.com/dinesh-coderepo/blog_resources/blob/main/blog_CS229_course/lecture1/CS229-Intro.pdf)
+- Linear Algebra Reading : [pdf](https://github.com/dinesh-coderepo/blog_resources/blob/main/blog_CS229_course/lecture1/cs229-linalg.pdf)
