@@ -6,7 +6,7 @@ date: 2025-03-03
 
 # Documenting the Stanford CS229 ML Course and gathering insights
 
-- Even though informally I have understanding of ML and Deep Learning, on recommendation from my friend starting this in-depth course and documenting the progress as part of **Build in public**
+- Although I have an informal understanding of ML and deep learning, I decided to begin this in-depth course on a friend's recommendation and am documenting my progress as part of the "Build in Public" movement.
 
 ##  Lecture 1 - Introduction and Linear Algebra
 
