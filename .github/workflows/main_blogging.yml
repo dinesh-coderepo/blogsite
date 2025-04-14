@@ -14,49 +14,36 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: read #This is required for actions/checkout
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
 
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Identify changed files
-        id: changed-files
+      - name: Create and start virtual environment
         run: |
-          git diff --name-only HEAD^ HEAD > changed_files.txt
-          echo "Changed files:"
-          cat changed_files.txt
+          python -m venv venv
+          source venv/bin/activate
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        
+      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
-      - name: Package changed files and essentials
-        run: |
-          mkdir -p release
-          # Copy changed files
-          while IFS= read -r file; do
-            if [ -f "$file" ]; then
-              mkdir -p "release/$(dirname "$file")"
-              cp "$file" "release/$file"
-            fi
-          done < changed_files.txt
-          # Copy requirements.txt to root
-          cp requirements.txt release/
-          # Copy the entire src/ directory
-          cp -r src release/
-          # Zip the release directory
-          cd release
-          zip -r ../release.zip .
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
         with:
           name: python-app
-          path: release.zip
-          retention-days: 7  # Reduce retention to minimize storage usage
+          path: |
+            release.zip
+            !venv/
 
   deploy:
     runs-on: ubuntu-latest
@@ -64,10 +51,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write
-      contents: read
-
+    
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -75,19 +59,13 @@ jobs:
           name: python-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip -d ./release
+        run: unzip release.zip
 
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0CDBB6A05EB84D88A24353168A2EA668 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0CBB96E9A14248538A611623E41C9079 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BC5E8A5D5C85433A92C9D64BC6093231 }}
-
+      
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'blogging'
           slot-name: 'Production'
-          package: ./release
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_79FC431236EC40939A3223E321B885E9 }}
