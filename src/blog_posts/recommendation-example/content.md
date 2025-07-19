@@ -4,6 +4,8 @@ subheading: From a few initial adopters of a product, how we can target new set 
 date: 2025-07-19
 ---
 
-# Building a target system to focus on 
+# Building a target system to focus on building a score for users depending on early adopters
+
+
 
 
