@@ -7,5 +7,5 @@ date: 2025-07-19
 # Building a target system to focus on building a score for users depending on early adopters
 
 
-
+Coming soon
 

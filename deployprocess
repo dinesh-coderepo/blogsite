@@ -1,0 +1,7 @@
+zip -r release.zip ./*
+
+az webapp deployment source config-zip \
+  --resource-group AppServicesGroup \
+  --name blogging \
+  --src release.zip \
+  --subscription ef2a5cb2-a811-44b8-8426-7d437f63e90e
