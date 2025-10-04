@@ -465,5 +465,3 @@ up_logger.info("test images max " + str(np.max(t_image_batch[0])))
 ```
 ![no_noorm_ex2](no_noorm_ex2.png)
 
-
-### Continued...
