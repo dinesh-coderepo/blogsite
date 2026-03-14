@@ -64,6 +64,23 @@ class MermaidExtension(Extension):
 #     # ...translator POST logic...
 #     return render_template('results_translator.html', ...)
 
+# Category mapping for blog posts
+CATEGORY_MAP = {
+    '5-Day-GenAI-Course': 'AI & ML',
+    'ADFDivedeep': 'Cloud & Azure',
+    'Ai-Voice-Calling': 'AI & ML',
+    'AIDeployment': 'Cloud & Azure',
+    'Astrology': 'Projects',
+    'AudiotoVideoConvertion': 'Projects',
+    'AzureChallenge': 'Cloud & Azure',
+    'Blog2': 'Engineering',
+    'DiveDeepPrompt': 'AI & ML',
+    'GCPServices': 'Cloud & Azure',
+    'Generating_Audio': 'Projects',
+    'ImageClassification': 'AI & ML',
+    'Monolith': 'AI & ML',
+}
+
 def load_blog_posts():
     posts = []
     blog_posts_dir = os.path.join(app.root_path, 'blog_posts')
@@ -76,7 +93,8 @@ def load_blog_posts():
                     content = file.read()
                     md = markdown.Markdown(extensions=['meta', 
                                                        'codehilite', 
-                                                       'fenced_code', 
+                                                       'fenced_code',
+                                                       'tables',
                                                        ImagePathExtension(folder),
                                                        MermaidExtension()])
                     html_content = md.convert(content)
@@ -84,11 +102,14 @@ def load_blog_posts():
                     
                     image_files = [f for f in os.listdir(post_dir) if f.lower().endswith(('.jpg', '.jpeg', '.png', '.gif'))]
                     
+                    category = meta.get('category', [CATEGORY_MAP.get(folder, 'General')])[0]
+                    
                     posts.append({
                         'id': folder,
                         'title': meta.get('title', [''])[0],
                         'subheading': meta.get('subheading', [''])[0],
                         'date': meta.get('date', [''])[0],
+                        'category': category,
                         'content': html_content,
                         'image_files': image_files
                     })
@@ -98,7 +119,8 @@ def load_blog_posts():
 @app.route('/')
 def home():
     blogs = load_blog_posts()
-    return render_template('index_blog.html', blogs=blogs)
+    categories = sorted(set(b['category'] for b in blogs))
+    return render_template('index_blog.html', blogs=blogs, categories=categories)
 
 @app.route('/blog/<string:folder>')
 def blog(folder):
@@ -106,7 +128,7 @@ def blog(folder):
     post = next((p for p in posts if p['id'] == folder), None)
     if post:
         return render_template('blog.html', blog=post)
-    return "Blog not found", 404
+    return render_template('404.html'), 404
 
 @app.route('/blog/<string:folder>/<path:filename>')
 def blog_image(folder, filename):

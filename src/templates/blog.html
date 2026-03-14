@@ -1,296 +1,250 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ blog.title }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>{{ blog.title }} — Digital Bits & Builds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-light">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" id="hljs-dark" disabled>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
         :root {
-            /* Light theme variables */
-            --primary: #009B4D;
-            --secondary: #FFCC00;
-            --background: #FAF5E9;
-            --surface: #FFFFFF;
-            --text: #000000;
+            --bg: #ffffff;
+            --bg-secondary: #fafafa;
+            --surface: #ffffff;
+            --text-primary: #111111;
             --text-secondary: #555555;
-            --accent: #FFCC00;
-            --border: #CCCCCC;
+            --text-tertiary: #999999;
+            --border: #e5e5e5;
+            --border-light: #f0f0f0;
+            --accent: #D4A853;
+            --accent-hover: #c49843;
+            --accent-soft: rgba(212,168,83,0.08);
+            --tag-bg: #f5f5f5;
+            --tag-text: #555555;
+            --navbar-bg: rgba(255,255,255,0.85);
+            --navbar-border: rgba(0,0,0,0.06);
+            --code-bg: #f6f8fa;
+            --code-border: #e5e5e5;
+            --blockquote-border: #D4A853;
+            --blockquote-bg: rgba(212,168,83,0.04);
+            --footer-bg: #111111;
+            --footer-text: #aaaaaa;
+            --footer-heading: #ffffff;
+            --link-color: #D4A853;
+            --link-hover: #c49843;
+            --category-dot: #D4A853;
         }
-
-        html[data-bs-theme="dark"] {
-            --gradient-start: #101820;
-            --gradient-end: #101820;
-            --card-bg: rgba(16, 24, 32, 0.98);
-            --bs-body-color: #FEE715;
-            --accent-color: #FEE715;
-            --navbar-bg: #101820;
-            --dropdown-bg: #101820;
-            --dropdown-hover: #e6e9ed;
-            --primary: var(--accent-color);
-            --secondary: var(--dropdown-hover);
-            --background: #101820;
-            --surface: #10100a;
-            --text: #FEE715;
-            --border: var(--dropdown-hover);
-            /* New dark mode override for code blocks */
-            pre,
-            code {
-                background: #1c1818;
-                color: #ffffff;
-            }
-            /* New dark mode override for copy button */
-            .copy-button {
-                background: #ffffff;
-                color: #000000;
-            }
+        [data-theme="dark"] {
+            --bg: #0a0a0a;
+            --bg-secondary: #111111;
+            --surface: #161616;
+            --text-primary: #f0f0f0;
+            --text-secondary: #aaaaaa;
+            --text-tertiary: #666666;
+            --border: #222222;
+            --border-light: #1a1a1a;
+            --accent: #D4A853;
+            --accent-hover: #e0b968;
+            --accent-soft: rgba(212,168,83,0.12);
+            --tag-bg: #1e1e1e;
+            --tag-text: #bbbbbb;
+            --navbar-bg: rgba(10,10,10,0.9);
+            --navbar-border: rgba(255,255,255,0.06);
+            --code-bg: #1a1a1a;
+            --code-border: #2a2a2a;
+            --blockquote-border: #D4A853;
+            --blockquote-bg: rgba(212,168,83,0.06);
+            --footer-bg: #050505;
+            --footer-text: #666666;
+            --footer-heading: #f0f0f0;
+            --link-color: #e0b968;
+            --link-hover: #D4A853;
+            --category-dot: #D4A853;
         }
-
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
             transition: background 0.3s ease, color 0.3s ease;
         }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        header {
-            background-color: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 2rem 0;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 0;
-            color: var(--text);
-        }
-
-        .blog-content {
-            background: var(--surface);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border);
-        }
-
-        .blog-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap; /* Added to prevent overflow */
-            margin-top: 1rem;
-        }
-
-        .button {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: background-color 0.2s ease;
-        }
-
-        .button:hover {
-            background: var(--secondary);
-        }
-
-        html[data-bs-theme="dark"] a.button {
-            background: var(--primary);
-            color: var(--navbar-bg);
-            border: none;
-        }
-
-        html[data-bs-theme="dark"] a.button:hover {
-            background: var(--secondary);
-            color: rgb(7, 6, 6); /* Updated hover text color for dark mode */
-        }
-
-        .theme-switch {
-            position: fixed;
-            top: 1.5rem;
-            left: 1.5rem; /* Changed from right to left for consistency */
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 0.5rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            z-index: 1000;
-        }
-
-        /* New rule to set slight blue for links in blog content */
-        .blog-content a {
-            color: #5b9bd5; /* slight blue */
-        }
-        .blog-content a:hover {
-            color: #4a86c5; /* darker slight blue */
-        }
-
-        /* New rule for copy button */
-        .copy-button {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            padding: 0.25rem 0.5rem;
-            font-size: 0.75rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            opacity: 0.8;
-        }
-        .copy-button:hover {
-            background: var(--secondary);
-            opacity: 1;
-        }
-
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navbar-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--navbar-border); }
+        .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-size: 1.125rem; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #fff; font-weight: 800; }
+        .nav-links-bar { display: flex; align-items: center; gap: 0.25rem; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.5rem 0.875rem; border-radius: 8px; transition: all 0.2s ease; }
+        .nav-link:hover { color: var(--text-primary); background: var(--accent-soft); }
+        .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+        .theme-toggle { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all 0.2s ease; color: var(--text-primary); }
+        .theme-toggle:hover { border-color: var(--accent); background: var(--accent-soft); }
+        .btn-primary { background: var(--accent); color: #fff; border: none; padding: 0.5rem 1.25rem; border-radius: 8px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: all 0.2s ease; cursor: pointer; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-outline { background: transparent; color: var(--text-primary); border: 1px solid var(--border); padding: 0.5rem 1.25rem; border-radius: 8px; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: all 0.2s ease; }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+        .article-header { padding: 7rem 2rem 3rem; text-align: center; border-bottom: 1px solid var(--border-light); background: var(--bg); }
+        .article-header-inner { max-width: 720px; margin: 0 auto; }
+        .article-meta { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; font-size: 0.8125rem; }
+        .article-date { color: var(--text-tertiary); }
+        .article-category { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.75rem; background: var(--tag-bg); color: var(--tag-text); border-radius: 6px; font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+        .article-category::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--category-dot); }
+        .article-header h1 { font-size: 2.75rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; color: var(--text-primary); margin-bottom: 1rem; }
+        .article-subheading { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.6; max-width: 600px; margin: 0 auto; }
+        .reading-progress { position: fixed; top: 64px; left: 0; width: 0%; height: 2px; background: var(--accent); z-index: 999; transition: width 0.1s linear; }
+        .article-container { max-width: 720px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+        .article-content { font-size: 1.0625rem; line-height: 1.8; color: var(--text-primary); animation: fadeIn 0.5s ease; }
+        .article-content h1 { font-size: 2rem; font-weight: 700; margin: 2.5rem 0 1rem; letter-spacing: -0.02em; }
+        .article-content h2 { font-size: 1.625rem; font-weight: 700; margin: 2.5rem 0 1rem; letter-spacing: -0.02em; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem; }
+        .article-content h3 { font-size: 1.25rem; font-weight: 600; margin: 2rem 0 0.75rem; }
+        .article-content h4 { font-size: 1.0625rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+        .article-content p { margin: 0 0 1.25rem; }
+        .article-content a { color: var(--link-color); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; transition: color 0.2s; }
+        .article-content a:hover { color: var(--link-hover); }
+        .article-content ul, .article-content ol { margin: 0 0 1.25rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .article-content img { max-width: 100%; height: auto; border-radius: 12px; margin: 1.5rem 0; border: 1px solid var(--border-light); }
+        .article-content blockquote { border-left: 3px solid var(--blockquote-border); background: var(--blockquote-bg); padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; font-style: italic; color: var(--text-secondary); }
+        .article-content pre { background: var(--code-bg); border: 1px solid var(--code-border); border-radius: 12px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; position: relative; font-size: 0.875rem; line-height: 1.6; }
+        .article-content code { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.875em; }
+        .article-content p code, .article-content li code { background: var(--code-bg); padding: 0.15em 0.4em; border-radius: 4px; border: 1px solid var(--code-border); font-size: 0.85em; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border); text-align: left; }
+        .article-content th { background: var(--tag-bg); font-weight: 600; }
+        .article-content hr { border: none; border-top: 1px solid var(--border-light); margin: 2rem 0; }
+        .copy-btn { position: absolute; top: 8px; right: 8px; padding: 0.25rem 0.625rem; font-size: 0.6875rem; font-weight: 500; font-family: inherit; background: var(--surface); color: var(--text-secondary); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; opacity: 0; transition: all 0.2s ease; }
+        pre:hover .copy-btn { opacity: 1; }
+        .copy-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .article-footer { max-width: 720px; margin: 0 auto; padding: 0 2rem 4rem; }
+        .article-nav { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid var(--border-light); }
+        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 100; color: var(--text-primary); }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .footer { background: var(--footer-bg); color: var(--footer-text); padding: 3rem 2rem; margin-top: 2rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer a { color: var(--footer-text); text-decoration: none; transition: color 0.2s; font-size: 0.8125rem; }
+        .footer a:hover { color: var(--accent); }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .mermaid { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid var(--border-light); text-align: center; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
+            .article-header h1 { font-size: 1.75rem; }
+            .article-header { padding: 6rem 1.5rem 2rem; }
+            .article-container { padding: 2rem 1.5rem 3rem; }
+            .nav-links-bar { display: none; }
+            .navbar-inner { padding: 0 1rem; }
         }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-    <button class="theme-switch" id="theme-toggle">
-        <span id="theme-icon">🌞</span>
-    </button>
-
-    <header>
-        <h1>{{ blog.title }}</h1>
-        <p class="tagline">{{ blog.subheading }}</p>
-        <div class="nav-links">
-            <a href="{{ url_for('home') }}" class="button">Home</a>
-            <a href="{{ url_for('about') }}" class="button">About Me</a>
-            <!-- Added Go Down button beside About Me -->
-            <a href="#" class="button" id="header-bottom-link">Go Down</a>
+    <div class="reading-progress" id="reading-progress"></div>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="{{ url_for('home') }}" class="logo">
+                <div class="logo-icon">D</div>
+                Digital Bits &amp; Builds
+            </a>
+            <div class="nav-links-bar">
+                <a href="{{ url_for('home') }}" class="nav-link">Blog</a>
+                <a href="{{ url_for('about') }}" class="nav-link">About</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span id="theme-icon">&#9728;&#65039;</span>
+                </button>
+                <a href="{{ url_for('home') }}" class="btn-outline">All Posts</a>
+            </div>
+        </div>
+    </nav>
+    <header class="article-header">
+        <div class="article-header-inner">
+            <div class="article-meta">
+                <span class="article-date">{{ blog.date }}</span>
+                <span class="article-category">{{ blog.category }}</span>
+            </div>
+            <h1>{{ blog.title }}</h1>
+            <p class="article-subheading">{{ blog.subheading }}</p>
         </div>
     </header>
-
-    <div class="container">
-        <div class="blog-content">
+    <article class="article-container">
+        <div class="article-content">
             {{ blog.content|safe }}
         </div>
-        <div class="nav-links">
-            <a href="{{ url_for('home') }}" class="button">Back to Home</a>
-            <a href="#" class="button" id="top-link">Return to Top</a>
+    </article>
+    <div class="article-footer">
+        <div class="article-nav">
+            <a href="{{ url_for('home') }}" class="btn-primary">Back to Blog</a>
+            <a href="{{ url_for('about') }}" class="btn-outline">About the Author</a>
         </div>
     </div>
-
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+    <footer class="footer">
+        <div class="footer-inner">
+            <span>&copy; 2024-2026 Maluchuru Sai Dinesh Reddy</span>
+            <div class="footer-links">
+                <a href="{{ url_for('home') }}">Blog</a>
+                <a href="{{ url_for('about') }}">About</a>
+            </div>
+        </div>
+    </footer>
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-
+        var themeToggle = document.getElementById("theme-toggle");
+        var themeIcon = document.getElementById("theme-icon");
+        var hljsLight = document.getElementById("hljs-light");
+        var hljsDark = document.getElementById("hljs-dark");
         function setTheme(isDark) {
-            document.documentElement.setAttribute("data-bs-theme", isDark ? "dark" : "light");
-            themeIcon.textContent = isDark ? '🌙' : '🌞';
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+            themeIcon.textContent = isDark ? "\ud83c\udf19" : "\u2600\ufe0f";
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+            if (hljsLight) hljsLight.disabled = isDark;
+            if (hljsDark) hljsDark.disabled = !isDark;
             updateMermaidTheme(isDark);
         }
-
         function updateMermaidTheme(isDark) {
-            mermaid.initialize({
-                theme: isDark ? 'dark' : 'default',
-                themeVariables: {
-                    primaryColor: isDark ? '#3b82f6' : '#2563eb',
-                    secondaryColor: isDark ? '#60a5fa' : '#3b82f6',
-                    tertiaryColor: isDark ? '#132f4c' : '#ffffff',
-                    primaryTextColor: isDark ? '#f8fafc' : '#0f172a',
-                    lineColor: isDark ? '#cbd5e1' : '#475569'
-                }
-            });
-            mermaid.init(undefined, document.querySelectorAll('.mermaid'));
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const isDark = document.documentElement.getAttribute("data-bs-theme") !== "dark";
-            setTheme(isDark);
-        });
-
-        const savedTheme = localStorage.getItem('theme');
-        setTheme(savedTheme === 'dark');
-
-        document.getElementById('top-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Custom slow scroll to bottom function over a specified duration (in ms)
-        function smoothScrollToBottom(duration) {
-            const start = window.pageYOffset;
-            const end = document.body.scrollHeight - window.innerHeight;
-            const change = end - start;
-            const startTime = performance.now();
-            
-            function animateScroll(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                // ease in-out quad
-                const ease = progress < 0.5 
-                    ? 2 * progress * progress 
-                    : -1 + (4 - 2 * progress) * progress;
-                window.scrollTo(0, start + change * ease);
-                if (progress < 1) {
-                    requestAnimationFrame(animateScroll);
-                }
-            }
-            requestAnimationFrame(animateScroll);
-        }
-
-        // Replace the event listener for header Go Down button to use smoothScrollToBottom
-        document.getElementById('header-bottom-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            smoothScrollToBottom(1000); // scroll over 1 second
-        });
-
-        // Add copy buttons to all <pre> blocks
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll("pre").forEach(block => {
-                block.style.position = "relative";
-                const button = document.createElement("button");
-                button.innerText = "Copy";
-                button.className = "copy-button";
-                button.addEventListener("click", () => {
-                    const cloned = block.cloneNode(true);
-                    const btnInClone = cloned.querySelector('.copy-button');
-                    if(btnInClone) btnInClone.remove();
-                    navigator.clipboard.writeText(cloned.innerText)
-                        .then(() => {
-                            button.innerText = "Copied";
-                            setTimeout(() => button.innerText = "Copy", 2000);
-                        })
-                        .catch(err => console.error("Error copying text: ", err));
+            if (typeof mermaid !== 'undefined') {
+                mermaid.initialize({ theme: isDark ? "dark" : "default",
+                    themeVariables: { primaryColor: isDark ? "#3b82f6" : "#2563eb", secondaryColor: isDark ? "#60a5fa" : "#3b82f6", tertiaryColor: isDark ? "#132f4c" : "#ffffff", primaryTextColor: isDark ? "#f8fafc" : "#0f172a", lineColor: isDark ? "#cbd5e1" : "#475569" }
                 });
-                block.appendChild(button);
+                document.querySelectorAll(".mermaid").forEach(function(el) {
+                    if (el.getAttribute("data-processed")) { el.removeAttribute("data-processed"); var code = el.textContent; el.innerHTML = code; mermaid.init(undefined, el); }
+                });
+            }
+        }
+        themeToggle.addEventListener("click", function() { var isDark = document.documentElement.getAttribute("data-theme") !== "dark"; setTheme(isDark); });
+        setTheme(localStorage.getItem("theme") === "dark");
+        window.addEventListener("scroll", function() {
+            var progressBar = document.getElementById("reading-progress");
+            var scrollTop = window.scrollY;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + "%";
+            var backToTop = document.getElementById("back-to-top");
+            if (scrollTop > 400) { backToTop.classList.add("visible"); } else { backToTop.classList.remove("visible"); }
+        });
+        document.getElementById("back-to-top").addEventListener("click", function() { window.scrollTo({ top: 0, behavior: "smooth" }); });
+        document.addEventListener("DOMContentLoaded", function() {
+            hljs.highlightAll();
+            document.querySelectorAll("pre").forEach(function(block) {
+                block.style.position = "relative";
+                var btn = document.createElement("button");
+                btn.innerText = "Copy";
+                btn.className = "copy-btn";
+                btn.addEventListener("click", function() {
+                    var cloned = block.cloneNode(true);
+                    var btnClone = cloned.querySelector(".copy-btn");
+                    if (btnClone) btnClone.remove();
+                    navigator.clipboard.writeText(cloned.innerText).then(function() { btn.innerText = "Copied!"; setTimeout(function() { btn.innerText = "Copy"; }, 2000); });
+                });
+                block.appendChild(btn);
             });
         });
     </script>

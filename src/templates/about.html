@@ -1,233 +1,559 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - Digital Bits and Builds</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>About &mdash; Sai Dinesh Reddy Maluchuru | Digital Bits &amp; Builds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Light theme variables */
-            --primary: #009B4D;
-            --secondary: #FFCC00;
-            --background: #FAF5E9;
-            --surface: #FFFFFF;
-            --text: #000000;
-            --text-secondary: #555555;
-            --accent: #FFCC00;
-            --border: #CCCCCC;
+            --bg: #ffffff; --bg-secondary: #fafafa; --surface: #ffffff;
+            --text-primary: #111111; --text-secondary: #555555; --text-tertiary: #999999;
+            --border: #e5e5e5; --border-light: #f0f0f0;
+            --accent: #D4A853; --accent-hover: #c49843; --accent-soft: rgba(212,168,83,0.08);
+            --tag-bg: #f5f5f5; --tag-text: #555555;
+            --navbar-bg: rgba(255,255,255,0.85); --navbar-border: rgba(0,0,0,0.06);
+            --footer-bg: #111111; --footer-text: #aaaaaa; --footer-heading: #ffffff;
+            --hero-gradient: linear-gradient(135deg, #fdfbf7 0%, #f7f2ea 50%, #faf8f4 100%);
+            --timeline-line: #e5e5e5;
+            --card-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            --card-hover-shadow: 0 8px 30px rgba(0,0,0,0.08);
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            transition: background 0.3s ease, color 0.3s ease;
+        [data-theme="dark"] {
+            --bg: #0a0a0a; --bg-secondary: #111111; --surface: #161616;
+            --text-primary: #f0f0f0; --text-secondary: #aaaaaa; --text-tertiary: #666666;
+            --border: #222222; --border-light: #1a1a1a;
+            --accent: #D4A853; --accent-hover: #e0b968; --accent-soft: rgba(212,168,83,0.12);
+            --tag-bg: #1e1e1e; --tag-text: #bbbbbb;
+            --navbar-bg: rgba(10,10,10,0.9); --navbar-border: rgba(255,255,255,0.06);
+            --footer-bg: #050505; --footer-text: #666666; --footer-heading: #f0f0f0;
+            --hero-gradient: linear-gradient(135deg, #0a0a0a 0%, #111108 50%, #0e0d0a 100%);
+            --timeline-line: #222222;
+            --card-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            --card-hover-shadow: 0 8px 30px rgba(0,0,0,0.3);
         }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.7; -webkit-font-smoothing: antialiased; transition: background 0.3s ease, color 0.3s ease; }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+        /* Navbar */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navbar-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--navbar-border); }
+        .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-size: 1.125rem; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #fff; font-weight: 800; }
+        .nav-links-bar { display: flex; align-items: center; gap: 0.25rem; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.5rem 0.875rem; border-radius: 8px; transition: all 0.2s ease; }
+        .nav-link:hover, .nav-link.active { color: var(--text-primary); background: var(--accent-soft); }
+        .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+        .theme-toggle { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all 0.2s ease; color: var(--text-primary); }
+        .theme-toggle:hover { border-color: var(--accent); background: var(--accent-soft); }
+        .btn-primary { background: var(--accent); color: #fff; border: none; padding: 0.5rem 1.25rem; border-radius: 8px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: all 0.2s ease; }
+        .btn-primary:hover { background: var(--accent-hover); }
 
-        header {
-            background-color: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 2rem 0;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
+        /* Hero */
+        .about-hero { background: var(--hero-gradient); padding: 8rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
+        .about-hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, var(--accent-soft) 0%, transparent 50%); animation: heroGlow 15s ease-in-out infinite alternate; }
+        @keyframes heroGlow { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(-2%, 2%) rotate(3deg); } }
+        .about-hero-content { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; }
+        .avatar { width: 110px; height: 110px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0 auto 1.5rem; box-shadow: 0 8px 30px rgba(212,168,83,0.3); letter-spacing: 0.05em; }
+        .about-hero h1 { font-size: 2.75rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; color: var(--text-primary); margin-bottom: 0.75rem; }
+        .about-hero .subtitle { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; max-width: 700px; margin: 0 auto; }
+        .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; }
+        .hero-stat { text-align: center; }
+        .hero-stat-number { font-size: 1.75rem; font-weight: 800; color: var(--accent); }
+        .hero-stat-label { font-size: 0.75rem; font-weight: 500; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 0;
-            color: var(--text);
-        }
+        /* Section Nav */
+        .section-nav { position: sticky; top: 64px; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border-light); transition: background 0.3s ease; }
+        .section-nav-inner { max-width: 900px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; padding: 0 2rem; -ms-overflow-style: none; scrollbar-width: none; }
+        .section-nav-inner::-webkit-scrollbar { display: none; }
+        .section-nav-link { padding: 0.875rem 1.25rem; font-size: 0.8125rem; font-weight: 500; color: var(--text-tertiary); text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
+        .section-nav-link:hover, .section-nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-        .about-content {
-            background: var(--surface);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-top: 2rem;
-            border: 1px solid var(--border);
-        }
+        /* Content */
+        .about-container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+        .section { margin-bottom: 4rem; scroll-margin-top: 140px; }
+        .section-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; }
+        .section-header h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); white-space: nowrap; }
+        .section-header .section-line { flex: 1; height: 1px; background: var(--border-light); }
+        .section > p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; font-size: 1rem; }
 
-        .profile-section {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+        /* Timeline */
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--timeline-line); }
+        .timeline-item { position: relative; margin-bottom: 3rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 0.375rem; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 3px solid var(--bg); box-shadow: 0 0 0 2px var(--accent); z-index: 1; }
+        .timeline-item.current::before { box-shadow: 0 0 0 2px var(--accent), 0 0 0 6px var(--accent-soft); }
+        .timeline-header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; margin-bottom: 0.25rem; }
+        .timeline-company { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
+        .timeline-role { font-size: 0.9375rem; font-weight: 500; color: var(--accent); }
+        .timeline-period { font-size: 0.8125rem; color: var(--text-tertiary); font-weight: 400; }
+        .timeline-location { font-size: 0.8125rem; color: var(--text-tertiary); margin-bottom: 0.25rem; }
+        .timeline-promotion { font-size: 0.8125rem; color: var(--text-tertiary); font-style: italic; margin-bottom: 0.5rem; }
+        .timeline-body { margin-top: 0.5rem; }
+        .timeline-body ul { list-style: none; padding: 0; }
+        .timeline-body li { position: relative; padding-left: 1.25rem; margin-bottom: 0.625rem; font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.65; }
+        .timeline-body li::before { content: ''; position: absolute; left: 0; top: 0.6rem; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0.6; }
+        .timeline-projects { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+        .timeline-tag { display: inline-block; padding: 0.2rem 0.625rem; background: var(--tag-bg); color: var(--tag-text); border-radius: 6px; font-size: 0.6875rem; font-weight: 500; }
 
-        .profile-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+        .skill-card { background: var(--surface); border: 1px solid var(--border-light); border-radius: 14px; padding: 1.5rem; transition: all 0.3s ease; }
+        .skill-card:hover { transform: translateY(-4px); box-shadow: var(--card-hover-shadow); border-color: var(--accent); }
+        .skill-card h3 { font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-primary); }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+        .skill-tag { padding: 0.25rem 0.625rem; background: var(--tag-bg); color: var(--tag-text); border-radius: 6px; font-size: 0.75rem; font-weight: 500; transition: all 0.2s; }
+        .skill-tag:hover { background: var(--accent-soft); color: var(--accent); }
 
-        .interests {
-            margin: 2rem 0;
-        }
+        /* Education */
+        .edu-card { background: var(--surface); border: 1px solid var(--border-light); border-radius: 14px; padding: 2rem; margin-bottom: 1.25rem; transition: all 0.3s ease; }
+        .edu-card:hover { box-shadow: var(--card-hover-shadow); border-color: var(--accent); }
+        .edu-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+        .edu-title { font-size: 1.125rem; font-weight: 700; color: var(--text-primary); }
+        .edu-period { font-size: 0.8125rem; color: var(--text-tertiary); font-weight: 500; white-space: nowrap; }
+        .edu-institution { font-size: 0.9375rem; color: var(--accent); font-weight: 500; margin-bottom: 0.5rem; }
+        .edu-details { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
 
-        .interests h3 {
-            color: var(--text);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
+        /* Achievements */
+        .achievements-list { display: grid; gap: 0.75rem; }
+        .achievement-item { display: flex; align-items: flex-start; gap: 0.875rem; padding: 1.125rem 1.25rem; background: var(--surface); border: 1px solid var(--border-light); border-radius: 12px; transition: all 0.3s ease; }
+        .achievement-item:hover { border-color: var(--accent); box-shadow: var(--card-hover-shadow); }
+        .achievement-marker { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.5rem; }
+        .achievement-text { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
+        .achievement-text strong { color: var(--text-primary); }
 
-        .interests ul {
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
+        /* Connect */
+        .connect-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+        .connect-card { display: flex; align-items: center; gap: 0.875rem; padding: 1.125rem 1.25rem; background: var(--surface); border: 1px solid var(--border-light); border-radius: 12px; text-decoration: none; color: var(--text-primary); transition: all 0.3s ease; }
+        .connect-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--card-hover-shadow); }
+        .connect-card svg { flex-shrink: 0; color: var(--text-tertiary); transition: color 0.2s; }
+        .connect-card:hover svg { color: var(--accent); }
+        .connect-card-label { font-size: 0.875rem; font-weight: 600; }
+        .connect-card-value { font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.125rem; }
 
-        .interests li {
-            background: var(--background);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid var(--border);
-            text-align: center;
-        }
+        /* Footer */
+        .footer { background: var(--footer-bg); color: var(--footer-text); padding: 3rem 2rem; margin-top: 2rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer a { color: var(--footer-text); text-decoration: none; transition: color 0.2s; font-size: 0.8125rem; }
+        .footer a:hover { color: var(--accent); }
+        .footer-links { display: flex; gap: 1.5rem; }
 
-        .links {
-            margin-top: 2rem;
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .button {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: background-color 0.2s ease;
-        }
-
-        .button:hover {
-            background: var(--secondary);
-        }
-
-        html[data-bs-theme="dark"] {
-            --gradient-start: #101820;
-            --gradient-end: #101820;
-            --card-bg: rgba(16, 24, 32, 0.98);
-            --bs-body-color: #FEE715;
-            --accent-color: #FEE715;
-            --navbar-bg: #101820;
-            --dropdown-bg: #101820;
-            --dropdown-hover: #e6e9ed;
-            --primary: var(--accent-color);
-            --secondary: var(--dropdown-hover);
-            --background: #101820;
-            --surface: #10100a;
-            --text: #FEE715;
-            --border: var(--dropdown-hover);
-        }
-
-        html[data-bs-theme="dark"] a.button {
-            background: var(--primary);
-            color: var(--navbar-bg);
-            border: none;
-        }
-
-        html[data-bs-theme="dark"] a.button:hover {
-            background: var(--secondary);
-            color: rgb(7, 6, 6); /* Updated hover text color for dark mode */
-        }
-
-        .theme-switch {
-            position: fixed;
-            top: 1.5rem;
-            left: 1.5rem; /* Changed from right to left for consistency */
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 0.5rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            z-index: 1000;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .interests ul {
-                grid-template-columns: 1fr;
-            }
+            .about-hero h1 { font-size: 1.75rem; }
+            .about-hero { padding: 7rem 1.5rem 3rem; }
+            .about-container { padding: 2rem 1.5rem 3rem; }
+            .nav-links-bar { display: none; }
+            .hero-stats { gap: 1.5rem; }
+            .hero-stat-number { font-size: 1.375rem; }
+            .section-nav-inner { padding: 0 1rem; }
+            .edu-header { flex-direction: column; gap: 0.25rem; }
+            .timeline { padding-left: 1.5rem; }
+            .timeline-item::before { left: -1.5rem; }
         }
+        @media (max-width: 480px) {
+            .skills-grid { grid-template-columns: 1fr; }
+            .connect-grid { grid-template-columns: 1fr; }
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
     </style>
 </head>
 <body>
-    <button class="theme-switch" id="theme-toggle">
-        <span id="theme-icon">🌞</span>
-    </button>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="{{ url_for('home') }}" class="logo">
+                <div class="logo-icon">D</div>
+                Digital Bits &amp; Builds
+            </a>
+            <div class="nav-links-bar">
+                <a href="{{ url_for('home') }}" class="nav-link">Blog</a>
+                <a href="{{ url_for('about') }}" class="nav-link active">About</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span id="theme-icon">&#9728;&#65039;</span>
+                </button>
+                <a href="https://github.com/dinesh-coderepo" class="btn-primary" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
 
-    <header>
-        <h1>ABOUT ME</h1>
-        <a href="{{ url_for('home') }}" class="button">Back to Blog</a>
-    </header>
+    <!-- Hero -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <div class="avatar">SDR</div>
+            <h1>Sai Dinesh Reddy Maluchuru</h1>
+            <p class="subtitle">Data &amp; ML Engineer with 8+ years of experience architecting large-scale data platforms, ML pipelines, and cost-optimization solutions at Microsoft, Amazon, and JPMorgan Chase. Currently leading data engineering across OneNote Copilot and OneDrive SharePoint (ODSP), processing 200+ TB daily raw logs and 3 trillion single-day transactions, driving 70% infrastructure cost reductions. Deep hands-on expertise in LLMs &mdash; extensively using Claude and GPT-4 for evaluation frameworks, EDA automation, and prompt engineering. IIT Madras dual-degree graduate (AIR 728).</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">8+</div>
+                    <div class="hero-stat-label">Years Experience</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">200 TB+</div>
+                    <div class="hero-stat-label">Daily Raw Logs</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">3T</div>
+                    <div class="hero-stat-label">Single-Day Txns</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">70%</div>
+                    <div class="hero-stat-label">Cost Reduction</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="container">
-        <div class="about-content">
-            <div class="profile-section">
-                <h2>Maluchuru Sai Dinesh Reddy</h2>
-                <p>🚀 Tech enthusiast and innovator passionate about AI, space exploration, and the mysteries of the universe.</p>
+    <!-- Section Nav -->
+    <nav class="section-nav">
+        <div class="section-nav-inner">
+            <a href="#experience" class="section-nav-link active">Experience</a>
+            <a href="#skills" class="section-nav-link">Skills</a>
+            <a href="#education" class="section-nav-link">Education</a>
+            <a href="#achievements" class="section-nav-link">Achievements</a>
+            <a href="#connect" class="section-nav-link">Connect</a>
+        </div>
+    </nav>
+
+    <div class="about-container">
+
+        <!-- Experience -->
+        <div class="section" id="experience">
+            <div class="section-header">
+                <h2>Professional Experience</h2>
+                <div class="section-line"></div>
             </div>
 
-            <div class="interests">
-                <h3>Interests & Passions</h3>
-                <ul>
-                    <li>🤖 Artificial Intelligence</li>
-                    <li>🌌 Space Exploration</li>
-                    <li>⚡ Technology Innovation</li>
-                    <li>🧘‍♂️ Meditation</li>
-                    <li>📚 Continuous Learning</li>
-                    <li>🌟 Personal Growth</li>
-                </ul>
-            </div>
+            <div class="timeline">
 
-            <div class="professional-profile">
-                <h3>Professional Profile</h3>
-                <p>For a complete overview of my professional experience, projects, and achievements, visit my portfolio website or please feel to email to contact.</p>
+                <!-- Microsoft -->
+                <div class="timeline-item current">
+                    <div class="timeline-header">
+                        <span class="timeline-company">Microsoft</span>
+                        <span class="timeline-period">Aug 2022 &ndash; Present</span>
+                    </div>
+                    <div class="timeline-role">Data &amp; ML Engineer 2</div>
+                    <div class="timeline-location">Hyderabad, India</div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li><strong>ODSP Large-Scale Pipelines:</strong> Engineered high-throughput data pipelines on the OneDrive SharePoint team, processing 200 TB+ raw logs and 3 trillion single-day Blob transactions; built optimized pipelines that reduced compute and storage consumption by 70%.</li>
+                            <li><strong>Blob Cost Analytics:</strong> Spearheaded Blob storage costing analysis &mdash; the single largest cost driver for ODSP &mdash; building Highcharts dashboards that surfaced granular cost breakdowns by service, region, and workload type, directly informing executive budget decisions and identifying $M-level savings opportunities.</li>
+                            <li><strong>Team Enablement &amp; LLM Advocacy:</strong> Led organization-wide training on data optimization techniques and conducted hands-on sessions on EDA using Claude and GPT-4, upskilling 50+ engineers; championed LLM adoption for data exploration, query generation, and automated insight extraction across the ODSP team.</li>
+                            <li><strong>OneNote Copilot &mdash; Video Evaluation:</strong> Designed and built an LLM-as-a-Judge evaluation framework for video content analysis in OneNote Copilot Notebook, defining rubrics and scoring pipelines; collaborated closely with ML and Applied Science teams to deploy, test, and iterate on evaluation projects in production environments.</li>
+                            <li><strong>OneNote Web Adoption Dashboard:</strong> Architected a full-stack web adoption dashboard and metrics platform for OneNote, integrating telemetry from multiple sources; enabled leadership to track engagement funnels, cohort retention, and feature adoption &mdash; directly influencing product roadmap prioritization.</li>
+                            <li><strong>Data Engineering Leadership:</strong> Stood up and led the Data Engineering division for OneNote Copilot Notebook from scratch; secured and analyzed capacity tokens to justify and launch the DE team, establishing scalable infrastructure hosting 200+ pipelines and ML workflows with automated monitoring and alerting.</li>
+                            <li><strong>Windows Analytics &amp; Passkey Adoption:</strong> Engineered a business-critical analytics system used by 28+ teams across Windows org, tracking reliability, monitoring, and feature adoption; drove cross-platform metrics for Remote Approval and Windows Passkey, identifying high-value user cohorts and boosting adoption by 30%.</li>
+                            <li><strong>Store Personalization &amp; ML Optimization:</strong> Cut ML training costs by 80% via Resilience LPG framework optimizations; re-architected the training pipeline to improve model accuracy while reducing experimentation cycle time from days to hours.</li>
+                        </ul>
+                        <div class="timeline-projects">
+                            <span class="timeline-tag">Azure Data Factory</span>
+                            <span class="timeline-tag">Spark</span>
+                            <span class="timeline-tag">KQL / Kusto</span>
+                            <span class="timeline-tag">Power BI</span>
+                            <span class="timeline-tag">Highcharts</span>
+                            <span class="timeline-tag">LLM-as-a-Judge</span>
+                            <span class="timeline-tag">Cosmos DB</span>
+                            <span class="timeline-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Amazon -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-company">Amazon</span>
+                        <span class="timeline-period">Aug 2019 &ndash; Aug 2022</span>
+                    </div>
+                    <div class="timeline-role">Data Engineer</div>
+                    <div class="timeline-location">Hyderabad, India</div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li><strong>Package Delivery Lifecycle Pipeline:</strong> Designed the end-to-end data pipeline modeling the complete lifecycle of a package &mdash; from order placement through hub processing to last-mile delivery &mdash; building three foundational datasets (Node Processing, Package Attributes, Package Items) at different granularities. These became the single source of truth for logistics analytics, used by operations, finance, and product teams worldwide.</li>
+                            <li><strong>Delivery Estimate Accuracy:</strong> Built the Delivery Estimate Accuracy framework for Indian deliveries, attributing false delivery promises across millions of daily packages; performed root-cause analysis to identify systemic patterns in estimate failures, directly improving promise accuracy and reducing customer-facing delivery misses.</li>
+                            <li><strong>Leave-at-Door Pilot (India):</strong> Partnered closely with engineering to instrument and analyze Amazon's "Leave Package at Door" pilot in India; built dashboards tracking adoption curves and delivery preferences (door vs. security desk vs. neighbor), generating insights that drove the nationwide rollout decision.</li>
+                            <li><strong>Fintech &amp; Tax Compliance:</strong> Developed end-to-end data pipelines powering compliance and tax reporting across multiple regions, ensuring 99.9% data accuracy, full auditability, and regulatory adherence across complex financial workflows.</li>
+                            <li><strong>Platform Architecture &amp; Orchestration:</strong> Designed scalable data ingestion solutions using Hoot, Redshift, and DJS/Airflow on AWS (ECS, Fargate, S3), supporting 80+ downstream consumer teams with sub-hour data freshness and automated retry/alerting mechanisms.</li>
+                            <li><strong>Global-Scale Optimization:</strong> Applied advanced optimization techniques (partition pruning, bucketing, broadcast joins, salting for skew) to scale pipelines for worldwide transaction volume; improved SLA adherence by 25% for mission-critical AMZL datasets while significantly reducing compute costs.</li>
+                        </ul>
+                        <div class="timeline-projects">
+                            <span class="timeline-tag">AWS (ECS, Fargate, S3)</span>
+                            <span class="timeline-tag">Redshift</span>
+                            <span class="timeline-tag">Hive / HiveQL</span>
+                            <span class="timeline-tag">Spark</span>
+                            <span class="timeline-tag">DJS / Airflow</span>
+                            <span class="timeline-tag">Python</span>
+                            <span class="timeline-tag">SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JPMorgan Chase -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-company">JPMorgan Chase</span>
+                        <span class="timeline-period">Jul 2017 &ndash; Aug 2019</span>
+                    </div>
+                    <div class="timeline-role">Associate</div>
+                    <div class="timeline-location">Hyderabad, India</div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li><strong>Oracle-to-Spark Migration:</strong> Led the end-to-end migration of the entire Oracle data platform to Spark, re-architecting batch ETL jobs, resolving critical data skewness issues, and improving processing throughput by 3x while reducing infrastructure costs.</li>
+                            <li><strong>Data Ingestion &amp; ETL Optimization:</strong> Engineered Sqoop-based ingestion pipelines and Hive batch jobs for large-scale data processing; applied Spark optimization techniques (repartitioning, salting, broadcast joins) to eliminate data skew, cutting job runtimes by 50% and reducing failure rates.</li>
+                            <li><strong>Loans, Cards &amp; Merchant Analytics:</strong> Worked as a strategic analytics partner across Loans, Cards, and Chase Merchant Services business lines; developed a Cost-Based Allocation Model enabling precise P&amp;L attribution, helping leadership understand profitability drivers across product segments.</li>
+                            <li><strong>Business Intelligence Dashboards:</strong> Built interactive Tableau dashboards for Mortgage Banking, Cards, and Merchant Services, serving 300+ daily users; enabled leadership to make data-driven decisions that reduced manual reporting effort by 40% and accelerated weekly business reviews.</li>
+                            <li><strong>Alteryx &amp; ML Enablement:</strong> Spearheaded an Alteryx POC for automated data wrangling workflows, reducing data prep time by 60%; led team-wide learning sessions on Machine Learning fundamentals, demoing end-to-end supervised model training (Logistic Regression, Random Forest, XGBoost) with real business datasets.</li>
+                        </ul>
+                        <div class="timeline-projects">
+                            <span class="timeline-tag">Python</span>
+                            <span class="timeline-tag">SQL</span>
+                            <span class="timeline-tag">Spark</span>
+                            <span class="timeline-tag">Hive</span>
+                            <span class="timeline-tag">Sqoop</span>
+                            <span class="timeline-tag">Tableau</span>
+                            <span class="timeline-tag">Alteryx</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GE -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-company">General Electric</span>
+                        <span class="timeline-period">May &ndash; Jul 2015</span>
+                    </div>
+                    <div class="timeline-role">Summer Intern</div>
+                    <div class="timeline-location">Bangalore, India</div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li><strong>Vehicle Fault Detection:</strong> Developed machine learning algorithms for detecting faults in vehicle engines using multi-sensor parameter data.</li>
+                            <li><strong>Data Mining:</strong> Implemented text mining techniques to filter noise and establish reliable ground truth labels for the fault detection system.</li>
+                        </ul>
+                        <div class="timeline-projects">
+                            <span class="timeline-tag">Machine Learning</span>
+                            <span class="timeline-tag">Signal Processing</span>
+                            <span class="timeline-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="links">
-                <a href="https://maluchurudinesh.com" class="button" target="_blank">Work Experience</a>
-                <a href="mailto:maluchurudinesh@gmail.com" class="button">Email Me</a>
+        </div>
+
+        <!-- Skills -->
+        <div class="section" id="skills">
+            <div class="section-header">
+                <h2>Technical Skills</h2>
+                <div class="section-line"></div>
             </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Languages &amp; Query</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">KQL</span>
+                        <span class="skill-tag">Spark SQL</span>
+                        <span class="skill-tag">HiveQL</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">R</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Cloud &amp; Big Data</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Azure (Data Factory, Synapse, Cosmos DB, Kusto)</span>
+                        <span class="skill-tag">AWS (ECS, Fargate, S3, Redshift)</span>
+                        <span class="skill-tag">Spark</span>
+                        <span class="skill-tag">Hadoop</span>
+                        <span class="skill-tag">Hive</span>
+                        <span class="skill-tag">Sqoop</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>AI &amp; Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">LLMs (Claude, GPT-4)</span>
+                        <span class="skill-tag">LLM-as-a-Judge</span>
+                        <span class="skill-tag">Supervised &amp; Unsupervised ML</span>
+                        <span class="skill-tag">MLOps</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Data &amp; Visualization</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Highcharts</span>
+                        <span class="skill-tag">Alteryx</span>
+                        <span class="skill-tag">DJS / Airflow</span>
+                        <span class="skill-tag">Data Wrangling</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Core Strengths</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Petabyte-Scale Pipelines</span>
+                        <span class="skill-tag">Cost Optimization</span>
+                        <span class="skill-tag">Oracle-to-Spark Migration</span>
+                        <span class="skill-tag">EDA</span>
+                        <span class="skill-tag">Capacity Planning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section" id="education">
+            <div class="section-header">
+                <h2>Education</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-header">
+                    <div>
+                        <div class="edu-title">Dual Degree &mdash; B.Tech + M.Tech, Electrical Engineering</div>
+                        <div class="edu-institution">Indian Institute of Technology (IIT) Madras</div>
+                    </div>
+                    <div class="edu-period">2012 &ndash; 2017</div>
+                </div>
+                <div class="edu-details">
+                    5-year integrated program from one of India's premier engineering institutions. Coursework covered signal processing, machine learning, statistical methods, and advanced mathematics.
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="section" id="achievements">
+            <div class="section-header">
+                <h2>Achievements</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="achievements-list">
+                <div class="achievement-item">
+                    <div class="achievement-marker"></div>
+                    <div class="achievement-text"><strong>IIT-JEE 2012: AIR 728</strong> &mdash; Among 560,000+ candidates, top 0.13% nationally.</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-marker"></div>
+                    <div class="achievement-text"><strong>Technical Excellence</strong> &mdash; Recognized for outstanding engineering contributions at Microsoft; consistently rated "Exceeds Expectations."</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-marker"></div>
+                    <div class="achievement-text"><strong>M.Tech Thesis</strong> &mdash; Developed vehicle classification algorithms using image processing and ML, achieving 80% accuracy.</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-marker"></div>
+                    <div class="achievement-text"><strong>Publications &amp; Blog</strong> &mdash; Authored technical articles on data engineering, Spark optimization, and ML best practices at dineshblog.com.</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-marker"></div>
+                    <div class="achievement-text"><strong>Mentorship</strong> &mdash; Actively mentor junior engineers on data engineering best practices, LLM adoption, and career development.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connect -->
+        <div class="section" id="connect">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <div class="section-line"></div>
+            </div>
+            <p>Open to connecting with professionals passionate about data engineering, machine learning, and building scalable systems.</p>
+            <div class="connect-grid">
+                <a href="mailto:maluchurudinesh@gmail.com" class="connect-card">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <div>
+                        <div class="connect-card-label">Email</div>
+                        <div class="connect-card-value">maluchurudinesh@gmail.com</div>
+                    </div>
+                </a>
+                <a href="tel:+919790956523" class="connect-card">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <div>
+                        <div class="connect-card-label">Phone</div>
+                        <div class="connect-card-value">+91 9790956523</div>
+                    </div>
+                </a>
+                <a href="https://github.com/dinesh-coderepo" target="_blank" class="connect-card">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                    <div>
+                        <div class="connect-card-label">GitHub</div>
+                        <div class="connect-card-value">dinesh-coderepo</div>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/maluchuru-sai-dinesh-reddy/" target="_blank" class="connect-card">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                    <div>
+                        <div class="connect-card-label">LinkedIn</div>
+                        <div class="connect-card-value">Sai Dinesh Reddy</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- About the Blog -->
+        <div class="section" id="blog-about">
+            <div class="section-header">
+                <h2>About This Blog</h2>
+                <div class="section-line"></div>
+            </div>
+            <p>Digital Bits &amp; Builds is my space for exploring ideas at the intersection of artificial intelligence, cloud engineering, and modern software development. I write about hands-on projects, deep technical dives, and lessons learned from building real-world applications.</p>
+            <p>Whether it's deploying ML models on Azure, experimenting with generative AI, or dissecting recommendation engines &mdash; every post is a reflection of curiosity-driven learning.</p>
         </div>
     </div>
 
-    <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <span>&copy; 2024-2026 Sai Dinesh Reddy Maluchuru</span>
+            <div class="footer-links">
+                <a href="{{ url_for('home') }}">Blog</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="https://github.com/dinesh-coderepo" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
 
+    <script>
+        // Theme toggle
+        var themeToggle = document.getElementById("theme-toggle");
+        var themeIcon = document.getElementById("theme-icon");
         function setTheme(isDark) {
-            document.documentElement.setAttribute("data-bs-theme", isDark ? "dark" : "light");
-            themeIcon.textContent = isDark ? "🌙" : "🌞";
+            document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+            themeIcon.textContent = isDark ? "\ud83c\udf19" : "\u2600\ufe0f";
             localStorage.setItem("theme", isDark ? "dark" : "light");
         }
-
-        themeToggle.addEventListener('click', () => {
-            const isDark = document.documentElement.getAttribute("data-bs-theme") !== "dark";
+        themeToggle.addEventListener("click", function() {
+            var isDark = document.documentElement.getAttribute("data-theme") !== "dark";
             setTheme(isDark);
         });
+        setTheme(localStorage.getItem("theme") === "dark");
 
-        const savedTheme = localStorage.getItem("theme");
-        setTheme(savedTheme === "dark");
+        // Section nav active state on scroll
+        var sections = document.querySelectorAll(".section[id]");
+        var navLinks = document.querySelectorAll(".section-nav-link");
+        window.addEventListener("scroll", function() {
+            var scrollPos = window.scrollY + 200;
+            sections.forEach(function(section) {
+                if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+                    navLinks.forEach(function(link) { link.classList.remove("active"); });
+                    var activeLink = document.querySelector('.section-nav-link[href="#' + section.id + '"]');
+                    if (activeLink) activeLink.classList.add("active");
+                }
+            });
+        });
+
+        // Smooth scroll for section nav
+        navLinks.forEach(function(link) {
+            link.addEventListener("click", function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute("href"));
+                if (target) target.scrollIntoView({ behavior: "smooth" });
+            });
+        });
     </script>
 </body>
 </html>

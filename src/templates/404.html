@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Digital Bits & Builds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff; --text-primary: #111111; --text-secondary: #666666;
+            --accent: #D4A853; --accent-hover: #c49843; --surface: #ffffff; --border: #e5e5e5;
+        }
+        [data-theme="dark"] {
+            --bg: #0a0a0a; --text-primary: #f0f0f0; --text-secondary: #999999;
+            --accent: #D4A853; --accent-hover: #e0b968; --surface: #161616; --border: #222222;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg); color: var(--text-primary);
+            display: flex; align-items: center; justify-content: center;
+            min-height: 100vh; text-align: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .container { max-width: 500px; padding: 2rem; }
+        .code { font-size: 6rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 1rem; }
+        h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
+        p { color: var(--text-secondary); margin-bottom: 2rem; font-size: 1rem; }
+        .btn {
+            display: inline-block; background: var(--accent); color: #fff;
+            padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none;
+            font-weight: 600; font-size: 0.875rem; transition: background 0.2s;
+        }
+        .btn:hover { background: var(--accent-hover); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="code">404</div>
+        <h1>Page not found</h1>
+        <p>The page you're looking for doesn't exist or has been moved.</p>
+        <a href="/" class="btn">Back to Blog</a>
+    </div>
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>
